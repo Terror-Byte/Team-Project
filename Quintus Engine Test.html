@@ -1,0 +1,34 @@
+<html>
+  <title> Quintus Engine Test Thingy </title>
+  <head>
+	<!-- Pulls the engine from Quintus CDN -->
+    <script src='http://cdn.html5quintus.com/v0.2.0/quintus-all.js'></script> 
+  </head>
+    <body>
+	  <script>
+		// Sets up the game
+	    var Q = Quintus()											// Create a new engine instance
+				.include("Sprites, Scenes, Input, 2D, Touch, UI")   // Load any needed modules
+				.setup()											// Add a canvas element onto the page 
+				.controls()											// Add in default controls (keyboard, buttons)
+				.touch();											// Add in touch support (for the UI)
+		
+		// Actual game code from here on
+		
+		// You can create a sub-class by extending the Q.Sprite class to create Q.Player
+		Q.Sprite.extend("Player",{
+			
+			// The init contructor is called on creation
+			init: function(p) {
+			
+				// You can call the parent's constructor with this._super(..)
+				this._super(p, {
+					sheet: "player",  // Setting a sprite sheet sets sprite width and height
+					x: 410,			 // You can also set additional properties that can 
+					y: 90			// be overriden on object creation
+				});
+				
+				// Add in pre-made components to get up and running quickly
+				this.add('2d, platformerControls');
+				
+</html>
