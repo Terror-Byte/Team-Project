@@ -30,10 +30,14 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 <<<<<<< HEAD
+<<<<<<< HEAD
 			GlobalSection(MonoDevelopProperties) = preSolution
 =======
 	GlobalSection(MonoDevelopProperties) = preSolution
 >>>>>>> parent of 9914b09... Re-added sprites/scripts to objects.
+=======
+		GlobalSection(MonoDevelopProperties) = preSolution
+>>>>>>> parent of 1811161... 1
 		StartupItem = Assembly-CSharp.csproj
 		Policies = $0
 		$0.TextStylePolicy = $1
