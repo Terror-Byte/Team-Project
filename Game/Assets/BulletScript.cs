@@ -3,11 +3,7 @@ using System.Collections;
 
 
 public class BulletScript : MonoBehaviour {
-	//public float speed = 0.1f;
-	//public float rotation = 10.0f;
-	//Vector2 dir = new Vector2(0, 0);
-
-	public bool isInstansiated = false;
+	int countdownToDestruction = 0;
 
 	// Use this for initialization
 	void Start () {
@@ -16,8 +12,11 @@ public class BulletScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		//dir.y = speed;
-		//transform.Rotate(Vector3.forward * rotation);
-		//transform.Translate(dir);
+		countdownToDestruction++;
+		if (countdownToDestruction == 50) {
+			GameObject bullet = GameObject.Find("BulletPrefab");
+			Destroy (gameObject);
+
+		}
 	}
 }
