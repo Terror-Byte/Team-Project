@@ -42,6 +42,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 104192, guid: 967ff25892bceaf42913834469f062ec, type: 2}
   speed: 1
+  weaponSpd: 10
+  weaponRefresh: 25
 --- !u!212 &21299604
 SpriteRenderer:
   m_ObjectHideFlags: 1
