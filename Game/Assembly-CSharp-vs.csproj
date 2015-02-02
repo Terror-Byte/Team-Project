@@ -46,7 +46,10 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Bullet.cs" />
+     <Compile Include="Assets\BulletScript.cs" />
      <Compile Include="Assets\Movement.cs" />
+     <Compile Include="Assets\WorldController.cs" />
      <None Include="Assets\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
  <Reference Include="Assembly-UnityScript-firstpass">
  <HintPath>E:/Github Repos/Team-Project/Game/Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll</HintPath>
