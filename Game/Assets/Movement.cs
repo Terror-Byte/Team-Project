@@ -20,8 +20,8 @@ public class Movement : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-
-		if (Input.GetKey (KeyCode.W))
+        
+		/*if (Input.GetKey (KeyCode.W))
 		{
 			dir.y = speed;
 		} 
@@ -40,9 +40,16 @@ public class Movement : MonoBehaviour {
 		else
 		{
 			dir = Vector2.zero;
-		}
+		}*/
 
-		transform.Translate (dir); 
+        Vector2 move = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        Debug.Log(move);
+        float movX = move.x * speed * Time.deltaTime;
+        float movY = move.y * speed * Time.deltaTime;
+
+        transform.Translate(new Vector2(movX, movY));
+
+		//transform.Translate (dir); 
 
 
 		// If left button pressed, generate a new bullet and fire.
