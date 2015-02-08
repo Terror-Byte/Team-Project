@@ -50,5 +50,11 @@ public class BulletScript : MonoBehaviour {
             Destroy(this.gameObject);
             coll.gameObject.SendMessage("ApplyDamage", 10);
         }
+		else if (coll.gameObject.tag == "Player")
+		{
+			Debug.Log("Player Hit!");
+			Destroy(this.gameObject);
+			coll.gameObject.SendMessage("ApplyDamage", 5);
+		}
     }
 }

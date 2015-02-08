@@ -12,6 +12,8 @@ public class Movement : MonoBehaviour {
 
     Vector3 currVel;
 
+	public int health = 100;
+
 	// Use this for initialization
 	void Start () 
 	{
@@ -22,6 +24,9 @@ public class Movement : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
+		if (health <= 0)
+			Destroy (this.gameObject);
+
         Vector2 move = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         //Debug.Log(move);
 
@@ -91,4 +96,9 @@ public class Movement : MonoBehaviour {
             //Debug.Log(currVel.normalized);
         }
     }
+
+	void ApplyDamage(int x)
+	{
+		health -= x;
+	}
 }

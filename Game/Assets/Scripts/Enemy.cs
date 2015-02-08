@@ -8,11 +8,20 @@ public class Enemy : MonoBehaviour {
 	
 	enum state { Roam, Attack };
 	state aiState = state.Roam;
-	public bool hasTarget = false;
-	public Vector2 target = new Vector2();
+	bool hasTarget = false;
+	GameObject player;
 
-	public Vector2 playerPosVec2 = new Vector2();
-	Vector2 mousePos = new Vector2(); // For testing only
+	Vector2 target = new Vector2();
+	Vector2 enemyPos = new Vector2();
+	Vector2 playerPos = new Vector2();
+//	Vector2 mousePos = new Vector2(); // For testing only
+
+	// Weapon related variables
+	Vector3 currVel;
+	public GameObject bulletPrefab;
+	public float weaponSpd = 15f; // Speed of projectile
+	public float weaponRefresh = 0.1f; // Shooting speed
+	float refreshCounter;
 
 	// Use this for initialization
 	void Start () {
@@ -22,13 +31,22 @@ public class Enemy : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
     {
-		mousePos = Input.mousePosition; // For testing only
+		if (health <= 0)
+			Destroy(this.gameObject);
 
-		playerPosVec2.x = gameObject.transform.position.x;
-		playerPosVec2.y = gameObject.transform.position.y;
+		player = GameObject.Find ("Player");
+//		mousePos = Input.mousePosition; // For testing only
 
-        if (health <= 0)
-            Destroy(this.gameObject);
+		enemyPos.x = gameObject.transform.position.x;
+		enemyPos.y = gameObject.transform.position.y;
+		playerPos.x = player.transform.position.x;
+		playerPos.y = player.transform.position.y;
+
+		Vector2 distToPlayer = playerPos - enemyPos;
+		if (distToPlayer.magnitude < 6)
+			aiState = state.Attack;
+		else
+			aiState = state.Roam;
 
 		if (aiState == state.Roam)
 		{
@@ -39,13 +57,14 @@ public class Enemy : MonoBehaviour {
 			}
 			else if (hasTarget)
 			{
-				Debug.DrawLine(new Vector3(playerPosVec2.x, playerPosVec2.y, 1), new Vector3(target.x, target.y, 1), Color.red);
-				if (playerPosVec2.x <= (target.x + 0.1) && playerPosVec2.x >= (target.x - 0.1) && playerPosVec2.y <= (target.y + 0.1) && playerPosVec2.y >= (target.y - 0.1))
+				Debug.DrawLine(new Vector3(enemyPos.x, enemyPos.y, 1), new Vector3(target.x, target.y, 1), Color.red);
+				if (enemyPos.x <= (target.x + 0.1) && enemyPos.x >= (target.x - 0.1) && enemyPos.y <= (target.y + 0.1) && enemyPos.y >= (target.y - 0.1))
 				{
 					hasTarget = false;
 				}
 
-				Vector2 vec2Target = target - playerPosVec2;
+				// Causes enemy to move towards player
+				Vector2 vec2Target = target - enemyPos;
 				vec2Target.Normalize();
 				vec2Target.x = vec2Target.x * speed * Time.deltaTime;
 				vec2Target.y = vec2Target.y * speed * Time.deltaTime;
@@ -54,7 +73,49 @@ public class Enemy : MonoBehaviour {
 		}
 		else if (aiState == state.Attack)
 		{
+			target = playerPos;
+			Debug.DrawLine(new Vector3(enemyPos.x, enemyPos.y, 1), new Vector3(target.x, target.y, 1), Color.red);
 
+			// Causes enemy to move towards player
+			Vector2 vec2Target = target - enemyPos;
+			if (vec2Target.magnitude > 2)
+			{
+				vec2Target.Normalize();
+				vec2Target.x = vec2Target.x * speed * Time.deltaTime;
+				vec2Target.y = vec2Target.y * speed * Time.deltaTime;
+				transform.Translate(vec2Target);
+			}
+
+			if (refreshCounter == 0.0f)
+			{
+				float xPos = enemyPos.x;
+				float yPos = enemyPos.y;
+				
+				GameObject newBullet = (GameObject)Instantiate(bulletPrefab, new Vector3(xPos, yPos, 0), Quaternion.identity);
+				newBullet.AddComponent("Rigidbody2D");
+				newBullet.rigidbody2D.gravityScale = 0.0f;
+				Physics2D.IgnoreCollision(collider2D, newBullet.collider2D);
+				
+				//Vector3 playerPos = Camera.main.WorldToScreenPoint(player.transform.position);
+				Vector2 forceDirection = target - enemyPos;
+				float angle = Mathf.Atan2(forceDirection.y, forceDirection.x) * Mathf.Rad2Deg;
+				
+				Vector3 a = forceDirection.normalized * weaponSpd;
+				
+				//Takes into account the players current direction so that the player can not overtake his own shots
+				newBullet.rigidbody2D.velocity = a - (currVel/3);
+				newBullet.transform.rotation = Quaternion.AngleAxis(angle - 45, Vector3.forward);
+				
+				refreshCounter += Time.deltaTime;
+			}
+			else if (refreshCounter >= weaponRefresh)
+			{
+				refreshCounter = 0;
+			}
+			else
+			{
+				refreshCounter += Time.deltaTime;
+			}
 		}
 	}
     

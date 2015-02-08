@@ -87,11 +87,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 466262, guid: 2f4e4d993492ad840bb3550b86db8d7e, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -.109999999
+      value: 1.96000004
       objectReference: {fileID: 0}
     - target: {fileID: 466262, guid: 2f4e4d993492ad840bb3550b86db8d7e, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 1.46000004
+      value: .00999999978
       objectReference: {fileID: 0}
     - target: {fileID: 466262, guid: 2f4e4d993492ad840bb3550b86db8d7e, type: 2}
       propertyPath: m_LocalPosition.z
@@ -322,6 +322,7 @@ MonoBehaviour:
   speed: 4
   weaponSpd: 8
   weaponRefresh: .100000001
+  health: 100
 --- !u!212 &324153057
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -352,7 +353,7 @@ Transform:
   m_PrefabInternal: {fileID: 244192570}
   m_GameObject: {fileID: 324153053}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -.109999999, y: 1.46000004, z: 0}
+  m_LocalPosition: {x: 1.96000004, y: .00999999978, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 891497880}
@@ -367,11 +368,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 491268, guid: 2724dd6c1fc364d428179491810b47ce, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 3.880193
+      value: 4.9000001
       objectReference: {fileID: 0}
     - target: {fileID: 491268, guid: 2724dd6c1fc364d428179491810b47ce, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 2.8176465
+      value: 5.48000002
       objectReference: {fileID: 0}
     - target: {fileID: 491268, guid: 2724dd6c1fc364d428179491810b47ce, type: 2}
       propertyPath: m_LocalPosition.z
@@ -542,9 +543,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 500
   speed: 1
-  hasTarget: 0
-  target: {x: 0, y: 0}
-  playerPosVec2: {x: 0, y: 0}
+  bulletPrefab: {fileID: 190710, guid: c5f8365c05300d849ae0f21034ffd42b, type: 2}
+  weaponSpd: 15
+  weaponRefresh: .100000001
 --- !u!212 &1085479275
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -575,7 +576,7 @@ Transform:
   m_PrefabInternal: {fileID: 526184192}
   m_GameObject: {fileID: 1085479271}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.880193, y: 2.8176465, z: 0}
+  m_LocalPosition: {x: 4.9000001, y: 5.48000002, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children: []
   m_Father: {fileID: 0}
@@ -589,11 +590,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 491268, guid: 2724dd6c1fc364d428179491810b47ce, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -4.03198528
+      value: -5.17000008
       objectReference: {fileID: 0}
     - target: {fileID: 491268, guid: 2724dd6c1fc364d428179491810b47ce, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 3.61455655
+      value: 4.69000006
       objectReference: {fileID: 0}
     - target: {fileID: 491268, guid: 2724dd6c1fc364d428179491810b47ce, type: 2}
       propertyPath: m_LocalPosition.z
@@ -682,7 +683,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1777103560}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 2}
+  m_LocalPosition: {x: 0, y: .00999999978, z: 2}
   m_LocalScale: {x: 5, y: 5, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
@@ -738,9 +739,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 500
   speed: 1
-  hasTarget: 0
-  target: {x: 0, y: 0}
-  playerPosVec2: {x: 0, y: 0}
+  bulletPrefab: {fileID: 190710, guid: c5f8365c05300d849ae0f21034ffd42b, type: 2}
+  weaponSpd: 15
+  weaponRefresh: .100000001
 --- !u!212 &1811237094
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -771,7 +772,7 @@ Transform:
   m_PrefabInternal: {fileID: 1653867145}
   m_GameObject: {fileID: 1811237090}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.03198528, y: 3.61455655, z: 0}
+  m_LocalPosition: {x: -5.17000008, y: 4.69000006, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children: []
   m_Father: {fileID: 0}
