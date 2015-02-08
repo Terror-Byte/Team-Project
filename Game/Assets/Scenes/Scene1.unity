@@ -542,6 +542,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 500
   speed: 1
+  hasTarget: 0
+  target: {x: 0, y: 0}
+  playerPosVec2: {x: 0, y: 0}
 --- !u!212 &1085479275
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -735,6 +738,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 500
   speed: 1
+  hasTarget: 0
+  target: {x: 0, y: 0}
+  playerPosVec2: {x: 0, y: 0}
 --- !u!212 &1811237094
 SpriteRenderer:
   m_ObjectHideFlags: 0

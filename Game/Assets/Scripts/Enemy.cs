@@ -8,11 +8,11 @@ public class Enemy : MonoBehaviour {
 	
 	enum state { Roam, Attack };
 	state aiState = state.Roam;
-	bool hasTarget = false;
-	// bool atTarget = false;
-	Vector2 target = new Vector2();
+	public bool hasTarget = false;
+	public Vector2 target = new Vector2();
 
-	Vector2 playerPosVec2 = new Vector2();
+	public Vector2 playerPosVec2 = new Vector2();
+	Vector2 mousePos = new Vector2(); // For testing only
 
 	// Use this for initialization
 	void Start () {
@@ -22,6 +22,8 @@ public class Enemy : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
     {
+		mousePos = Input.mousePosition; // For testing only
+
 		playerPosVec2.x = gameObject.transform.position.x;
 		playerPosVec2.y = gameObject.transform.position.y;
 
@@ -32,12 +34,13 @@ public class Enemy : MonoBehaviour {
 		{
 			if (!hasTarget)
 			{
-				target = new Vector2(Random.Range(5, 10), Random.Range (5, 10));
+				target = new Vector2(Random.Range(-5, 5), Random.Range (-5, 5));
 				hasTarget = true;
 			}
 			else if (hasTarget)
 			{
-				if (playerPosVec2.x <= target.x + 2 || playerPosVec2.x >= target.x - 2 || playerPosVec2.y <= target.y + 2 || playerPosVec2.y >= target.y - 2)
+				Debug.DrawLine(new Vector3(playerPosVec2.x, playerPosVec2.y, 1), new Vector3(target.x, target.y, 1), Color.red);
+				if (playerPosVec2.x <= (target.x + 0.1) && playerPosVec2.x >= (target.x - 0.1) && playerPosVec2.y <= (target.y + 0.1) && playerPosVec2.y >= (target.y - 0.1))
 				{
 					hasTarget = false;
 				}
