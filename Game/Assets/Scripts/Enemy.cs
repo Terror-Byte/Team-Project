@@ -98,13 +98,13 @@ public class Enemy : MonoBehaviour {
 				
 				//Vector3 playerPos = Camera.main.WorldToScreenPoint(player.transform.position);
 				Vector2 forceDirection = target - enemyPos;
-				forceDirection.Normalize ();
+
 				float angle = Mathf.Atan2(forceDirection.y, forceDirection.x) * Mathf.Rad2Deg;
-				
-				Vector3 a = forceDirection * weaponSpd;
+				Vector3 a = forceDirection.normalized * weaponSpd;
 				
 				//Takes into account the players current direction so that the player can not overtake his own shots
 				newBullet.rigidbody2D.velocity = a - (currVel/3);
+				//newBullet.transform.Translate(a);
 				newBullet.transform.rotation = Quaternion.AngleAxis(angle - 45, Vector3.forward);
 				
 				refreshCounter += Time.deltaTime;

@@ -8,6 +8,7 @@ public class BulletScript : MonoBehaviour {
 	Vector2 startPos;
 	Vector2 currentPos;
 	public float range = 10.0f;
+	Vector2 moveVector = new Vector2();
 
 	// Use this for initialization
 	void Start () {
@@ -22,23 +23,23 @@ public class BulletScript : MonoBehaviour {
 		if (countdownToDestruction == 50) {
 			Destroy (gameObject);
 		}
+		if (Norm () >= range) {
+			Destroy(gameObject);
+		}
 		*/
 
 		/* New distance-based destruction */
 		currentPos = new Vector2 (gameObject.transform.position.x, gameObject.transform.position.y);
 
 		float currentDist = Vector2.Distance (currentPos, startPos);
-		//Debug.Log ("Start Pos: " + startPos.ToString () + " Current Pos: " + currentPos.ToString ());
 
 		if (currentDist > range) {
-			//Debug.Log (currentDist);
 			Destroy(gameObject);
 		}
-		/*
-		if (Norm () >= range) {
-			Destroy(gameObject);
-		}
-		*/
+
+		// Movement code
+		transform.Translate (moveVector);
+
 	}
 
     void OnCollisionEnter2D(Collision2D coll)
@@ -56,5 +57,15 @@ public class BulletScript : MonoBehaviour {
 			Destroy(this.gameObject);
 			coll.gameObject.SendMessage("ApplyDamage", 5);
 		}
-    }
+	}
+
+	void SetMovX(float x)
+	{
+		moveVector.x = x;
+	}
+
+	void SetMovY(float y)
+	{
+		moveVector.y = y;
+	}
 }
