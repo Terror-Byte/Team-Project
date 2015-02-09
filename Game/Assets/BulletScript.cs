@@ -27,10 +27,10 @@ public class BulletScript : MonoBehaviour {
 		currentPos = new Vector2 (gameObject.transform.position.x, gameObject.transform.position.y);
 
 		float currentDist = Vector2.Distance (currentPos, startPos);
-		Debug.Log ("Start Pos: " + startPos.ToString () + " Current Pos: " + currentPos.ToString ());
+		//Debug.Log ("Start Pos: " + startPos.ToString () + " Current Pos: " + currentPos.ToString ());
 
 		if (currentDist > range) {
-			Debug.Log (currentDist);
+			//Debug.Log (currentDist);
 			Destroy(gameObject);
 		}
 		/*

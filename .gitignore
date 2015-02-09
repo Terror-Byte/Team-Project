@@ -1,34 +1,15 @@
-# =============== #
-# Unity generated #
-# =============== #
-Temp/
-Library/
-
-# ===================================== #
-# Visual Studio / MonoDevelop generated #
-# ===================================== #
-ExportedObj/
-obj/
-*.svd
+*.sln
 *.userprefs
-/*.csproj
+*.csproj
 *.pidb
-*.suo
-/*.sln
-*.user
 *.unityproj
-*.booproj
-
-# ============ #
-# OS generated #
-# ============ #
 .DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
+/Library/FailedAssetImports.txt
+/Library/cache/
+/Library/previews/
+/Library/ScriptAssemblies
+/obj
+/Temp
 
 #################
 ## Eclipse
@@ -246,3 +227,4 @@ pip-log.txt
 
 #Mr Developer
 .mr.developer.cfg
+*.unityproj
