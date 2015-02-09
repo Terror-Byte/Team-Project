@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Movement : MonoBehaviour {
 
+    public GameObject healthBar;
 	public GameObject bulletPrefab;
 	public float speed = 1;
 

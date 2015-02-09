@@ -26,7 +26,7 @@ public class BulletScript : MonoBehaviour {
 		if (Norm () >= range) {
 			Destroy(gameObject);
 		}
-		*/
+		*/      
 
 		/* New distance-based destruction */
 		currentPos = new Vector2 (gameObject.transform.position.x, gameObject.transform.position.y);

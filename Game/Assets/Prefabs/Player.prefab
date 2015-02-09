@@ -29,7 +29,6 @@ GameObject:
   - 4: {fileID: 466262}
   - 212: {fileID: 21266262}
   - 114: {fileID: 11432780}
-  - 50: {fileID: 5042536}
   - 60: {fileID: 6042536}
   m_Layer: 9
   m_Name: Player
@@ -57,8 +56,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 166262}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 0}
+  m_LocalPosition: {x: 1.96000004, y: .00999999978, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 442536}
   m_Father: {fileID: 0}
@@ -95,21 +94,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: .0219999999
---- !u!50 &5042536
-Rigidbody2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 166262}
-  m_Mass: 1
-  m_LinearDrag: 10
-  m_AngularDrag: .0500000007
-  m_GravityScale: 0
-  m_FixedAngle: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 1
 --- !u!60 &6042536
 PolygonCollider2D:
   m_ObjectHideFlags: 1
@@ -121,10 +105,19 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_Poly:
     m_Paths:
-    - - {x: -3.20000005, y: 2}
-      - {x: -3.20000005, y: -2}
-      - {x: 3.20000005, y: -2}
-      - {x: 3.20000005, y: 2}
+    - - {x: .0437694117, y: .034843646}
+      - {x: .0426968224, y: .16024296}
+      - {x: -.104683071, y: .162499443}
+      - {x: -.0978803262, y: .0345129706}
+      - {x: -.143779054, y: .00331959873}
+      - {x: -.143634766, y: -.0708713904}
+      - {x: -.11471045, y: -.080327712}
+      - {x: -.0758712962, y: -.120553844}
+      - {x: -.0694059655, y: -.1594567}
+      - {x: .0197636336, y: -.159945443}
+      - {x: .0619095936, y: -.0594959334}
+      - {x: .112593718, y: -.0554627255}
+      - {x: .113886327, y: -.0293230433}
 --- !u!81 &8142536
 AudioListener:
   m_ObjectHideFlags: 1
@@ -150,10 +143,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8077fce8292e65b479d442b85d2eedf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthBar: {fileID: 0}
   bulletPrefab: {fileID: 190710, guid: c5f8365c05300d849ae0f21034ffd42b, type: 2}
-  speed: 1
-  weaponSpd: 2.5
-  weaponRefresh: 1
+  speed: 4
+  weaponSpd: 8
+  weaponRefresh: .100000001
   health: 100
 --- !u!124 &12442536
 Behaviour:
