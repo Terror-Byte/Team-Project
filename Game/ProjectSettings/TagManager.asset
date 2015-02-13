@@ -6,6 +6,8 @@ TagManager:
   - Projectile
   - 
   - Enemy
+  - Health Bar
+  - Exp Bar
   - 
   Builtin Layer 0: Default
   Builtin Layer 1: TransparentFX

@@ -65,6 +65,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 190710, guid: c5f8365c05300d849ae0f21034ffd42b, type: 2}
   weaponSpd: 15
   weaponRefresh: .5
+  experience: 75
 --- !u!212 &21291268
 SpriteRenderer:
   m_ObjectHideFlags: 1

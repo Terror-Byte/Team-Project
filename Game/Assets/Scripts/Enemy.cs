@@ -24,6 +24,8 @@ public class Enemy : MonoBehaviour {
 	public float weaponRefresh = 0.1f; // Shooting speed
 	float refreshCounter;
 
+    public int experience = 25;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -32,11 +34,14 @@ public class Enemy : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
     {
-		if (health <= 0)
-			Destroy(this.gameObject);
+        if (health <= 0)
+        {
+            Destroy(this.gameObject);
+            player.SendMessage("AddExperience", experience);
+        }
 
 		player = GameObject.Find ("Player");
-//		mousePos = Input.mousePosition; // For testing only
+        // mousePos = Input.mousePosition; // For testing only
 
 		enemyPos.x = gameObject.transform.position.x;
 		enemyPos.y = gameObject.transform.position.y;
