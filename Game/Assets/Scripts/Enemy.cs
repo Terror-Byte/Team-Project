@@ -5,6 +5,7 @@ public class Enemy : MonoBehaviour {
 
     public int health = 500;
 	public float speed = 1;
+    public int wepDmg = 5;
 	
 	enum state { Roam, Attack };
 	state aiState = state.Roam;
@@ -92,6 +93,7 @@ public class Enemy : MonoBehaviour {
 				float yPos = enemyPos.y;
 				
 				GameObject newBullet = (GameObject)Instantiate(bulletPrefab, new Vector3(xPos, yPos, 0), Quaternion.identity);
+                newBullet.SendMessage("setDamage", wepDmg);
 				newBullet.AddComponent("Rigidbody2D");
 				newBullet.rigidbody2D.gravityScale = 0.0f;
 				Physics2D.IgnoreCollision(collider2D, newBullet.collider2D);

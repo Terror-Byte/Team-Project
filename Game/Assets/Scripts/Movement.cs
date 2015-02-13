@@ -5,8 +5,8 @@ public class Movement : MonoBehaviour {
 
     public GameObject healthBar;
 	public GameObject bulletPrefab;
-	public float speed = 1;
-
+	public float speed = 2;
+    public float wepDmg = 10;
 	public float weaponSpd = 2.5f;
 	public float weaponRefresh = 1.0f;
 	float refreshCounter;
@@ -28,8 +28,8 @@ public class Movement : MonoBehaviour {
 		if (health <= 0)
 			Destroy (this.gameObject);
 
-        Vector2 move = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-        //Debug.Log(move);
+        //GetAxisRaw does not smooth the input allowing for tighter controls
+        Vector2 move = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
         float movX = move.x * speed * Time.deltaTime;
         float movY = move.y * speed * Time.deltaTime;
@@ -46,6 +46,7 @@ public class Movement : MonoBehaviour {
                 float yPos = player.transform.position.y;
 
                 GameObject newBullet = (GameObject)Instantiate(bulletPrefab, new Vector3(xPos, yPos, 0), Quaternion.identity);
+                newBullet.SendMessage("setDamage", wepDmg);
                 newBullet.AddComponent("Rigidbody2D");
                 newBullet.rigidbody2D.gravityScale = 0.0f;
                 Physics2D.IgnoreCollision(collider2D, newBullet.collider2D);

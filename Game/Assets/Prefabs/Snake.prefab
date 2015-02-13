@@ -59,11 +59,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8042e46852407ab4b84ff55cbfb881dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 500
-  speed: 1
+  health: 100
+  speed: 2
+  wepDmg: 5
   bulletPrefab: {fileID: 190710, guid: c5f8365c05300d849ae0f21034ffd42b, type: 2}
   weaponSpd: 15
-  weaponRefresh: .100000001
+  weaponRefresh: .5
 --- !u!212 &21291268
 SpriteRenderer:
   m_ObjectHideFlags: 1

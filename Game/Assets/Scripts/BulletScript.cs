@@ -5,6 +5,7 @@ using System.Collections;
 public class BulletScript : MonoBehaviour {
 	// int countdownToDestruction = 0;
 
+    int wepDmg = 5;
 	Vector2 startPos;
 	Vector2 currentPos;
 	public float range = 10.0f;
@@ -49,23 +50,18 @@ public class BulletScript : MonoBehaviour {
             Debug.Log("hit!");
             //Destroy(coll.gameObject);
             Destroy(this.gameObject);
-            coll.gameObject.SendMessage("ApplyDamage", 10);
+            coll.gameObject.SendMessage("ApplyDamage", wepDmg);
         }
 		else if (coll.gameObject.tag == "Player")
 		{
 			Debug.Log("Player Hit!");
 			Destroy(this.gameObject);
-			coll.gameObject.SendMessage("ApplyDamage", 5);
+			coll.gameObject.SendMessage("ApplyDamage", wepDmg);
 		}
 	}
 
-	void SetMovX(float x)
-	{
-		moveVector.x = x;
-	}
-
-	void SetMovY(float y)
-	{
-		moveVector.y = y;
-	}
+	void setDamage(int dmg)
+    {
+        wepDmg = dmg;
+    }
 }

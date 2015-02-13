@@ -6,6 +6,7 @@ public class UI : MonoBehaviour {
     int width = Screen.width;
     int height = Screen.height;
     public GUISkin customSkin;
+
 	// Use this for initialization
 	void Start () {
 	
