@@ -76,7 +76,7 @@ public class GameController : MonoBehaviour {
 
     void OnLevelWasLoaded(int level)
     {
-        origin = GameObject.Find("Player").transform.position;
-        origin.z = -10.0f;
+        //origin = GameObject.Find("Player").transform.position;
+        //origin.z = -10.0f;
     }
 }

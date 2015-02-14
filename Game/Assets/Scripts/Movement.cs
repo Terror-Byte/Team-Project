@@ -144,6 +144,10 @@ public class Movement : MonoBehaviour {
 		health -= x;
 	}
 
+
+    //may need to rewrite this. Is kind of confusing, instead of having a next level xp, why not just have a formula which
+    //calculates the total required xp based on the current level of the player. (I think this is how runescape does it)
+    //At the moment, the player can only level up once at a time if the xp gain is more than needed for 2 or more levels.
     void AddExperience(int x)
     {
         if (experience + x <= nextLevelXP)

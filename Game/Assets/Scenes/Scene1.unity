@@ -113,6 +113,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11491268, guid: 2724dd6c1fc364d428179491810b47ce, type: 2}
+      propertyPath: experience
+      value: 1000
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2724dd6c1fc364d428179491810b47ce, type: 2}
   m_RootGameObject: {fileID: 1085479271}
@@ -309,7 +313,7 @@ Transform:
   m_PrefabInternal: {fileID: 383413183}
   m_GameObject: {fileID: 324153053}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .419999987, y: -2.96000004, z: 0}
+  m_LocalPosition: {x: .0399999991, y: -2.96000004, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 2}
   m_Children:
   - {fileID: 891497880}
@@ -324,7 +328,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 466262, guid: 2f4e4d993492ad840bb3550b86db8d7e, type: 2}
       propertyPath: m_LocalPosition.x
-      value: .419999987
+      value: .0399999991
       objectReference: {fileID: 0}
     - target: {fileID: 466262, guid: 2f4e4d993492ad840bb3550b86db8d7e, type: 2}
       propertyPath: m_LocalPosition.y
@@ -366,6 +370,14 @@ Prefab:
       propertyPath: xpTransform
       value: 
       objectReference: {fileID: 964413911}
+    - target: {fileID: 442536, guid: 2f4e4d993492ad840bb3550b86db8d7e, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2042536, guid: 2f4e4d993492ad840bb3550b86db8d7e, type: 2}
+      propertyPath: orthographic size
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2f4e4d993492ad840bb3550b86db8d7e, type: 2}
   m_RootGameObject: {fileID: 324153053}
@@ -416,7 +428,7 @@ MonoBehaviour:
   m_Script: {fileID: 1980459831, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -435,14 +447,14 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 2
   m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 891497884}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 5
 --- !u!224 &551926810
 RectTransform:
   m_ObjectHideFlags: 0
@@ -516,7 +528,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 190710, guid: c5f8365c05300d849ae0f21034ffd42b, type: 2}
   weaponSpd: 15
   weaponRefresh: .5
-  experience: 25
+  experience: 75
 --- !u!212 &586772922
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -651,7 +663,7 @@ Transform:
   m_PrefabInternal: {fileID: 383413183}
   m_GameObject: {fileID: 891497879}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -5}
+  m_LocalPosition: {x: 0, y: 0, z: -8}
   m_LocalScale: {x: 5.82187462, y: 5.82187462, z: 5.82187462}
   m_Children: []
   m_Father: {fileID: 324153058}
@@ -701,7 +713,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 6
+  orthographic size: 8
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -965,7 +977,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 190710, guid: c5f8365c05300d849ae0f21034ffd42b, type: 2}
   weaponSpd: 15
   weaponRefresh: .5
-  experience: 25
+  experience: 1000
 --- !u!212 &1085479275
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1056,7 +1068,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 190710, guid: c5f8365c05300d849ae0f21034ffd42b, type: 2}
   weaponSpd: 15
   weaponRefresh: .5
-  experience: 25
+  experience: 75
 --- !u!212 &1251782653
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1343,7 +1355,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 190710, guid: c5f8365c05300d849ae0f21034ffd42b, type: 2}
   weaponSpd: 15
   weaponRefresh: .5
-  experience: 25
+  experience: 75
 --- !u!212 &1811237094
 SpriteRenderer:
   m_ObjectHideFlags: 0
