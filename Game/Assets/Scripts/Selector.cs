@@ -58,8 +58,5 @@ public class Selector : MonoBehaviour {
         {
             Application.LoadLevel(Application.loadedLevel + 1);
         }
-
-
-
 	}
 }

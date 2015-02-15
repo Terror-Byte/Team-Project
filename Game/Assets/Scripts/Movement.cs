@@ -14,18 +14,11 @@ public class Movement : MonoBehaviour {
     Vector3 currVel;
 
     private int maxHealth = 100;
+    public bool playerLiving;
 	public int health = 100;
     public int experience = 0;
     public int level = 1;
     public int nextLevelXP = 100;
-
-    /*
-    public Image healthBar;
-    public Image expBar;
-    Sprite healthSprite;
-    float maxWidthHP;
-    float maxWidthXP;
-    */
 
     // Health and XP bar shizzle
     public Text levelText;
@@ -35,6 +28,12 @@ public class Movement : MonoBehaviour {
     private float healthY;
     public RectTransform xpTransform;
     private float xpY;
+
+    // Game over variables
+    GameObject gameOver;
+    Text gameOverText;
+    GameObject mainMenu;
+    Text mainMenuButton;
 
 	// Use this for initialization
 	void Start () 
@@ -46,16 +45,32 @@ public class Movement : MonoBehaviour {
         xpY = xpTransform.position.y; // Y value of the XP bar's position.
         maxXValue = healthTransform.position.x; // Maximum position of bars.
         minXValue = healthTransform.position.x - healthTransform.rect.width; // Minimum position of bars.
+        playerLiving = true;
+
+        gameOver = GameObject.Find("Game Over Text");
+        mainMenu = GameObject.Find("Main Menu Button");
+
+        gameOver.SetActive(false);
+        mainMenu.SetActive(false);
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
-		if (health <= 0)
-			Destroy (this.gameObject);
+        if (health <= 0)
+            PlayerDeath();
 
-        float currentHealthX = currentPosition(health, 100, maxXValue);       
-        healthTransform.position = new Vector3(currentHealthX, healthY);
+        // Calculations may be a bit off for health and xp bars, fix soon.
+        float currentHealthX = currentPosition(health, 100, maxXValue);
+        if (health != 0)
+        {
+            healthTransform.position = new Vector3(currentHealthX, healthY);
+        }
+        else
+        {
+            healthTransform.position = new Vector3(healthTransform.position.x - xpTransform.rect.width, healthY);
+        }
+       
         if (experience != 0)
         {
             float currentXPX = currentPosition(experience, nextLevelXP, maxXValue);
@@ -66,60 +81,62 @@ public class Movement : MonoBehaviour {
             float currentXPX = xpTransform.position.x - xpTransform.rect.width;
             xpTransform.position = new Vector3(currentXPX, xpY);
         }
-        
 
-        
-        //GetAxisRaw does not smooth the input allowing for tighter controls
-        Vector2 move = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-
-        float movX = move.x * speed * Time.deltaTime;
-        float movY = move.y * speed * Time.deltaTime;
-
-        transform.Translate(new Vector2(movX, movY));
-
-        // If left button pressed, generate a new bullet and fire.
-        if (Input.GetMouseButton(0))
+        // If the player is alive.
+        if (playerLiving)
         {
-            if (refreshCounter == 0.0f)
+            //GetAxisRaw does not smooth the input allowing for tighter controls
+            Vector2 move = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+
+            float movX = move.x * speed * Time.deltaTime;
+            float movY = move.y * speed * Time.deltaTime;
+
+            transform.Translate(new Vector2(movX, movY));
+
+            // If left button pressed, generate a new bullet and fire.
+            if (Input.GetMouseButton(0))
             {
-                GameObject player = GameObject.Find("Player");
-                float xPos = player.transform.position.x;
-                float yPos = player.transform.position.y;
+                if (refreshCounter == 0.0f)
+                {
+                    GameObject player = GameObject.Find("Player");
+                    float xPos = player.transform.position.x;
+                    float yPos = player.transform.position.y;
 
-                GameObject newBullet = (GameObject)Instantiate(bulletPrefab, new Vector3(xPos, yPos, 0), Quaternion.identity);
-                newBullet.SendMessage("setDamage", wepDmg);
-                newBullet.AddComponent("Rigidbody2D");
-                newBullet.rigidbody2D.gravityScale = 0.0f;
-                Physics2D.IgnoreCollision(collider2D, newBullet.collider2D);
+                    GameObject newBullet = (GameObject)Instantiate(bulletPrefab, new Vector3(xPos, yPos, 0), Quaternion.identity);
+                    newBullet.SendMessage("setDamage", wepDmg);
+                    newBullet.AddComponent("Rigidbody2D");
+                    newBullet.rigidbody2D.gravityScale = 0.0f;
+                    Physics2D.IgnoreCollision(collider2D, newBullet.collider2D);
 
-                Vector3 playerPos = Camera.main.WorldToScreenPoint(player.transform.position);
-                Vector3 mousePos = Input.mousePosition;
-                Vector3 forceDirection = mousePos - playerPos;
-                float angle = Mathf.Atan2(forceDirection.y, forceDirection.x) * Mathf.Rad2Deg;
+                    Vector3 playerPos = Camera.main.WorldToScreenPoint(player.transform.position);
+                    Vector3 mousePos = Input.mousePosition;
+                    Vector3 forceDirection = mousePos - playerPos;
+                    float angle = Mathf.Atan2(forceDirection.y, forceDirection.x) * Mathf.Rad2Deg;
 
-                Vector3 a = forceDirection.normalized * weaponSpd;
+                    Vector3 a = forceDirection.normalized * weaponSpd;
 
-                //Takes into account the players current direction so that the player can not overtake his own shots
-                newBullet.rigidbody2D.velocity = a - (currVel/3);
-                newBullet.transform.rotation = Quaternion.AngleAxis(angle - 45, Vector3.forward);
-				//a.Normalize ();
-				//newBullet.SendMessage ("SetMovX", a.x);
-				//newBullet.SendMessage ("SetMovY", a.y);
+                    //Takes into account the players current direction so that the player can not overtake his own shots
+                    newBullet.rigidbody2D.velocity = a - (currVel / 3);
+                    newBullet.transform.rotation = Quaternion.AngleAxis(angle - 45, Vector3.forward);
+                    //a.Normalize ();
+                    //newBullet.SendMessage ("SetMovX", a.x);
+                    //newBullet.SendMessage ("SetMovY", a.y);
 
+                    refreshCounter += Time.deltaTime;
+                }
+                else if (refreshCounter >= weaponRefresh)
+                {
+                    refreshCounter = 0;
+                }
+                else
+                {
+                    refreshCounter += Time.deltaTime;
+                }
+            }
+            else //Continues adding to refresh counter to so that tapping mouse click works
+            {
                 refreshCounter += Time.deltaTime;
             }
-            else if (refreshCounter >= weaponRefresh)
-            {
-                refreshCounter = 0;
-            }
-            else
-            {
-                refreshCounter += Time.deltaTime;
-            }
-        }
-        else //Continues adding to refresh counter to so that tapping mouse click works
-        {
-            refreshCounter += Time.deltaTime;
         }
 	}
 
@@ -185,5 +202,21 @@ public class Movement : MonoBehaviour {
         float percentage = currentValue / maxValue;
         float result = maxXvalue * percentage;
         return result;
+    }
+
+    void PlayerDeath()
+    {
+        playerLiving = false;
+        gameObject.renderer.enabled = false;
+        gameOver.SetActive(true);
+        mainMenu.SetActive(true);
+
+        Button menuButton = mainMenu.GetComponent<Button>();
+        menuButton.onClick.AddListener(() => LoadMenu());
+    }
+
+    void LoadMenu()
+    {
+        Application.LoadLevel("Start");
     }
 }

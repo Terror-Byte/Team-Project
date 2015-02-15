@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class Enemy : MonoBehaviour {
@@ -11,6 +12,7 @@ public class Enemy : MonoBehaviour {
 	state aiState = state.Roam;
 	bool hasTarget = false;
 	GameObject player;
+    Movement moveScript;
 
 	Vector2 target = new Vector2();
 	Vector2 enemyPos = new Vector2();
@@ -34,7 +36,7 @@ public class Enemy : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () 
-    {
+    {     
         if (health <= 0)
         {
             Destroy(this.gameObject);
@@ -42,6 +44,7 @@ public class Enemy : MonoBehaviour {
         }
 
 		player = GameObject.Find ("Player");
+        moveScript = player.GetComponent<Movement>();
         // mousePos = Input.mousePosition; // For testing only
 
 		enemyPos.x = gameObject.transform.position.x;
@@ -53,7 +56,14 @@ public class Enemy : MonoBehaviour {
 		if (distToPlayer.magnitude < 6)
 			aiState = state.Attack;
 		else
-			aiState = state.Roam;
+            aiState = state.Roam;
+
+        if (!moveScript.playerLiving && aiState == state.Attack)
+        {
+            aiState = state.Roam;
+            if (target == playerPos)
+                hasTarget = false;
+        }
 
 		if (aiState == state.Roam)
 		{

@@ -102,6 +102,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   customSkin: {fileID: 11400000, guid: 4b80af15873736944b4af2d232ab7724, type: 2}
+  gameName: {fileID: 0}
 --- !u!4 &622334358
 Transform:
   m_ObjectHideFlags: 0
