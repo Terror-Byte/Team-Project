@@ -27,8 +27,9 @@ public class Enemy : MonoBehaviour {
     public int experience = 25;
 
 	// Use this for initialization
-	void Start () {
-	
+	void Start () 
+    {
+        Random.seed = (int)System.DateTime.Now.Ticks;
 	}
 	
 	// Update is called once per frame
