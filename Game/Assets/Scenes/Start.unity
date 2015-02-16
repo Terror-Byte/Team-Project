@@ -229,6 +229,7 @@ MonoBehaviour:
   mouseEdge: 0
   dist: 5
   edge: 50
+  totalEnemies: 0
 --- !u!4 &1265528942
 Transform:
   m_ObjectHideFlags: 0

@@ -11,6 +11,9 @@ public class GameController : MonoBehaviour {
     public int dist = 5;
     public int edge = 50;
 
+    GameObject[] gos;
+    public int totalEnemies;
+
 	// Use this for initialization
 	void Start () 
     {
@@ -25,6 +28,15 @@ public class GameController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
     {
+        if (Application.loadedLevelName == "Scene1")
+        {
+            gos = GameObject.FindGameObjectsWithTag("Enemy");
+            totalEnemies = gos.Length;
+        }
+
+        if (Application.loadedLevelName == "Select")
+            origin = new Vector3(0, 0, -10);
+
         if (GameObject.Find("Player") != null)
         {
             origin = GameObject.Find("Player").transform.position;
@@ -72,11 +84,17 @@ public class GameController : MonoBehaviour {
         {
             Camera.main.transform.position = (Vector3.Lerp(Camera.main.transform.position, origin, t * Time.deltaTime));
         }
+
+        if (Application.loadedLevelName == ("Scene1") && totalEnemies == 0)
+        {
+            Application.LoadLevel("Select");
+            //Selector maxDifficultyCompleted = leveldifficulty completed
+        }
+
 	}
 
-    void OnLevelWasLoaded(int level)
+    void EnemyDied()
     {
-        //origin = GameObject.Find("Player").transform.position;
-        //origin.z = -10.0f;
+        totalEnemies--;
     }
 }

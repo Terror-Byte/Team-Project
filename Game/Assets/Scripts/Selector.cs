@@ -3,8 +3,9 @@ using System.Collections;
 
 public class Selector : MonoBehaviour {
 
-    public Vector2 level = new Vector2(0,0);
-    public bool isChanged = false;
+    public Vector2 levelVector = new Vector2(0,0);
+    public int maxDifficultyCompleted = 0;
+    public int difficultyLevel = 0;
     public float flashTime = 0.5f;
     float t = 1.0f;
 
@@ -28,35 +29,54 @@ public class Selector : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.W))
         {
-            transform.Translate(new Vector2(0,2));
-            level.y++;
-            this.gameObject.renderer.enabled = true;
+            if (maxDifficultyCompleted >= DifficultyLevel(levelVector + new Vector2(0,1)))
+            {
+                transform.Translate(new Vector2(0,2));
+                ++levelVector.y;
+                this.gameObject.renderer.enabled = true;
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.S))
         {
-            transform.Translate(new Vector2(0, -2));
-            level.y--;
-            this.gameObject.renderer.enabled = true;
+            if (maxDifficultyCompleted >= DifficultyLevel(levelVector + new Vector2(0, -1)))
+            {
+                transform.Translate(new Vector2(0, -2));
+                --levelVector.y;
+                this.gameObject.renderer.enabled = true;
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.A))
         {
-            transform.Translate(new Vector2(-2, 0));
-            level.x--;
-            this.gameObject.renderer.enabled = true;
+            if (maxDifficultyCompleted >= DifficultyLevel(levelVector + new Vector2(-1, 0)))
+            {
+                transform.Translate(new Vector2(-2, 0));
+                --levelVector.x;
+                this.gameObject.renderer.enabled = true;
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.D))
         {
-            transform.Translate(new Vector2(2, 0));
-            level.x++;
-            this.gameObject.renderer.enabled = true;
+            if (maxDifficultyCompleted >= DifficultyLevel(levelVector + new Vector2(1, 0)))
+            {
+                transform.Translate(new Vector2(2, 0));
+                ++levelVector.x;
+                this.gameObject.renderer.enabled = true;
+            }
         }
+
+        difficultyLevel = DifficultyLevel(levelVector);
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Application.LoadLevel(Application.loadedLevel + 1);
         }
 	}
+
+    int DifficultyLevel(Vector2 level)
+    {
+        return (int)Mathf.Max(Mathf.Abs(level.x), Mathf.Abs(level.y));
+    }
 }

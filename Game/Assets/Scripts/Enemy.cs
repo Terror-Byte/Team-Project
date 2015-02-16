@@ -11,6 +11,7 @@ public class Enemy : MonoBehaviour {
 	enum state { Roam, Attack };
 	state aiState = state.Roam;
 	bool hasTarget = false;
+    GameObject gameController;
 	GameObject player;
     Movement moveScript;
 
@@ -31,7 +32,7 @@ public class Enemy : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
     {
-        Random.seed = (int)System.DateTime.Now.Ticks;
+        gameController = GameObject.Find("GameController");
 	}
 	
 	// Update is called once per frame
@@ -41,6 +42,7 @@ public class Enemy : MonoBehaviour {
         {
             Destroy(this.gameObject);
             player.SendMessage("AddExperience", experience);
+            gameController.SendMessage("EnemyDied");
         }
 
 		player = GameObject.Find ("Player");
