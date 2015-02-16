@@ -11,6 +11,9 @@ public class GameController : MonoBehaviour {
     public int dist = 5;
     public int edge = 50;
 
+	public GameObject player;
+	public int playerXp = 0;
+
     GameObject[] gos;
     public int totalEnemies;
 
@@ -30,6 +33,8 @@ public class GameController : MonoBehaviour {
     {
         if (Application.loadedLevelName == "Scene1")
         {
+			//if (player == null)
+				//player = GameObject.Find ("Player");
             gos = GameObject.FindGameObjectsWithTag("Enemy");
             totalEnemies = gos.Length;
         }
@@ -97,4 +102,9 @@ public class GameController : MonoBehaviour {
     {
         totalEnemies--;
     }
+
+	void SendXPToPlayer()
+	{
+		player.SendMessage ("LoadXPFromController", playerXp);
+	}
 }

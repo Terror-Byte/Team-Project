@@ -35,6 +35,9 @@ public class Movement : MonoBehaviour {
     GameObject mainMenu;
     Text mainMenuButton;
 
+	// Game Controller
+	GameObject gameController;
+
 	// Use this for initialization
 	void Start () 
 	{
@@ -49,6 +52,9 @@ public class Movement : MonoBehaviour {
 
         gameOver = GameObject.Find("Game Over Text");
         mainMenu = GameObject.Find("Main Menu Button");
+
+		gameController = GameObject.Find ("GameController");
+		//gameController.SendMessage ("SendXPToPlayer");
 
         gameOver.SetActive(false);
         mainMenu.SetActive(false);
@@ -210,6 +216,7 @@ public class Movement : MonoBehaviour {
         gameObject.renderer.enabled = false;
         gameOver.SetActive(true);
         mainMenu.SetActive(true);
+		Destroy (GameObject.Find ("GameController"));
 
         Button menuButton = mainMenu.GetComponent<Button>();
         menuButton.onClick.AddListener(() => LoadMenu());
@@ -219,4 +226,9 @@ public class Movement : MonoBehaviour {
     {
         Application.LoadLevel("Start");
     }
+
+	void LoadXPFromController(int xp)
+	{
+		experience = xp;
+	}
 }

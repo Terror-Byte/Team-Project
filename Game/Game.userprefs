@@ -1,10 +1,11 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Enemy.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Selector.cs">
     <Files>
-      <File FileName="Assets\Scripts\Enemy.cs" Line="42" Column="13" />
-      <File FileName="Assets\Scripts\Movement.cs" Line="48" Column="21" />
-      <File FileName="Assets\Scripts\BulletScript.cs" Line="11" Column="37" />
+      <File FileName="Assets\Scripts\Enemy.cs" Line="43" Column="38" />
+      <File FileName="Assets\Scripts\Movement.cs" Line="57" Column="5" />
+      <File FileName="Assets\Scripts\GameController.cs" Line="62" Column="3" />
+      <File FileName="Assets\Scripts\Selector.cs" Line="76" Column="64" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -25,7 +25,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 191268}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.9000001, y: 5.48000002, z: 0}
+  m_LocalPosition: {x: 8.6882019, y: 11.7436857, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children: []
   m_Father: {fileID: 0}
@@ -65,7 +65,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 190710, guid: c5f8365c05300d849ae0f21034ffd42b, type: 2}
   weaponSpd: 15
   weaponRefresh: .5
-  experience: 75
+  experience: 60
 --- !u!212 &21291268
 SpriteRenderer:
   m_ObjectHideFlags: 1

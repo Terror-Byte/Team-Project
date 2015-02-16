@@ -9,10 +9,12 @@ public class Selector : MonoBehaviour {
     public float flashTime = 0.5f;
     float t = 1.0f;
 
+	GameObject gameController;
+
 	// Use this for initialization
 	void Start () 
     {
-	
+		gameController = GameObject.Find ("GameController");
 	}
 	
 	// Update is called once per frame
