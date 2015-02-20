@@ -34,6 +34,7 @@ public class Movement : MonoBehaviour {
     Text gameOverText;
     GameObject mainMenu;
     Text mainMenuButton;
+	Button menuButton;
 
 	// Game Controller
 	GameObject gameController;
@@ -52,6 +53,9 @@ public class Movement : MonoBehaviour {
 
         gameOver = GameObject.Find("Game Over Text");
         mainMenu = GameObject.Find("Main Menu Button");
+		menuButton = mainMenu.GetComponent<Button>();
+		menuButton.onClick.AddListener(() => LoadMenu());
+
 
 		gameController = GameObject.Find ("GameController");
 		//gameController.SendMessage ("SendXPToPlayer");
@@ -216,10 +220,7 @@ public class Movement : MonoBehaviour {
         gameObject.renderer.enabled = false;
         gameOver.SetActive(true);
         mainMenu.SetActive(true);
-		Destroy (GameObject.Find ("GameController"));
-
-        Button menuButton = mainMenu.GetComponent<Button>();
-        menuButton.onClick.AddListener(() => LoadMenu());
+		Destroy (GameObject.Find ("GameController"));       
     }
 
     void LoadMenu()
