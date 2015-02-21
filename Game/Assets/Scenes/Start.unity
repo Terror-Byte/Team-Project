@@ -232,6 +232,9 @@ MonoBehaviour:
   player: {fileID: 0}
   playerXp: 0
   totalEnemies: 0
+  grassPrefab: {fileID: 140380, guid: 76c4fd26706ef1f428768017a9e4e8c0, type: 2}
+  sandPrefab: {fileID: 111136, guid: 3548eda89e864fe46962eaa4651d97d4, type: 2}
+  waterPrefab: {fileID: 119058, guid: 5d00235d4a4e0484986b7c399296a4d9, type: 2}
 --- !u!4 &1265528942
 Transform:
   m_ObjectHideFlags: 0

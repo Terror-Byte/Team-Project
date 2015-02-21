@@ -73,7 +73,7 @@ public class Selector : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Application.LoadLevel(Application.loadedLevel + 1);
+            Application.LoadLevel("ActionScene");
         }
 	}
 
