@@ -3,6 +3,18 @@ using System.Collections;
 
 public class GameController : MonoBehaviour {
 
+    //Player Stats
+    //Will be contained over level changes
+    public int health;
+    public float strength;
+    public float speed;
+    public int xp;
+    public int level;
+    
+    //Lvl stats
+    public int maxDifficultyCompleted = 0;
+    public int difficultyLevel = 0;
+
     Vector3 origin;
     public bool mouseEdge = false;
     int screenX;
@@ -11,7 +23,7 @@ public class GameController : MonoBehaviour {
     public int dist = 5;
     public int edge = 50;
 
-	public GameObject player;
+	//public GameObject playerClass;
 	public int playerXp = 0;
 
     GameObject[] gos;
@@ -20,6 +32,12 @@ public class GameController : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
     {
+        health = 100;
+        strength = 5;
+        speed = 5;
+        xp = 0;
+        level = 0;
+
         origin = Camera.main.transform.position;
 
         screenX = Screen.width;
@@ -29,7 +47,7 @@ public class GameController : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () 
+	void Update() 
     {
         if (Application.loadedLevelName == "Scene1")
         {
@@ -92,6 +110,7 @@ public class GameController : MonoBehaviour {
 
         if (Application.loadedLevelName == ("Scene1") && totalEnemies == 0)
         {
+            maxDifficultyCompleted = (int)Mathf.Max(difficultyLevel + 1, maxDifficultyCompleted);
             Application.LoadLevel("Select");
             //Selector maxDifficultyCompleted = leveldifficulty completed
         }
@@ -103,8 +122,8 @@ public class GameController : MonoBehaviour {
         totalEnemies--;
     }
 
-	void SendXPToPlayer()
-	{
-		player.SendMessage ("LoadXPFromController", playerXp);
-	}
+	void Load(int level)
+    {
+        Application.LoadLevel(level);
+    }
 }

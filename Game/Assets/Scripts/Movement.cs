@@ -5,7 +5,7 @@ using System.Collections;
 public class Movement : MonoBehaviour {
 
 	public GameObject bulletPrefab;
-	public float speed = 2;
+	//public float speed = 2;
     public float wepDmg = 10;
 	public float weaponSpd = 2.5f;
 	public float weaponRefresh = 1.0f;
@@ -13,11 +13,11 @@ public class Movement : MonoBehaviour {
 
     Vector3 currVel;
 
-    private int maxHealth = 100;
+    //private int maxHealth = 100;
     public bool playerLiving;
-	public int health = 100;
-    public int experience = 0;
-    public int level = 1;
+	//public int health = 100;
+    //public int experience = 0;
+    //public int level = 1;
     public int nextLevelXP = 100;
 
     // Health and XP bar shizzle
@@ -37,8 +37,9 @@ public class Movement : MonoBehaviour {
 	Button menuButton;
 
 	// Game Controller
-	GameObject gameController;
-
+	//GameObject gameController;
+    GameController game;
+    
 	// Use this for initialization
 	void Start () 
 	{
@@ -56,10 +57,9 @@ public class Movement : MonoBehaviour {
 		menuButton = mainMenu.GetComponent<Button>();
 		menuButton.onClick.AddListener(() => LoadMenu());
 
-
-		gameController = GameObject.Find ("GameController");
+		game = GameObject.Find ("GameController").GetComponent<GameController>();
 		//gameController.SendMessage ("SendXPToPlayer");
-
+        
         gameOver.SetActive(false);
         mainMenu.SetActive(false);
 	}
@@ -67,12 +67,12 @@ public class Movement : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-        if (health <= 0)
+        if (game.health <= 0)
             PlayerDeath();
 
         // Calculations may be a bit off for health and xp bars, fix soon.
-        float currentHealthX = currentPosition(health, 100, maxXValue);
-        if (health != 0)
+        float currentHealthX = currentPosition(game.health, 100, maxXValue);
+        if (game.health != 0)
         {
             healthTransform.position = new Vector3(currentHealthX, healthY);
         }
@@ -81,9 +81,9 @@ public class Movement : MonoBehaviour {
             healthTransform.position = new Vector3(healthTransform.position.x - xpTransform.rect.width, healthY);
         }
        
-        if (experience != 0)
+        if (game.xp != 0)
         {
-            float currentXPX = currentPosition(experience, nextLevelXP, maxXValue);
+            float currentXPX = currentPosition(game.xp, nextLevelXP, maxXValue);
             xpTransform.position = new Vector3(currentXPX, xpY);
         }
         else
@@ -98,8 +98,8 @@ public class Movement : MonoBehaviour {
             //GetAxisRaw does not smooth the input allowing for tighter controls
             Vector2 move = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
-            float movX = move.x * speed * Time.deltaTime;
-            float movY = move.y * speed * Time.deltaTime;
+            float movX = move.x * game.speed * Time.deltaTime;
+            float movY = move.y * game.speed * Time.deltaTime;
 
             transform.Translate(new Vector2(movX, movY));
 
@@ -168,7 +168,7 @@ public class Movement : MonoBehaviour {
 
 	void ApplyDamage(int x)
 	{
-		health -= x;
+		game.health -= x;
 	}
 
 
@@ -177,26 +177,26 @@ public class Movement : MonoBehaviour {
     //At the moment, the player can only level up once at a time if the xp gain is more than needed for 2 or more levels.
     void AddExperience(int x)
     {
-        if (experience + x <= nextLevelXP)
+        if (game.xp + x <= nextLevelXP)
         {
-            experience += x;
-            if (experience == nextLevelXP)
+            game.xp += x;
+            if (game.xp == nextLevelXP)
                 LevelUp(0);
         }
         else
         {
-            experience += x;
-            int xpOverflow = experience - nextLevelXP;
+            game.xp += x;
+            int xpOverflow = game.xp - nextLevelXP;
             LevelUp(xpOverflow);
         }
     }
 
     void LevelUp(int overflow)
     {
-        level++;
-        experience = overflow;
-        nextLevelXP = 100 + ((int)Mathf.Pow(level, 2) * 5);
-        levelText.text = "Level: " + level;
+        game.level++;
+        game.xp = overflow;
+        nextLevelXP = 100 + ((int)Mathf.Pow(game.level, 2) * 5);
+        levelText.text = "Level: " + game.level;
     }
 
     float currentPosition(int currentVal, int maxVal, float maxXvalue)
@@ -220,7 +220,7 @@ public class Movement : MonoBehaviour {
         gameObject.renderer.enabled = false;
         gameOver.SetActive(true);
         mainMenu.SetActive(true);
-		Destroy (GameObject.Find ("GameController"));       
+		Destroy (GameObject.FindGameObjectWithTag("GameController"));       
     }
 
     void LoadMenu()
@@ -230,6 +230,6 @@ public class Movement : MonoBehaviour {
 
 	void LoadXPFromController(int xp)
 	{
-		experience = xp;
+		game.xp = xp;
 	}
 }
