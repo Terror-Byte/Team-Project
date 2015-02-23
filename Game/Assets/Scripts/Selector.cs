@@ -100,7 +100,7 @@ public class Selector : MonoBehaviour {
 			{
 				//game.SendMessage("Load", 2);
 				Application.LoadLevel("ActionScene");
-				Debug.Log("Loading random level");
+				//Debug.Log("Loading random level");
 				levelGen.LoadLevel(levelVector.x, levelVector.y);
 			}
 			game.health = 100;
@@ -134,8 +134,8 @@ public class Selector : MonoBehaviour {
 					case 3: levelsTemp[x, y] = "level3.txt";
 						break;
 					}
-					Debug.Log(levelsTemp[x, y]);
-					Debug.Log("X: " + x + " Y: " + y);
+					//Debug.Log(levelsTemp[x, y]);
+					//Debug.Log("X: " + x + " Y: " + y);
 				}
 			}
 		}

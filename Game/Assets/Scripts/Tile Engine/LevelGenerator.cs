@@ -26,6 +26,7 @@ public class LevelGenerator : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		// Create seperate function of this.
         if (Application.loadedLevelName == "ActionScene")
         {
             if (!mapCreated)
@@ -38,6 +39,7 @@ public class LevelGenerator : MonoBehaviour {
                     }
                 }
                 int enemyNo = Random.Range(3, 6);
+				controller.totalEnemies = enemyNo;
 
                 for (int i = 0; i < enemyNo; i++)
                 {
@@ -65,7 +67,6 @@ public class LevelGenerator : MonoBehaviour {
         int yPos = /*((int)y / 2) + 3*/(int)y + 3;
         string fileName = levels[xPos, yPos];
         tiles = TestMaps.LoadLevel(fileName, mapSizeX, mapSizeY);
-		controller.gos = GameObject.FindGameObjectsWithTag("Enemy");
-		controller.totalEnemies = controller.gos.Length;
+
     }
 }
