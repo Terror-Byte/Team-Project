@@ -51,6 +51,7 @@
      <Compile Include="Assets\Scripts\GameController.cs" />
      <Compile Include="Assets\Scripts\Movement.cs" />
      <Compile Include="Assets\Scripts\Selector.cs" />
+     <Compile Include="Assets\Scripts\Tile Engine\LevelGenerator.cs" />
      <Compile Include="Assets\Scripts\Tile Engine\Tile.cs" />
      <Compile Include="Assets\Scripts\UI\UI.cs" />
      <None Include="Assets\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />

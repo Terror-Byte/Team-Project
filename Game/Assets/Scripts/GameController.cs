@@ -17,15 +17,10 @@ public class GameController : MonoBehaviour {
     GameObject[] gos;
     public int totalEnemies;
 
-    // TileEngine objects
-    int mapSizeX = 27;
-    int mapSizeY = 20;
-    TileType[] tileTypes;
-    int[,] tiles;
-    bool mapCreated = false;
-    public GameObject grassPrefab;
-    public GameObject sandPrefab;
-    public GameObject waterPrefab;
+    // Player Info
+    public int maxLevelCompleted;
+
+    LevelGenerator levelGen;
 
 	// Use this for initialization
 	void Start () 
@@ -36,33 +31,30 @@ public class GameController : MonoBehaviour {
         screenY = Screen.height;
 
         DontDestroyOnLoad(this.gameObject);
+        maxLevelCompleted = 10;
 
-        initialiseMap();
+        levelGen = gameObject.GetComponent<LevelGenerator>();
 	}
 	
 	// Update is called once per frame
 	void Update () 
     {
-        if (Application.loadedLevelName == "Scene1")
+        if (Application.loadedLevelName == "ActionScene")
         {
 			//if (player == null)
 				//player = GameObject.Find ("Player");
             gos = GameObject.FindGameObjectsWithTag("Enemy");
-            totalEnemies = gos.Length;      
-        }
+            totalEnemies = gos.Length;
 
-        if (Application.loadedLevelName == "ActionScene")
-        {
-            if (!mapCreated)
+            player = GameObject.Find("Player");
+            foreach (GameObject enemies in gos)
             {
-                for (int x = 0; x < mapSizeX; x++)
-                {
-                    for (int y = 0; y < mapSizeY; y++)
-                    {
-                        Instantiate(tileTypes[tiles[x, y]].tileVisual, new Vector3(x * 2, y * 2, 0), Quaternion.identity);
-                    }
-                }
-                mapCreated = true;
+                Debug.DrawLine(player.transform.position, enemies.transform.position);
+            }
+
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                Application.LoadLevel("Select");
             }
         }
 
@@ -124,6 +116,11 @@ public class GameController : MonoBehaviour {
             //Selector maxDifficultyCompleted = leveldifficulty completed
         }
 
+        if (Application.loadedLevelName == ("ActionScene") && totalEnemies == 0 && levelGen.mapCreated)
+        {
+            Application.LoadLevel("Select");
+        }
+
 	}
 
     void EnemyDied()
@@ -135,14 +132,4 @@ public class GameController : MonoBehaviour {
 	{
 		player.SendMessage ("LoadXPFromController", playerXp);
 	}
-
-    void initialiseMap()
-    {
-        tileTypes = new TileType[3];
-        tileTypes[0] = new TileType("Grass", grassPrefab, true);
-        tileTypes[1] = new TileType("Sand", sandPrefab, true);
-        tileTypes[2] = new TileType("Water", waterPrefab, false);
-        tiles = new int[mapSizeX, mapSizeY];
-        tiles = TestMaps.LoadLevel("level1.txt", mapSizeX, mapSizeY);
-    }
 }

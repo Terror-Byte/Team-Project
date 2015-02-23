@@ -71,7 +71,8 @@ public class Enemy : MonoBehaviour {
 		{
 			if (!hasTarget)
 			{
-				target = new Vector2(Random.Range(-5, 5), Random.Range (-5, 5));
+                Vector2 currentPosition = gameObject.transform.position;
+                target = new Vector2(Random.Range(currentPosition.x - 5, currentPosition.x + 5), Random.Range(currentPosition.y  - 5, currentPosition.y + 5));
 				hasTarget = true;
 			}
 			else if (hasTarget)

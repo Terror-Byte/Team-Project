@@ -10,15 +10,34 @@ public class Selector : MonoBehaviour {
     float t = 1.0f;
 
 	GameObject gameController;
+    GameController controllerScript;
+
+    LevelGenerator levelGen;
+
+    string[,] levels = new string[7,7];
 
 	// Use this for initialization
 	void Start () 
     {
 		gameController = GameObject.Find ("GameController");
+        controllerScript = gameController.GetComponent<GameController>();
+        maxDifficultyCompleted = controllerScript.maxLevelCompleted;
+        levelGen = gameController.GetComponent<LevelGenerator>();
+
+        if (!levelGen.levelsInitialised)
+        {
+            levels = initialiseLevels();
+            levelGen.levels = levels;
+            levelGen.levelsInitialised = true;
+        }
+        else
+        {
+            levels = levelGen.levels;
+        }
 	}
 	
 	// Update is called once per frame
-	void Update () 
+	void Update ()
     {
         t -= Time.deltaTime;
 
@@ -74,11 +93,44 @@ public class Selector : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Application.LoadLevel("ActionScene");
+            levelGen.mapCreated = false;
+            levelGen.LoadLevel((gameObject.transform.position.x)/2, (gameObject.transform.position.y)/2);
+            Debug.Log((gameObject.transform.position.x) / 2 + " " + (gameObject.transform.position.y) / 2);
         }
 	}
 
     int DifficultyLevel(Vector2 level)
     {
         return (int)Mathf.Max(Mathf.Abs(level.x), Mathf.Abs(level.y));
+    }
+
+    string[,] initialiseLevels()
+    {
+        string[,] levelsTemp = new string[7,7];
+
+        for (int x = 0; x < 7; x++)
+        {
+            for (int y = 0; y < 7; y++)
+            {
+                Random.seed = System.DateTime.Now.Millisecond;
+                int rand = Random.Range(1, 4);
+
+                if (x != 0 && y != 0 || x != 0 && y != 6 || x != 6 && y != 0 || x != 6 && y != 6)
+                {
+                    switch (rand)
+                    {
+                        case 1: levelsTemp[x, y] = "level1.txt";
+                            break;
+                        case 2: levelsTemp[x, y] = "level2.txt";
+                            break;
+                        case 3: levelsTemp[x, y] = "level3.txt";
+                            break;
+                    }
+                    Debug.Log(levelsTemp[x, y]);
+                    Debug.Log("X: " + x + " Y: " + y);
+                }
+            }
+        }
+        return levelsTemp;
     }
 }

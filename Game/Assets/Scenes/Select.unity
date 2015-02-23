@@ -136,8 +136,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a8f68ec01910da4d86e9011344b708e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: {x: 0, y: 0}
-  isChanged: 0
+  levelVector: {x: 0, y: 0}
+  maxDifficultyCompleted: 0
+  difficultyLevel: 0
   flashTime: .5
 --- !u!1 &1307594316
 GameObject:
