@@ -144,13 +144,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 190710, guid: c5f8365c05300d849ae0f21034ffd42b, type: 2}
-  speed: 5
-  wepDmg: 15
+  wepDmg: 150
   weaponSpd: 8
   weaponRefresh: .300000012
-  health: 100
-  experience: 0
-  level: 1
+  playerLiving: 0
   nextLevelXP: 100
   levelText: {fileID: 0}
   healthTransform: {fileID: 0}

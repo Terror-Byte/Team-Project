@@ -10,12 +10,28 @@ public class Selector : MonoBehaviour {
     float t = 1.0f;
 
 	GameController game;
+	LevelGenerator levelGen;
+
+	string[,] levels = new string[7,7];
 
 	// Use this for initialization
 	void Start () 
     {
 		game = GameObject.Find ("GameController").GetComponent<GameController>();
 
+		//maxDifficultyCompleted = game.maxLevelCompleted;
+		levelGen = game.GetComponent<LevelGenerator>();
+		
+		if (!levelGen.levelsInitialised)
+		{
+			levels = initialiseLevels();
+			levelGen.levels = levels;
+			levelGen.levelsInitialised = true;
+		}
+		else
+		{
+			levels = levelGen.levels;
+		}
 	}
 	
 	// Update is called once per frame
@@ -74,7 +90,20 @@ public class Selector : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            game.SendMessage("Load", 2);
+			if (levelVector.x == 0 && levelVector.y == 0)
+			{
+				//levelGen.LoadLevel(levelVector.x, levelVector.y);
+				//Debug.Log ("Random level loaded!");
+				game.SendMessage("Load", 2);
+			}
+			else
+			{
+				//game.SendMessage("Load", 2);
+				Application.LoadLevel("ActionScene");
+				Debug.Log("Loading random level");
+				levelGen.LoadLevel(levelVector.x, levelVector.y);
+			}
+			game.health = 100;
         }
 	}
 
@@ -82,4 +111,34 @@ public class Selector : MonoBehaviour {
     {
         return (int)Mathf.Max(Mathf.Abs(level.x), Mathf.Abs(level.y));
     }
+
+	string[,] initialiseLevels()
+	{
+		string[,] levelsTemp = new string[7,7];
+		
+		for (int x = 0; x < 7; x++)
+		{
+			for (int y = 0; y < 7; y++)
+			{
+				Random.seed = System.DateTime.Now.Millisecond;
+				int rand = Random.Range(1, 4);
+				
+				if (x != 0 && y != 0 || x != 0 && y != 6 || x != 6 && y != 0 || x != 6 && y != 6)
+				{
+					switch (rand)
+					{
+					case 1: levelsTemp[x, y] = "level1.txt";
+						break;
+					case 2: levelsTemp[x, y] = "level2.txt";
+						break;
+					case 3: levelsTemp[x, y] = "level3.txt";
+						break;
+					}
+					Debug.Log(levelsTemp[x, y]);
+					Debug.Log("X: " + x + " Y: " + y);
+				}
+			}
+		}
+		return levelsTemp;
+	}
 }

@@ -1,11 +1,13 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Selector.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Tile Engine\LevelGenerator.cs">
     <Files>
-      <File FileName="Assets\Scripts\Enemy.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Movement.cs" Line="12" Column="23" />
-      <File FileName="Assets\Scripts\GameController.cs" Line="62" Column="3" />
-      <File FileName="Assets\Scripts\Selector.cs" Line="28" Column="12" />
+      <File FileName="Assets\Scripts\Tile Engine\LevelGenerator.cs" Line="45" Column="77" />
+      <File FileName="Assets\Scripts\Selector.cs" Line="104" Column="54" />
+      <File FileName="Assets\Scripts\GameController.cs" Line="29" Column="29" />
+      <File FileName="Assets\Scripts\Enemy.cs" Line="75" Column="61" />
+      <File FileName="Assets\Scripts\Movement.cs" Line="60" Column="76" />
+      <File FileName="Assets\Scripts\Tile Engine\Tile.cs" Line="19" Column="30" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

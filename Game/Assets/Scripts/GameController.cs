@@ -26,8 +26,10 @@ public class GameController : MonoBehaviour {
 	//public GameObject playerClass;
 	public int playerXp = 0;
 
-    GameObject[] gos;
+    public GameObject[] gos;
     public int totalEnemies;
+
+	LevelGenerator levelGen;
 
 	// Use this for initialization
 	void Start () 
@@ -44,6 +46,8 @@ public class GameController : MonoBehaviour {
         screenY = Screen.height;
 
         DontDestroyOnLoad(this.gameObject);
+
+		levelGen = gameObject.GetComponent<LevelGenerator>();
 	}
 	
 	// Update is called once per frame
@@ -56,6 +60,15 @@ public class GameController : MonoBehaviour {
             gos = GameObject.FindGameObjectsWithTag("Enemy");
             totalEnemies = gos.Length;
         }
+
+		if (Application.loadedLevelName == "ActionScene")
+		{
+			//if (player == null)
+			//player = GameObject.Find ("Player");
+			gos = GameObject.FindGameObjectsWithTag("Enemy");
+			totalEnemies = gos.Length;
+			Debug.Log ("Enemies: " + totalEnemies);
+		}
 
         if (Application.loadedLevelName == "Select")
             origin = new Vector3(0, 0, -10);
@@ -115,6 +128,12 @@ public class GameController : MonoBehaviour {
             //Selector maxDifficultyCompleted = leveldifficulty completed
         }
 
+		if (Application.loadedLevelName == ("ActionScene") && totalEnemies == 0 && levelGen.mapCreated)
+		{
+			maxDifficultyCompleted = (int)Mathf.Max(difficultyLevel + 1, maxDifficultyCompleted);
+			Application.LoadLevel("Select");
+			levelGen.mapCreated = false;
+		}
 	}
 
     void EnemyDied()
