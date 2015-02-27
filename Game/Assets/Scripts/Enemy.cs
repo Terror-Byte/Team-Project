@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 
 public class Enemy : MonoBehaviour {
 
@@ -14,6 +15,12 @@ public class Enemy : MonoBehaviour {
     GameObject gameController;
 	GameObject player;
     Movement moveScript;
+
+    // Pathfinding Stuff
+    LevelGenerator levelGen;
+    Node[,] navGraph;
+    Node currentNode;
+    List<Node> currentPath = null;
 
 	Vector2 target = new Vector2();
 	Vector2 enemyPos = new Vector2();
@@ -33,6 +40,8 @@ public class Enemy : MonoBehaviour {
 	void Start () 
     {
         gameController = GameObject.Find("GameController");
+        levelGen = gameController.GetComponent<LevelGenerator>();
+        navGraph = levelGen.navGraph;
 	}
 	
 	// Update is called once per frame
@@ -69,6 +78,7 @@ public class Enemy : MonoBehaviour {
 
 		if (aiState == state.Roam)
 		{
+            /*
 			if (!hasTarget)
 			{
 				// target = new Vector2(Random.Range(-5, 5), Random.Range (-5, 5));
@@ -91,9 +101,19 @@ public class Enemy : MonoBehaviour {
 				vec2Target.y = vec2Target.y * speed * Time.deltaTime;
 				transform.Translate(vec2Target);
 			}
+            */
+            if (!hasTarget)
+            {
+
+            }
+            else if (hasTarget)
+            {
+
+            }
 		}
 		else if (aiState == state.Attack)
 		{
+            /*
 			target = playerPos;
 			Debug.DrawLine(new Vector3(enemyPos.x, enemyPos.y, 1), new Vector3(target.x, target.y, 1), Color.red);
 
@@ -106,6 +126,7 @@ public class Enemy : MonoBehaviour {
 				vec2Target.y = vec2Target.y * speed * Time.deltaTime;
 				transform.Translate(vec2Target);
 			}
+             */
 
 			if (refreshCounter == 0.0f)
 			{
@@ -139,11 +160,88 @@ public class Enemy : MonoBehaviour {
 			{
 				refreshCounter += Time.deltaTime;
 			}
+             
 		}
 	}
     
     void ApplyDamage(int x)
     {
         health -= x;
+    }
+
+    void GeneratePathTo(int x, int y)
+    {
+        currentPath = null;
+
+        Dictionary<Node, float> distance = new Dictionary<Node, float>();
+        Dictionary<Node, Node> previous = new Dictionary<Node, Node>();
+
+        // List of nodes we haven't checked yet
+        List<Node> unvisited = new List<Node>();
+
+        Node source = currentNode;
+        Node target = navGraph[x, y];
+        distance[source] = 0;
+        previous[source] = null;
+
+        // Initialise everything to have infinity distance.
+        foreach (Node vertex in navGraph)
+        {
+            if (vertex != source)
+            {
+                distance[vertex] = Mathf.Infinity;
+                previous[vertex] = null;
+            }
+            unvisited.Add(vertex);
+        }
+
+        while (unvisited.Count > 0)
+        {
+            // Unvisited node with smallest distance
+            Node unvisitedNode = null; //unvisited.OrderBy(n => distance[n]).First();
+
+            foreach(Node possibleUnvisited in unvisited)
+            {
+                if (unvisited == null || distance[possibleUnvisited] < distance[unvisitedNode])
+                {
+                    unvisitedNode = possibleUnvisited;
+                }
+            }
+
+            if (unvisitedNode == target)
+                break;
+
+            unvisited.Remove(unvisitedNode);
+
+            foreach(Node vertex in unvisitedNode.neighbours)
+            {
+                float alt = distance[unvisitedNode] + unvisitedNode.DistanceTo(vertex);
+                if (alt < distance[vertex])
+                {
+                    distance[vertex] = alt;
+                    previous[vertex] = unvisitedNode;
+                }
+            }
+        }
+
+        // Either a short route to our target has been found, or there is no route at all to our target
+        if (previous[target] == null)
+        {
+            // No route between our target and the source
+            return;
+        }
+
+        currentPath = new List<Node>();
+
+        Node currentNode = target;
+        // Step through the "previous" chain and add it to the path.
+        while (currentNode != null)
+        {
+            currentPath.Add(currentNode);
+            currentNode = previous[currentNode];
+        }
+
+        // Now currentPath describes a route from target to source, so we need to invert it.
+        currentPath.Reverse();
     }
 }

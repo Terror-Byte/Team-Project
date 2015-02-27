@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 
 public class Tile {
@@ -45,4 +45,16 @@ static public class TestMaps {
         return map;
     }
 
+}
+
+public class Node {
+
+    public List<Node> neighbours = new List<Node>(); //Edges
+    bool passable;
+    public Vector2 worldPos;
+
+    public float DistanceTo(Node other)
+    {
+        return Vector2.Distance(worldPos, other.worldPos);
+    }
 }
