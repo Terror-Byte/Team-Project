@@ -19,7 +19,7 @@ public class Enemy : MonoBehaviour {
     // Pathfinding Stuff
     LevelGenerator levelGen;
     Node[,] navGraph;
-    Node currentNode;
+    Node currentPosNode;
     List<Node> currentPath = null;
 
 	Vector2 target = new Vector2();
@@ -179,7 +179,7 @@ public class Enemy : MonoBehaviour {
         // List of nodes we haven't checked yet
         List<Node> unvisited = new List<Node>();
 
-        Node source = currentNode;
+        Node source = currentPosNode;
         Node target = navGraph[x, y];
         distance[source] = 0;
         previous[source] = null;
@@ -243,5 +243,21 @@ public class Enemy : MonoBehaviour {
 
         // Now currentPath describes a route from target to source, so we need to invert it.
         currentPath.Reverse();
+    }
+
+    public void MoveNextNode()
+    {
+        if (currentPath == null)
+            return;
+
+        currentPath.RemoveAt(0);
+
+        gameObject.transform.position = currentPath[0].worldPos;
+
+        if (currentPath.Count == 1)
+        {
+            // We've reached our destination
+            currentPath = null;
+        }
     }
 }

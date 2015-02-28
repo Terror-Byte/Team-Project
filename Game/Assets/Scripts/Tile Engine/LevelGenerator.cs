@@ -28,10 +28,11 @@ public class LevelGenerator : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		// Create seperate function of this.
-        /*if (Application.loadedLevelName == "ActionScene")
+        if (Application.loadedLevelName == "ActionScene")
         {
             if (!mapCreated)
             {
+                /*
                 for (int x = 0; x < mapSizeX; x++)
                 {
                     for (int y = 0; y < mapSizeY; y++)
@@ -39,18 +40,41 @@ public class LevelGenerator : MonoBehaviour {
                         Instantiate(tileTypes[tiles[x, y]].tileVisual, new Vector3(x * 2, y * 2, 0), Quaternion.identity);
                     }
                 }
+                 */
                 int enemyNo = Random.Range(3, 6);
-				controller.totalEnemies = enemyNo;
+                controller.totalEnemies = enemyNo;
 
                 for (int i = 0; i < enemyNo; i++)
                 {
                     Vector3 position = new Vector3(Random.Range((mapSizeX / 2), ((3 * mapSizeX) / 2)), Random.Range((mapSizeY / 2), ((3 * mapSizeY) / 2)), 10);
                     Instantiate(enemyPrefab, position, Quaternion.identity);
                 }
+                
+                CreateMap();
+                CreateGraph();
+
+                //for (int x = 0; x < (mapSizeX * 2) + 1; x++)
+                //{
+                //    for (int y = 0; y < (mapSizeY * 2) + 1; y++)
+                //    {
+                //        Debug.Log(navGraph[x, y].worldPos.ToString());
+                //    }
+                //}
 
                 mapCreated = true;
             }
-        }*/
+        }
+        if (navGraph != null)
+        {
+            for (int x = 0; x < (mapSizeX * 2); x++)
+            {
+                for (int y = 0; y < (mapSizeY * 2); y++)
+                {
+                    Debug.DrawLine(navGraph[x, y].worldPos, navGraph[x + 1, y + 1].worldPos, Color.red);
+                    //Debug.Log(navGraph[x, y].worldPos);
+                }
+            }
+        }
 	}
 
     void initialiseMap()
@@ -71,7 +95,7 @@ public class LevelGenerator : MonoBehaviour {
 
     }
 
-    void CreateMap()
+    public void CreateMap()
     {
         for (int x = 0; x < mapSizeX; x++)
         {
@@ -90,10 +114,10 @@ public class LevelGenerator : MonoBehaviour {
         }
     }
 
-    void CreateGraph()
+    public void CreateGraph()
     {
-        int graphX = mapSizeX * 4;
-        int graphY = mapSizeY * 4;
+        int graphX = (mapSizeX * 2) + 1;
+        int graphY = (mapSizeY * 2) + 1;
         navGraph = new Node[graphX, graphY];
 
         // Initialise the navigation graph;
@@ -103,11 +127,10 @@ public class LevelGenerator : MonoBehaviour {
             {
                 navGraph[x, y] = new Node();
 
-                float graphXf = graphX;
-                float graphYf = graphY;
-                float worldX = (graphXf / 2) + (graphXf / 3);
-                float worldY = 0;
-                navGraph[x, y].worldPos = new Vector2(worldX, worldY);
+                float worldX = x; //+ 32;
+                float worldY = y; //+ 32;
+                navGraph[x, y].worldPos = new Vector3(worldX, worldY, 1);
+                //Debug.Log("X: " + x + " Y: " + y + " World X: " + worldX + " World Y: " + worldY);
             }
         }
 
@@ -116,7 +139,6 @@ public class LevelGenerator : MonoBehaviour {
         {
             for (int y = 0; y < graphY; y++)
             {
-                navGraph[x, y] = new Node();
 
                 // Up
                 if (y > 0)
@@ -128,11 +150,23 @@ public class LevelGenerator : MonoBehaviour {
 
                 // Left
                 if (x > 0)
+                {
                     navGraph[x, y].neighbours.Add(navGraph[x - 1, y]);
+                    if (y > 0)
+                        navGraph[x, y].neighbours.Add(navGraph[x - 1, y - 1]);
+                    if (y < mapSizeY - 1)
+                        navGraph[x, y].neighbours.Add(navGraph[x - 1, y + 1]);
+                }
 
                 // Right
                 if (x < mapSizeX - 1)
-                    navGraph[x, y].neighbours.Add(navGraph[x - 1, y]);              
+                {
+                    navGraph[x, y].neighbours.Add(navGraph[x + 1, y]);
+                    if (y > 0)
+                        navGraph[x, y].neighbours.Add(navGraph[x + 1, y - 1]);
+                    if (y < mapSizeY - 1)
+                        navGraph[x, y].neighbours.Add(navGraph[x + 1, y + 1]);
+                }
             }
         }
     }

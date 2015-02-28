@@ -67,7 +67,7 @@ public class GameController : MonoBehaviour {
 			//player = GameObject.Find ("Player");
 			gos = GameObject.FindGameObjectsWithTag("Enemy");
 			totalEnemies = gos.Length;
-			Debug.Log ("Enemies: " + totalEnemies);
+			// Debug.Log ("Enemies: " + totalEnemies);
 		}
 
         if (Application.loadedLevelName == "Select")

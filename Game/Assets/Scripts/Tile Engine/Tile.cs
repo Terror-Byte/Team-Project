@@ -48,10 +48,9 @@ static public class TestMaps {
 }
 
 public class Node {
-
     public List<Node> neighbours = new List<Node>(); //Edges
     bool passable;
-    public Vector2 worldPos;
+    public Vector3 worldPos;
 
     public float DistanceTo(Node other)
     {

@@ -104,6 +104,8 @@ public class Selector : MonoBehaviour {
 				levelGen.LoadLevel(levelVector.x, levelVector.y);
 			}
 			game.health = 100;
+            // levelGen.CreateMap();
+            // levelGen.CreateGraph();
         }
 	}
 
