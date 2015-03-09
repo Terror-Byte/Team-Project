@@ -1,0 +1,16 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Tile Engine\LevelGenerator.cs">
+    <Files>
+      <File FileName="Assets\Scripts\GameController.cs" Line="130" Column="3" />
+      <File FileName="Assets\Scripts\Tile Engine\LevelGenerator.cs" Line="27" Column="36" />
+      <File FileName="Assets\Scripts\Tile Engine\Tile.cs" Line="28" Column="41" />
+      <File FileName="Assets\Scripts\Selector.cs" Line="138" Column="8" />
+      <File FileName="Assets\Scripts\Movement.cs" Line="41" Column="24" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
