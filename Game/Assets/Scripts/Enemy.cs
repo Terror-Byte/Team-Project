@@ -9,8 +9,8 @@ public class Enemy : MonoBehaviour {
 	public float speed = 1;
     public int wepDmg = 5;
 	
-	enum state { Roam, Attack };
-	state aiState = state.Roam;
+	public enum state { Roam, Attack };
+	public state aiState = state.Roam;
 	bool hasTarget = false;
     GameObject gameController;
 	GameObject player;
@@ -22,7 +22,8 @@ public class Enemy : MonoBehaviour {
     Node currentPosNode;
     List<Node> currentPath = null;
 
-	Vector2 target = new Vector2();
+	//Node target = new Node();
+    Vector2 target = new Vector2();
 	Vector2 enemyPos = new Vector2();
 	Vector2 playerPos = new Vector2();
 //	Vector2 mousePos = new Vector2(); // For testing only
@@ -46,7 +47,7 @@ public class Enemy : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () 
-    {     
+    {
         if (health <= 0)
         {
             Destroy(this.gameObject);
@@ -63,10 +64,12 @@ public class Enemy : MonoBehaviour {
 		playerPos.x = player.transform.position.x;
 		playerPos.y = player.transform.position.y;
 
-		Vector2 distToPlayer = playerPos - enemyPos;
-		if (distToPlayer.magnitude < 6)
-			aiState = state.Attack;
-		else
+        //currentPosNode = ConvertToNode(enemyPos.x, enemyPos.y);
+        
+        Vector2 distToPlayer = playerPos - enemyPos;
+        if (distToPlayer.magnitude < 6)
+            aiState = state.Attack;
+        else
             aiState = state.Roam;
 
         if (!moveScript.playerLiving && aiState == state.Attack)
@@ -78,7 +81,6 @@ public class Enemy : MonoBehaviour {
 
 		if (aiState == state.Roam)
 		{
-            /*
 			if (!hasTarget)
 			{
 				// target = new Vector2(Random.Range(-5, 5), Random.Range (-5, 5));
@@ -101,19 +103,23 @@ public class Enemy : MonoBehaviour {
 				vec2Target.y = vec2Target.y * speed * Time.deltaTime;
 				transform.Translate(vec2Target);
 			}
-            */
+            /*
             if (!hasTarget)
             {
-
+                int xPos = (int)gameObject.transform.position.x + Random.Range(-10, 10);
+                int yPos = (int)gameObject.transform.position.y + Random.Range(-10, 10);
+                GeneratePathTo(xPos, yPos);
+				hasTarget = true;
             }
             else if (hasTarget)
             {
-
+                MoveNextNode();
             }
+             * */
 		}
 		else if (aiState == state.Attack)
 		{
-            /*
+            
 			target = playerPos;
 			Debug.DrawLine(new Vector3(enemyPos.x, enemyPos.y, 1), new Vector3(target.x, target.y, 1), Color.red);
 
@@ -126,8 +132,9 @@ public class Enemy : MonoBehaviour {
 				vec2Target.y = vec2Target.y * speed * Time.deltaTime;
 				transform.Translate(vec2Target);
 			}
-             */
+             
 
+            
 			if (refreshCounter == 0.0f)
 			{
 				float xPos = enemyPos.x;
@@ -160,7 +167,7 @@ public class Enemy : MonoBehaviour {
 			{
 				refreshCounter += Time.deltaTime;
 			}
-             
+            
 		}
 	}
     
@@ -171,6 +178,7 @@ public class Enemy : MonoBehaviour {
 
     void GeneratePathTo(int x, int y)
     {
+        navGraph = levelGen.navGraph;
         currentPath = null;
 
         Dictionary<Node, float> distance = new Dictionary<Node, float>();
@@ -181,7 +189,7 @@ public class Enemy : MonoBehaviour {
 
         Node source = currentPosNode;
         Node target = navGraph[x, y];
-        distance[source] = 0;
+        distance[source] = 0.0f;
         previous[source] = null;
 
         // Initialise everything to have infinity distance.
@@ -202,7 +210,34 @@ public class Enemy : MonoBehaviour {
 
             foreach(Node possibleUnvisited in unvisited)
             {
-                if (unvisited == null || distance[possibleUnvisited] < distance[unvisitedNode])
+                /*Debug.Log("Possible Unvisited: " + possibleUnvisited.worldPos);
+                try
+                {
+                    Debug.Log(distance[possibleUnvisited]);
+                }
+                catch(System.Exception e)
+                {
+                    Debug.Log("Possible Unvisited:" + e.Message);
+                }
+
+                try
+                {
+                    if (unvisited != null)
+                    {
+                        Debug.Log(distance[unvisitedNode]);
+                    }
+                    else
+                    {
+                        Debug.Log("Null");
+                    }
+                }
+                catch (System.Exception e)
+                {
+                    Debug.Log("Unvisited: " + e.Message);
+                }
+                 * */
+
+                if (unvisitedNode == null || distance[possibleUnvisited] < distance[unvisitedNode])
                 {
                     unvisitedNode = possibleUnvisited;
                 }
@@ -243,6 +278,7 @@ public class Enemy : MonoBehaviour {
 
         // Now currentPath describes a route from target to source, so we need to invert it.
         currentPath.Reverse();
+        Debug.Log("Success!");
     }
 
     public void MoveNextNode()
@@ -258,6 +294,21 @@ public class Enemy : MonoBehaviour {
         {
             // We've reached our destination
             currentPath = null;
+            hasTarget = false;
         }
+    }
+
+    Node ConvertToNode(float x, float y)
+    {
+        Node result = new Node();
+        foreach(Node nodes in navGraph)
+        {
+            if (nodes.worldPos.x <= x + 2 && nodes.worldPos.x >= x - 2 && nodes.worldPos.y <= y + 2 && nodes.worldPos.y <= y - 2)
+            {
+                result = nodes;
+            }
+        }
+        //Debug.Log(result.worldPos);
+        return result;
     }
 }
