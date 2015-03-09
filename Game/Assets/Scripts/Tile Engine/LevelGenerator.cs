@@ -132,7 +132,7 @@ public class LevelGenerator : MonoBehaviour {
                 float worldX = x; //+ 32;
                 float worldY = y; //+ 32;
                 navGraph[x, y].worldPos = new Vector3(worldX, worldY, 1);
-                //Debug.Log("X: " + x + " Y: " + y + " World X: " + navGraph[x, y].worldPos.x + " World Y: " + navGraph[x, y].worldPos.y);
+                //Debug.Log("X: " + x + " Y: " + y + " World X: " + worldX + " World Y: " + worldY);
             }
         }
 
