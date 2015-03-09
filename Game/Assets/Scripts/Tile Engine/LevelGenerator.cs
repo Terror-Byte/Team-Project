@@ -64,7 +64,7 @@ public class LevelGenerator : MonoBehaviour {
                 mapCreated = true;
             }
         }
-        if (navGraph != null)
+        /*if (navGraph != null)
         {
             for (int x = 0; x < (mapSizeX * 2); x++)
             {
@@ -74,7 +74,7 @@ public class LevelGenerator : MonoBehaviour {
                     //Debug.Log(navGraph[x, y].worldPos);
                 }
             }
-        }
+        }*/
 	}
 
     void initialiseMap()
@@ -114,6 +114,8 @@ public class LevelGenerator : MonoBehaviour {
         }
     }
 
+
+	// Get rid?
     public void CreateGraph()
     {
         int graphX = (mapSizeX * 2) + 1;
