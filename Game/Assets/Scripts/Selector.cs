@@ -102,10 +102,11 @@ public class Selector : MonoBehaviour {
 				Application.LoadLevel("ActionScene");
 				//Debug.Log("Loading random level");
 				levelGen.LoadLevel(levelVector.x, levelVector.y);
+				// levelGen.CreateMap();
+				// levelGen.CreateGraph();
 			}
 			game.health = 100;
-            // levelGen.CreateMap();
-            // levelGen.CreateGraph();
+            
         }
 	}
 

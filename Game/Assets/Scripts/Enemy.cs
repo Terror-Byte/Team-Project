@@ -40,8 +40,8 @@ public class Enemy : MonoBehaviour {
 	void Start () 
     {
         gameController = GameObject.Find("GameController");
-        levelGen = gameController.GetComponent<LevelGenerator>();
-        navGraph = levelGen.navGraph;
+        //levelGen = gameController.GetComponent<LevelGenerator>();
+        //navGraph = levelGen.navGraph;
 	}
 	
 	// Update is called once per frame
@@ -78,10 +78,10 @@ public class Enemy : MonoBehaviour {
 
 		if (aiState == state.Roam)
 		{
-            /*
+            // Old AI
 			if (!hasTarget)
 			{
-				// target = new Vector2(Random.Range(-5, 5), Random.Range (-5, 5));
+				//target = new Vector2(Random.Range(-5, 5), Random.Range (-5, 5));
 				Vector2 currentPosition = gameObject.transform.position;
 				target = new Vector2(Random.Range(currentPosition.x - 5, currentPosition.x + 5), Random.Range(currentPosition.y  - 5, currentPosition.y + 5));
 				hasTarget = true;
@@ -101,7 +101,7 @@ public class Enemy : MonoBehaviour {
 				vec2Target.y = vec2Target.y * speed * Time.deltaTime;
 				transform.Translate(vec2Target);
 			}
-            */
+            /*
             if (!hasTarget)
             {
 
@@ -110,10 +110,11 @@ public class Enemy : MonoBehaviour {
             {
 
             }
+            */
 		}
 		else if (aiState == state.Attack)
 		{
-            /*
+            
 			target = playerPos;
 			Debug.DrawLine(new Vector3(enemyPos.x, enemyPos.y, 1), new Vector3(target.x, target.y, 1), Color.red);
 
@@ -126,7 +127,7 @@ public class Enemy : MonoBehaviour {
 				vec2Target.y = vec2Target.y * speed * Time.deltaTime;
 				transform.Translate(vec2Target);
 			}
-             */
+             
 
 			if (refreshCounter == 0.0f)
 			{
