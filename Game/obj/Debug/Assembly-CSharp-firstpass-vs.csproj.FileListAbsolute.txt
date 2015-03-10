@@ -1,0 +1,12 @@
+E:\Github Repos\Team-Project\Game\Temp\bin\Debug\Assembly-CSharp-firstpass.dll
+E:\Github Repos\Team-Project\Game\Temp\bin\Debug\Assembly-CSharp-firstpass.pdb
+E:\Github Repos\Team-Project\Game\Temp\bin\Debug\UnityEditor.dll
+E:\Github Repos\Team-Project\Game\Temp\bin\Debug\UnityEngine.dll
+E:\Github Repos\Team-Project\Game\Temp\bin\Debug\UnityEngine.UI.dll
+E:\Github Repos\Team-Project\Game\Temp\bin\Debug\Mono.Cecil.dll
+E:\Github Repos\Team-Project\Game\Temp\bin\Debug\nunit.framework.dll
+E:\Github Repos\Team-Project\Game\Temp\bin\Debug\Unity.DataContract.dll
+E:\Github Repos\Team-Project\Game\Temp\bin\Debug\ICSharpCode.NRefactory.dll
+E:\Github Repos\Team-Project\Game\obj\Debug\Assembly-CSharp-firstpass-vs.csprojResolveAssemblyReference.cache
+E:\Github Repos\Team-Project\Game\obj\Debug\Assembly-CSharp-firstpass.dll
+E:\Github Repos\Team-Project\Game\obj\Debug\Assembly-CSharp-firstpass.pdb
