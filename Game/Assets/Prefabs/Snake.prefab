@@ -62,9 +62,12 @@ MonoBehaviour:
   health: 100
   speed: 2
   wepDmg: 5
+  aiState: 0
   bulletPrefab: {fileID: 190710, guid: c5f8365c05300d849ae0f21034ffd42b, type: 2}
   weaponSpd: 15
   weaponRefresh: .5
+  sword: {fileID: 139960, guid: b4492bda87b3198448ddd4830aa7d871, type: 2}
+  coin: {fileID: 102284, guid: 53b88232b14249a4c809e52a7fa868a2, type: 2}
   experience: 60
 --- !u!212 &21291268
 SpriteRenderer:

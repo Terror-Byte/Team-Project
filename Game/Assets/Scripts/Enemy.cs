@@ -35,6 +35,10 @@ public class Enemy : MonoBehaviour {
 	public float weaponRefresh = 0.1f; // Shooting speed
 	float refreshCounter;
 
+    //drops
+    public GameObject sword;
+    public GameObject coin;
+
     public int experience = 25;
 
 	// Use this for initialization
@@ -53,6 +57,7 @@ public class Enemy : MonoBehaviour {
             Destroy(this.gameObject);
             player.SendMessage("AddExperience", experience);
             gameController.SendMessage("EnemyDied");
+            ItemDrop();
         }
 
 		player = GameObject.Find ("Player");
@@ -139,12 +144,12 @@ public class Enemy : MonoBehaviour {
 			{
 				float xPos = enemyPos.x;
 				float yPos = enemyPos.y;
-				
-				GameObject newBullet = (GameObject)Instantiate(bulletPrefab, new Vector3(xPos, yPos, 0), Quaternion.identity);
+
+                GameObject newBullet = (GameObject)Instantiate(bulletPrefab, new Vector3(xPos, yPos, 0), Quaternion.identity);
                 newBullet.SendMessage("setDamage", wepDmg);
-				newBullet.AddComponent("Rigidbody2D");
-				newBullet.rigidbody2D.gravityScale = 0.0f;
-				Physics2D.IgnoreCollision(collider2D, newBullet.collider2D);
+                newBullet.AddComponent("Rigidbody2D");
+                newBullet.rigidbody2D.gravityScale = 0.0f;
+                Physics2D.IgnoreCollision(collider2D, newBullet.collider2D);
 				
 				//Vector3 playerPos = Camera.main.WorldToScreenPoint(player.transform.position);
 				Vector2 forceDirection = target - enemyPos;
@@ -310,5 +315,24 @@ public class Enemy : MonoBehaviour {
         }
         //Debug.Log(result.worldPos);
         return result;
+    }
+
+    //Enemy drops - Just basic sword and coin dropping at the moment.
+    void ItemDrop()
+    {
+        int roll = Random.Range(0, 100);
+        Debug.Log(roll);
+        if (roll < 25)
+        {
+            GameObject drop = (GameObject)Instantiate(sword, new Vector3(enemyPos.x, enemyPos.y, 0), Quaternion.identity);
+            drop.rigidbody2D.AddForce(new Vector2(Random.Range(-300, 300), Random.Range(-300, 300)));
+            drop.rigidbody2D.AddTorque(Random.Range(-75, 75));
+        }
+        if (roll < 75)
+        {
+            GameObject drop = (GameObject)Instantiate(coin, new Vector3(enemyPos.x, enemyPos.y, 0), Quaternion.identity);
+            coin.rigidbody2D.AddForce(new Vector2(Random.Range(-500, 500), Random.Range(-500, 500)));
+        }
+
     }
 }

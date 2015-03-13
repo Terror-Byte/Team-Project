@@ -4,7 +4,7 @@
 TagManager:
   tags:
   - Projectile
-  - 
+  - Weapon
   - Enemy
   - Health Bar
   - Exp Bar
@@ -22,7 +22,7 @@ TagManager:
   User Layer 10: Background
   User Layer 11: Wall
   User Layer 12: Enemy
-  User Layer 13: 
+  User Layer 13: Drop
   User Layer 14: 
   User Layer 15: 
   User Layer 16: 
