@@ -20,6 +20,7 @@ public class Selector : MonoBehaviour {
 		game = GameObject.Find ("GameController").GetComponent<GameController>();
 
 		//maxDifficultyCompleted = game.maxLevelCompleted;
+        /*
 		levelGen = game.GetComponent<LevelGenerator>();
 		
 		if (!levelGen.levelsInitialised)
@@ -32,6 +33,7 @@ public class Selector : MonoBehaviour {
 		{
 			levels = levelGen.levels;
 		}
+         */
 	}
 	
 	// Update is called once per frame
@@ -101,7 +103,7 @@ public class Selector : MonoBehaviour {
 				//game.SendMessage("Load", 2);
 				Application.LoadLevel("ActionScene");
 				//Debug.Log("Loading random level");
-				levelGen.LoadLevel(levelVector.x, levelVector.y);
+				//levelGen.LoadLevel(levelVector.x, levelVector.y);
 			}
 			game.health = 100;
             // levelGen.CreateMap();

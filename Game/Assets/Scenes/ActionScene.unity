@@ -377,7 +377,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 190710, guid: c5f8365c05300d849ae0f21034ffd42b, type: 2}
-  wepDmg: 15
+  wepDmg: 150
   weaponSpd: 8
   weaponRefresh: .300000012
   playerLiving: 0
@@ -930,6 +930,49 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
+--- !u!1 &1661984691
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1661984693}
+  - 114: {fileID: 1661984692}
+  m_Layer: 0
+  m_Name: Level Generator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1661984692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1661984691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da559048f0ab51b43b265176924bdc55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grassPrefab: {fileID: 140380, guid: 76c4fd26706ef1f428768017a9e4e8c0, type: 2}
+  sandPrefab: {fileID: 111136, guid: 3548eda89e864fe46962eaa4651d97d4, type: 2}
+  waterPrefab: {fileID: 119058, guid: 5d00235d4a4e0484986b7c399296a4d9, type: 2}
+  enemyPrefab: {fileID: 191268, guid: 2724dd6c1fc364d428179491810b47ce, type: 2}
+--- !u!4 &1661984693
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1661984691}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -40.059166, y: -26.4803314, z: -.015625}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
 --- !u!1 &1709120647
 GameObject:
   m_ObjectHideFlags: 0

@@ -45,8 +45,8 @@ public class Enemy : MonoBehaviour {
 	void Start () 
     {
         gameController = GameObject.Find("GameController");
-        levelGen = gameController.GetComponent<LevelGenerator>();
-        navGraph = levelGen.navGraph;
+        //levelGen = gameController.GetComponent<LevelGenerator>();
+        //navGraph = levelGen.navGraph;
 	}
 	
 	// Update is called once per frame

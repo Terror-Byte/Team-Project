@@ -58,6 +58,10 @@ public class BulletScript : MonoBehaviour {
 			Destroy(this.gameObject);
 			coll.gameObject.SendMessage("ApplyDamage", wepDmg);
 		}
+        else if (coll.gameObject.tag == "Water Tile")
+        {
+            Debug.Log("Collided with water");
+        }
 	}
 
 	void setDamage(int dmg)

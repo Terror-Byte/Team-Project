@@ -128,11 +128,11 @@ public class GameController : MonoBehaviour {
             //Selector maxDifficultyCompleted = leveldifficulty completed
         }
 
-		if (Application.loadedLevelName == ("ActionScene") && totalEnemies == 0 && levelGen.mapCreated)
+		if (Application.loadedLevelName == ("ActionScene") && totalEnemies == 0 /*&& levelGen.mapCreated*/)
 		{
 			maxDifficultyCompleted = (int)Mathf.Max(difficultyLevel + 1, maxDifficultyCompleted);
 			Application.LoadLevel("Select");
-			levelGen.mapCreated = false;
+			//levelGen.mapCreated = false;
 		}
 	}
 

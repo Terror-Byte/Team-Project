@@ -40,7 +40,7 @@ public class LevelGenerator : MonoBehaviour {
                         Instantiate(tileTypes[tiles[x, y]].tileVisual, new Vector3(x * 2, y * 2, 0), Quaternion.identity);
                     }
                 }
-                 */
+                 
                 int enemyNo = Random.Range(3, 6);
                 controller.totalEnemies = enemyNo;
 
@@ -49,9 +49,10 @@ public class LevelGenerator : MonoBehaviour {
                     Vector3 position = new Vector3(Random.Range((mapSizeX / 2), ((3 * mapSizeX) / 2)), Random.Range((mapSizeY / 2), ((3 * mapSizeY) / 2)), 10);
                     Instantiate(enemyPrefab, position, Quaternion.identity);
                 }
+                 * */
                 
                 CreateMap();
-                CreateGraph();
+                //CreateGraph();
 
                 //for (int x = 0; x < (mapSizeX * 2) + 1; x++)
                 //{
@@ -92,7 +93,6 @@ public class LevelGenerator : MonoBehaviour {
         int yPos = /*((int)y / 2) + 3*/(int)y + 3;
         string fileName = levels[xPos, yPos];
         tiles = TestMaps.LoadLevel(fileName, mapSizeX, mapSizeY);
-
     }
 
     public void CreateMap()

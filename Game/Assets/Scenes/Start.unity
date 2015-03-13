@@ -1221,7 +1221,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1265528942}
   - 114: {fileID: 1265528941}
-  - 114: {fileID: 1265528943}
   m_Layer: 0
   m_Name: GameController
   m_TagString: GameController
@@ -1265,23 +1264,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
---- !u!114 &1265528943
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1265528940}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f89ab4574055cd4ba49f5495810828e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mapCreated: 0
-  grassPrefab: {fileID: 140380, guid: 76c4fd26706ef1f428768017a9e4e8c0, type: 2}
-  sandPrefab: {fileID: 111136, guid: 3548eda89e864fe46962eaa4651d97d4, type: 2}
-  waterPrefab: {fileID: 119058, guid: 5d00235d4a4e0484986b7c399296a4d9, type: 2}
-  enemyPrefab: {fileID: 191268, guid: 2724dd6c1fc364d428179491810b47ce, type: 2}
-  levelsInitialised: 0
 --- !u!1 &1416012637
 GameObject:
   m_ObjectHideFlags: 0

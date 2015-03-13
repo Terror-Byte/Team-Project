@@ -68,9 +68,10 @@
     <Compile Include="Assets\Scripts\GameController.cs" />
     <Compile Include="Assets\Scripts\Interface1.cs" />
     <Compile Include="Assets\Scripts\Movement.cs" />
+    <Compile Include="Assets\Scripts\Obsolete Scripts (keep for reference for now)\LevelGenerator.cs" />
     <Compile Include="Assets\Scripts\Rotate.cs" />
     <Compile Include="Assets\Scripts\Selector.cs" />
-    <Compile Include="Assets\Scripts\Tile Engine\LevelGenerator.cs" />
+    <Compile Include="Assets\Scripts\Tile Engine\LevelGen.cs" />
     <Compile Include="Assets\Scripts\Tile Engine\Tile.cs" />
     <Compile Include="Assets\Scripts\UI\UI.cs" />
   </ItemGroup>

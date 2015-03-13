@@ -220,7 +220,7 @@ public class Movement : MonoBehaviour {
         gameObject.renderer.enabled = false;
         gameOver.SetActive(true);
         mainMenu.SetActive(true);
-		Destroy (GameObject.FindGameObjectWithTag("GameController"));       
+		Destroy (GameObject.FindGameObjectWithTag("GameController"));   
     }
 
     void LoadMenu()
@@ -232,4 +232,27 @@ public class Movement : MonoBehaviour {
 	{
 		game.xp = xp;
 	}
+
+    void OnCollisionEnter2D(Collision2D coll)
+    {
+        if (coll.gameObject.tag == "Water Tile")
+        {
+            Debug.Log("Water Tile Collision");
+            Vector2 move = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+            if (move.x != 0)
+            {
+                move.x = -move.x;
+            }
+
+            if (move.y != 0)
+            {
+                move.y = -move.y;
+            }
+
+            float movX = move.x * game.speed * Time.deltaTime;
+            float movY = move.y * game.speed * Time.deltaTime;
+
+            transform.Translate(new Vector2(movX, movY));
+        }
+    }
 }
