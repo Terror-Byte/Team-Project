@@ -268,10 +268,12 @@ public class Enemy : MonoBehaviour {
         for (float angle = 0; angle < 360; angle += 30)
         {
             GameObject newBullet = InstantiateBullet();
+            Vector2 forceDirection = new Vector2();
 
-            Vector2 forceDirection = new Vector2(angle / 30, angle / 30);
-            Debug.Log("Force Direction: " + forceDirection);
-            Vector3 a = forceDirection * weaponSpd;
+
+
+            //Debug.Log("Force Direction: " + forceDirection);
+            Vector3 a = forceDirection.normalized * weaponSpd;
 
             newBullet.rigidbody2D.velocity = a - (currVel / 3);
             Debug.Log("Bullet Velocity: " + newBullet.rigidbody2D.velocity.ToString());
