@@ -9,10 +9,10 @@ GameObject:
   m_Component:
   - 4: {fileID: 419058}
   - 212: {fileID: 21219058}
-  - 61: {fileID: 6111878}
-  m_Layer: 0
+  - 60: {fileID: 6056036}
+  m_Layer: 4
   m_Name: WaterPrefab
-  m_TagString: Water Tile
+  m_TagString: WaterTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29,8 +29,8 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!61 &6111878
-BoxCollider2D:
+--- !u!60 &6056036
+PolygonCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -38,8 +38,12 @@ BoxCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Size: {x: .319999993, y: .319999993}
-  m_Center: {x: 0, y: 0}
+  m_Poly:
+    m_Paths:
+    - - {x: -.159999996, y: .159999996}
+      - {x: -.159999996, y: -.159999996}
+      - {x: .159999996, y: -.159999996}
+      - {x: .159999996, y: .159999996}
 --- !u!212 &21219058
 SpriteRenderer:
   m_ObjectHideFlags: 1

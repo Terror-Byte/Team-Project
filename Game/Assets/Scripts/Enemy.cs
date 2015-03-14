@@ -41,12 +41,32 @@ public class Enemy : MonoBehaviour {
 
     public int experience = 25;
 
+    // Shooting Enum
+    public enum ShootingType { Single, Spread, Rotary};
+    public ShootingType shootType;
+
 	// Use this for initialization
 	void Start () 
     {
         gameController = GameObject.Find("GameController");
         //levelGen = gameController.GetComponent<LevelGenerator>();
         //navGraph = levelGen.navGraph;
+
+        int rand = Random.Range(0, 3);
+        switch (rand)
+        {
+            case 0: 
+                shootType = ShootingType.Single;
+                break;
+
+            case 1:
+                shootType = ShootingType.Spread;
+                break;
+
+            case 2:
+                shootType = ShootingType.Rotary;
+                break;
+        }
 	}
 	
 	// Update is called once per frame
@@ -137,30 +157,23 @@ public class Enemy : MonoBehaviour {
 				vec2Target.y = vec2Target.y * speed * Time.deltaTime;
 				transform.Translate(vec2Target);
 			}
-             
-
-            
+                        
 			if (refreshCounter == 0.0f)
 			{
-				float xPos = enemyPos.x;
-				float yPos = enemyPos.y;
+                switch (shootType)
+                {
+                    case ShootingType.Single:
+                        ShootSingle();
+                        break;
 
-                GameObject newBullet = (GameObject)Instantiate(bulletPrefab, new Vector3(xPos, yPos, 0), Quaternion.identity);
-                newBullet.SendMessage("setDamage", wepDmg);
-                newBullet.AddComponent("Rigidbody2D");
-                newBullet.rigidbody2D.gravityScale = 0.0f;
-                Physics2D.IgnoreCollision(collider2D, newBullet.collider2D);
-				
-				//Vector3 playerPos = Camera.main.WorldToScreenPoint(player.transform.position);
-				Vector2 forceDirection = target - enemyPos;
+                    case ShootingType.Spread:
+                        ShootSpread();
+                        break;
 
-				float angle = Mathf.Atan2(forceDirection.y, forceDirection.x) * Mathf.Rad2Deg;
-				Vector3 a = forceDirection.normalized * weaponSpd;
-				
-				//Takes into account the players current direction so that the player can not overtake his own shots
-				newBullet.rigidbody2D.velocity = a - (currVel/3);
-				//newBullet.transform.Translate(a);
-				newBullet.transform.rotation = Quaternion.AngleAxis(angle - 45, Vector3.forward);
+                    case ShootingType.Rotary:
+                        ShootRotary();
+                        break;
+                }
 				
 				refreshCounter += Time.deltaTime;
 			}
@@ -181,142 +194,6 @@ public class Enemy : MonoBehaviour {
         health -= x;
     }
 
-    void GeneratePathTo(int x, int y)
-    {
-        navGraph = levelGen.navGraph;
-        currentPath = null;
-
-        Dictionary<Node, float> distance = new Dictionary<Node, float>();
-        Dictionary<Node, Node> previous = new Dictionary<Node, Node>();
-
-        // List of nodes we haven't checked yet
-        List<Node> unvisited = new List<Node>();
-
-        Node source = currentPosNode;
-        Node target = navGraph[x, y];
-        distance[source] = 0.0f;
-        previous[source] = null;
-
-        // Initialise everything to have infinity distance.
-        foreach (Node vertex in navGraph)
-        {
-            if (vertex != source)
-            {
-                distance[vertex] = Mathf.Infinity;
-                previous[vertex] = null;
-            }
-            unvisited.Add(vertex);
-        }
-
-        while (unvisited.Count > 0)
-        {
-            // Unvisited node with smallest distance
-            Node unvisitedNode = null; //unvisited.OrderBy(n => distance[n]).First();
-
-            foreach(Node possibleUnvisited in unvisited)
-            {
-                /*Debug.Log("Possible Unvisited: " + possibleUnvisited.worldPos);
-                try
-                {
-                    Debug.Log(distance[possibleUnvisited]);
-                }
-                catch(System.Exception e)
-                {
-                    Debug.Log("Possible Unvisited:" + e.Message);
-                }
-
-                try
-                {
-                    if (unvisited != null)
-                    {
-                        Debug.Log(distance[unvisitedNode]);
-                    }
-                    else
-                    {
-                        Debug.Log("Null");
-                    }
-                }
-                catch (System.Exception e)
-                {
-                    Debug.Log("Unvisited: " + e.Message);
-                }
-                 * */
-
-                if (unvisitedNode == null || distance[possibleUnvisited] < distance[unvisitedNode])
-                {
-                    unvisitedNode = possibleUnvisited;
-                }
-            }
-
-            if (unvisitedNode == target)
-                break;
-
-            unvisited.Remove(unvisitedNode);
-
-            foreach(Node vertex in unvisitedNode.neighbours)
-            {
-                float alt = distance[unvisitedNode] + unvisitedNode.DistanceTo(vertex);
-                if (alt < distance[vertex])
-                {
-                    distance[vertex] = alt;
-                    previous[vertex] = unvisitedNode;
-                }
-            }
-        }
-
-        // Either a short route to our target has been found, or there is no route at all to our target
-        if (previous[target] == null)
-        {
-            // No route between our target and the source
-            return;
-        }
-
-        currentPath = new List<Node>();
-
-        Node currentNode = target;
-        // Step through the "previous" chain and add it to the path.
-        while (currentNode != null)
-        {
-            currentPath.Add(currentNode);
-            currentNode = previous[currentNode];
-        }
-
-        // Now currentPath describes a route from target to source, so we need to invert it.
-        currentPath.Reverse();
-        Debug.Log("Success!");
-    }
-
-    public void MoveNextNode()
-    {
-        if (currentPath == null)
-            return;
-
-        currentPath.RemoveAt(0);
-
-        gameObject.transform.position = currentPath[0].worldPos;
-
-        if (currentPath.Count == 1)
-        {
-            // We've reached our destination
-            currentPath = null;
-            hasTarget = false;
-        }
-    }
-
-    Node ConvertToNode(float x, float y)
-    {
-        Node result = new Node();
-        foreach(Node nodes in navGraph)
-        {
-            if (nodes.worldPos.x <= x + 2 && nodes.worldPos.x >= x - 2 && nodes.worldPos.y <= y + 2 && nodes.worldPos.y <= y - 2)
-            {
-                result = nodes;
-            }
-        }
-        //Debug.Log(result.worldPos);
-        return result;
-    }
-
     //Enemy drops - Just basic sword and coin dropping at the moment.
     void ItemDrop()
     {
@@ -333,6 +210,241 @@ public class Enemy : MonoBehaviour {
             GameObject drop = (GameObject)Instantiate(coin, new Vector3(enemyPos.x, enemyPos.y, 0), Quaternion.identity);
             coin.rigidbody2D.AddForce(new Vector2(Random.Range(-500, 500), Random.Range(-500, 500)));
         }
-
     }
+
+    void OnCollisionEnter2D(Collision2D coll)
+    {
+        if (coll.gameObject.tag == "WaterTile")
+        {
+            Debug.Log("Enemy collided with water");
+        }      
+    }
+
+    void ShootSingle()
+    {
+        GameObject newBullet = InstantiateBullet();
+
+        //Vector3 playerPos = Camera.main.WorldToScreenPoint(player.transform.position);
+        Vector2 forceDirection = target - enemyPos;
+        Debug.Log("Force Direction: " + forceDirection);
+
+        float angle = Mathf.Atan2(forceDirection.y, forceDirection.x) * Mathf.Rad2Deg;
+        Vector3 a = forceDirection.normalized * weaponSpd;
+
+        //Takes into account the players current direction so that the player can not overtake his own shots
+        newBullet.rigidbody2D.velocity = a - (currVel / 3);
+        newBullet.transform.rotation = Quaternion.AngleAxis(angle - 45, Vector3.forward);
+    }
+
+    void ShootSpread()
+    {
+        GameObject newBullet1 = InstantiateBullet();
+        GameObject newBullet2 = InstantiateBullet();
+        GameObject newBullet3 = InstantiateBullet();
+
+        //Vector3 playerPos = Camera.main.WorldToScreenPoint(player.transform.position);
+        Vector2 forceDirection = target - enemyPos;
+
+        float angle = Mathf.Atan2(forceDirection.y, forceDirection.x) * Mathf.Rad2Deg;
+        Vector3 a = forceDirection.normalized * weaponSpd;
+
+        //Takes into account the players current direction so that the player can not overtake his own shots
+        newBullet1.rigidbody2D.velocity = a - (currVel / 3);
+        newBullet1.transform.rotation = Quaternion.AngleAxis(angle - 45, Vector3.forward);
+
+        angle = Mathf.Atan2(forceDirection.y - 1, forceDirection.x - 1) * Mathf.Rad2Deg;
+        a = (forceDirection - new Vector2(1, 1)).normalized * weaponSpd;
+        newBullet2.rigidbody2D.velocity = a - (currVel / 3);
+        newBullet2.transform.rotation = Quaternion.AngleAxis(angle - 45, Vector3.forward);
+
+        angle = Mathf.Atan2(forceDirection.y + 1, forceDirection.x + 1) * Mathf.Rad2Deg;
+        a = (forceDirection + new Vector2(1, 1)).normalized * weaponSpd;
+        newBullet3.rigidbody2D.velocity = a - (currVel / 3);
+        newBullet3.transform.rotation = Quaternion.AngleAxis(angle - 45, Vector3.forward);
+    }
+
+    void ShootRotary()
+    {
+        for (float angle = 0; angle < 360; angle += 30)
+        {
+            GameObject newBullet = InstantiateBullet();
+
+            Vector2 forceDirection = new Vector2(angle / 30, angle / 30);
+            Debug.Log("Force Direction: " + forceDirection);
+            Vector3 a = forceDirection * weaponSpd;
+
+            newBullet.rigidbody2D.velocity = a - (currVel / 3);
+            Debug.Log("Bullet Velocity: " + newBullet.rigidbody2D.velocity.ToString());
+            newBullet.transform.rotation = Quaternion.AngleAxis(angle - 45, Vector3.forward);
+        }
+    }
+
+    GameObject InstantiateBullet()
+    {
+        float xPos = enemyPos.x;
+        float yPos = enemyPos.y;
+        GameObject newBullet = (GameObject)Instantiate(bulletPrefab, new Vector3(xPos, yPos, 0), Quaternion.identity);
+        newBullet.SendMessage("setDamage", wepDmg);
+        newBullet.AddComponent("Rigidbody2D");
+        newBullet.rigidbody2D.gravityScale = 0.0f;
+        Physics2D.IgnoreCollision(collider2D, newBullet.collider2D);
+
+        return newBullet;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // Old pathfinding stuff
+    //void GeneratePathTo(int x, int y)
+    //{
+    //    navGraph = levelGen.navGraph;
+    //    currentPath = null;
+
+    //    Dictionary<Node, float> distance = new Dictionary<Node, float>();
+    //    Dictionary<Node, Node> previous = new Dictionary<Node, Node>();
+
+    //    // List of nodes we haven't checked yet
+    //    List<Node> unvisited = new List<Node>();
+
+    //    Node source = currentPosNode;
+    //    Node target = navGraph[x, y];
+    //    distance[source] = 0.0f;
+    //    previous[source] = null;
+
+    //    // Initialise everything to have infinity distance.
+    //    foreach (Node vertex in navGraph)
+    //    {
+    //        if (vertex != source)
+    //        {
+    //            distance[vertex] = Mathf.Infinity;
+    //            previous[vertex] = null;
+    //        }
+    //        unvisited.Add(vertex);
+    //    }
+
+    //    while (unvisited.Count > 0)
+    //    {
+    //        // Unvisited node with smallest distance
+    //        Node unvisitedNode = null; //unvisited.OrderBy(n => distance[n]).First();
+
+    //        foreach (Node possibleUnvisited in unvisited)
+    //        {
+    //            /*Debug.Log("Possible Unvisited: " + possibleUnvisited.worldPos);
+    //            try
+    //            {
+    //                Debug.Log(distance[possibleUnvisited]);
+    //            }
+    //            catch(System.Exception e)
+    //            {
+    //                Debug.Log("Possible Unvisited:" + e.Message);
+    //            }
+
+    //            try
+    //            {
+    //                if (unvisited != null)
+    //                {
+    //                    Debug.Log(distance[unvisitedNode]);
+    //                }
+    //                else
+    //                {
+    //                    Debug.Log("Null");
+    //                }
+    //            }
+    //            catch (System.Exception e)
+    //            {
+    //                Debug.Log("Unvisited: " + e.Message);
+    //            }
+    //             * */
+
+    //            if (unvisitedNode == null || distance[possibleUnvisited] < distance[unvisitedNode])
+    //            {
+    //                unvisitedNode = possibleUnvisited;
+    //            }
+    //        }
+
+    //        if (unvisitedNode == target)
+    //            break;
+
+    //        unvisited.Remove(unvisitedNode);
+
+    //        foreach (Node vertex in unvisitedNode.neighbours)
+    //        {
+    //            float alt = distance[unvisitedNode] + unvisitedNode.DistanceTo(vertex);
+    //            if (alt < distance[vertex])
+    //            {
+    //                distance[vertex] = alt;
+    //                previous[vertex] = unvisitedNode;
+    //            }
+    //        }
+    //    }
+
+    //    // Either a short route to our target has been found, or there is no route at all to our target
+    //    if (previous[target] == null)
+    //    {
+    //        // No route between our target and the source
+    //        return;
+    //    }
+
+    //    currentPath = new List<Node>();
+
+    //    Node currentNode = target;
+    //    // Step through the "previous" chain and add it to the path.
+    //    while (currentNode != null)
+    //    {
+    //        currentPath.Add(currentNode);
+    //        currentNode = previous[currentNode];
+    //    }
+
+    //    // Now currentPath describes a route from target to source, so we need to invert it.
+    //    currentPath.Reverse();
+    //    Debug.Log("Success!");
+    //}
+
+    //public void MoveNextNode()
+    //{
+    //    if (currentPath == null)
+    //        return;
+
+    //    currentPath.RemoveAt(0);
+
+    //    gameObject.transform.position = currentPath[0].worldPos;
+
+    //    if (currentPath.Count == 1)
+    //    {
+    //        // We've reached our destination
+    //        currentPath = null;
+    //        hasTarget = false;
+    //    }
+    //}
+
+    //Node ConvertToNode(float x, float y)
+    //{
+    //    Node result = new Node();
+    //    foreach (Node nodes in navGraph)
+    //    {
+    //        if (nodes.worldPos.x <= x + 2 && nodes.worldPos.x >= x - 2 && nodes.worldPos.y <= y + 2 && nodes.worldPos.y <= y - 2)
+    //        {
+    //            result = nodes;
+    //        }
+    //    }
+    //    //Debug.Log(result.worldPos);
+    //    return result;
+    //}
 }

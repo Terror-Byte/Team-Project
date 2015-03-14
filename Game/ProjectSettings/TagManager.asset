@@ -8,6 +8,8 @@ TagManager:
   - Enemy
   - Health Bar
   - Exp Bar
+  - WaterTile
+  - 
   - Water Tile
   - 
   Builtin Layer 0: Default

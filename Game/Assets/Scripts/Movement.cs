@@ -235,7 +235,7 @@ public class Movement : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D coll)
     {
-        if (coll.gameObject.tag == "Water Tile")
+        if (coll.gameObject.tag == "WaterTile")
         {
             Debug.Log("Water Tile Collision");
             Vector2 move = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
@@ -254,5 +254,6 @@ public class Movement : MonoBehaviour {
 
             transform.Translate(new Vector2(movX, movY));
         }
+        Debug.Log("Collision!" + coll.gameObject.tag.ToString());
     }
 }
