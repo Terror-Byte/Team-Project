@@ -226,7 +226,7 @@ public class Enemy : MonoBehaviour {
 
         //Vector3 playerPos = Camera.main.WorldToScreenPoint(player.transform.position);
         Vector2 forceDirection = target - enemyPos;
-        Debug.Log("Force Direction: " + forceDirection);
+        Debug.Log("Force Direction: " + forceDirection.ToString() + " Normalised: " + forceDirection.normalized);
 
         float angle = Mathf.Atan2(forceDirection.y, forceDirection.x) * Mathf.Rad2Deg;
         Vector3 a = forceDirection.normalized * weaponSpd;
@@ -265,19 +265,27 @@ public class Enemy : MonoBehaviour {
 
     void ShootRotary()
     {
-        for (float angle = 0; angle < 360; angle += 30)
+        // This is a dirty hack, but it's the only way I can think of doing this at the moment
+        Vector2[] directions = {   
+                                   new Vector2(0.0f, 1.0f), new Vector2(0.5f,1.0f), new Vector2(1.0f,1.0f), new Vector2(1.0f, 0.5f),          // Top-Right section
+                                   new Vector2(1.0f, 0.0f), new Vector2(1.0f, -0.5f), new Vector2(1.0f, -1.0f), new Vector2(0.5f, -1.0f),     // Bottom-Right section
+                                   new Vector2(0.0f, -1.0f), new Vector2(-0.5f, -1.0f), new Vector2(-1.0f, -1.0f), new Vector2(-1.0f, -0.5f), // Bottom-Left section
+                                   new Vector2(-1.0f, 0.0f), new Vector2(-1.0f, 0.5f), new Vector2(-1.0f, 1.0f), new Vector2(-0.5f, 1.0f)     // Top-Left section
+                               };   
+
+        int directionCount = 0;
+        for (float angle = 0; angle < 360; angle += 22.5f)
         {
             GameObject newBullet = InstantiateBullet();
-            Vector2 forceDirection = new Vector2();
-
-
+            Vector2 forceDirection = directions[directionCount];
 
             //Debug.Log("Force Direction: " + forceDirection);
-            Vector3 a = forceDirection.normalized * weaponSpd;
+            Vector3 a = forceDirection * weaponSpd;
 
             newBullet.rigidbody2D.velocity = a - (currVel / 3);
             Debug.Log("Bullet Velocity: " + newBullet.rigidbody2D.velocity.ToString());
-            newBullet.transform.rotation = Quaternion.AngleAxis(angle - 45, Vector3.forward);
+            newBullet.transform.rotation = Quaternion.AngleAxis(-angle + 45, Vector3.forward);
+            directionCount++;
         }
     }
 

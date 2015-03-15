@@ -2,7 +2,11 @@ fileFormatVersion: 2
 guid: 6f89ab4574055cd4ba49f5495810828e
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - grassPrefab: {instanceID: 0}
+  - sandPrefab: {instanceID: 0}
+  - waterPrefab: {instanceID: 0}
+  - enemyPrefab: {fileID: 109132, guid: c383fa715d48bd448ab8defabe53171d, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

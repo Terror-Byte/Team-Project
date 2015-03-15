@@ -22,6 +22,7 @@ public class Movement : MonoBehaviour {
 
     // Health and XP bar shizzle
     public Text levelText;
+    public Text goldText;
     private float minXValue;
     private float maxXValue;
     public RectTransform healthTransform;
@@ -59,6 +60,9 @@ public class Movement : MonoBehaviour {
 
 		game = GameObject.Find ("GameController").GetComponent<GameController>();
 		//gameController.SendMessage ("SendXPToPlayer");
+
+        levelText.text = "Level: " + game.level;
+        // goldText.text = "Gold: " + game.gold;
         
         gameOver.SetActive(false);
         mainMenu.SetActive(false);

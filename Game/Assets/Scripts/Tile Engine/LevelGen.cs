@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 
 public class LevelGen : MonoBehaviour {
 
@@ -11,7 +11,9 @@ public class LevelGen : MonoBehaviour {
     public GameObject grassPrefab;
     public GameObject sandPrefab;
     public GameObject waterPrefab;
-    public GameObject enemyPrefab;
+
+    public List<GameObject> enemyPrefabs = new List<GameObject>();
+    //public GameObject enemyPrefab;
 
     GameObject gameControllerObj;
 	// Use this for initialization
@@ -67,8 +69,9 @@ public class LevelGen : MonoBehaviour {
 
         for (int i = 0; i < enemyNo; i++)
         {
+            int randEnemy = Random.Range(0, enemyPrefabs.Count);
             Vector3 position = new Vector3(Random.Range((mapSizeX / 2), ((3 * mapSizeX) / 2)), Random.Range((mapSizeY / 2), ((3 * mapSizeY) / 2)), 10);
-            Instantiate(enemyPrefab, position, Quaternion.identity);
+            Instantiate(enemyPrefabs[randEnemy], position, Quaternion.identity);
         }
     }
 }

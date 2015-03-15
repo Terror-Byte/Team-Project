@@ -38,7 +38,7 @@ public class GameController : MonoBehaviour {
         strength = 5;
         speed = 5;
         xp = 0;
-        level = 0;
+        level = 1;
 
         origin = Camera.main.transform.position;
 
