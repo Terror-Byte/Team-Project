@@ -455,6 +455,26 @@ Prefab:
       propertyPath: xpTransform
       value: 
       objectReference: {fileID: 607627146}
+    - target: {fileID: 11473958, guid: 2f4e4d993492ad840bb3550b86db8d7e, type: 2}
+      propertyPath: levelText
+      value: 
+      objectReference: {fileID: 83899274}
+    - target: {fileID: 11473958, guid: 2f4e4d993492ad840bb3550b86db8d7e, type: 2}
+      propertyPath: goldText
+      value: 
+      objectReference: {fileID: 1353438365}
+    - target: {fileID: 11473958, guid: 2f4e4d993492ad840bb3550b86db8d7e, type: 2}
+      propertyPath: healthTransform
+      value: 
+      objectReference: {fileID: 1736563719}
+    - target: {fileID: 11473958, guid: 2f4e4d993492ad840bb3550b86db8d7e, type: 2}
+      propertyPath: xpTransform
+      value: 
+      objectReference: {fileID: 607627146}
+    - target: {fileID: 11473958, guid: 2f4e4d993492ad840bb3550b86db8d7e, type: 2}
+      propertyPath: gameOver
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2f4e4d993492ad840bb3550b86db8d7e, type: 2}
   m_RootGameObject: {fileID: 867433603}
@@ -1577,6 +1597,7 @@ GameObject:
   - 114: {fileID: 867433606}
   - 60: {fileID: 867433605}
   - 95: {fileID: 867433604}
+  - 114: {fileID: 867433609}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -1643,10 +1664,6 @@ MonoBehaviour:
   weaponRefresh: .300000012
   playerLiving: 0
   nextLevelXP: 100
-  levelText: {fileID: 83899274}
-  goldText: {fileID: 1353438365}
-  healthTransform: {fileID: 1736563719}
-  xpTransform: {fileID: 607627146}
 --- !u!212 &867433607
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1683,6 +1700,24 @@ Transform:
   - {fileID: 79604085}
   m_Father: {fileID: 0}
   m_RootOrder: 6
+--- !u!114 &867433609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11473958, guid: 2f4e4d993492ad840bb3550b86db8d7e,
+    type: 2}
+  m_PrefabInternal: {fileID: 172955598}
+  m_GameObject: {fileID: 867433603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abeaebb46ee2d33428802717a337419c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelText: {fileID: 83899274}
+  goldText: {fileID: 1353438365}
+  healthTransform: {fileID: 1736563719}
+  xpTransform: {fileID: 607627146}
+  gameOver: {fileID: 0}
+  mainMenu: {fileID: 0}
 --- !u!1 &1067986620
 GameObject:
   m_ObjectHideFlags: 0

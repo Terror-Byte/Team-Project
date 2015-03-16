@@ -249,6 +249,26 @@ Prefab:
       propertyPath: m_BackGroundColor.b
       value: .952941179
       objectReference: {fileID: 0}
+    - target: {fileID: 11432780, guid: 2f4e4d993492ad840bb3550b86db8d7e, type: 2}
+      propertyPath: goldText
+      value: 
+      objectReference: {fileID: 44645936}
+    - target: {fileID: 11473958, guid: 2f4e4d993492ad840bb3550b86db8d7e, type: 2}
+      propertyPath: levelText
+      value: 
+      objectReference: {fileID: 1040359003}
+    - target: {fileID: 11473958, guid: 2f4e4d993492ad840bb3550b86db8d7e, type: 2}
+      propertyPath: goldText
+      value: 
+      objectReference: {fileID: 44645936}
+    - target: {fileID: 11473958, guid: 2f4e4d993492ad840bb3550b86db8d7e, type: 2}
+      propertyPath: healthTransform
+      value: 
+      objectReference: {fileID: 539534819}
+    - target: {fileID: 11473958, guid: 2f4e4d993492ad840bb3550b86db8d7e, type: 2}
+      propertyPath: xpTransform
+      value: 
+      objectReference: {fileID: 215382930}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2f4e4d993492ad840bb3550b86db8d7e, type: 2}
   m_RootGameObject: {fileID: 331609848}
@@ -408,6 +428,8 @@ GameObject:
   - 212: {fileID: 331609852}
   - 114: {fileID: 331609851}
   - 60: {fileID: 331609850}
+  - 95: {fileID: 331609853}
+  - 114: {fileID: 331609854}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -471,10 +493,6 @@ MonoBehaviour:
   weaponRefresh: .300000012
   playerLiving: 0
   nextLevelXP: 100
-  levelText: {fileID: 1040359003}
-  goldText: {fileID: 0}
-  healthTransform: {fileID: 539534819}
-  xpTransform: {fileID: 215382930}
 --- !u!212 &331609852
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -495,9 +513,59 @@ SpriteRenderer:
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
-  m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 2bbc22a39df20594090bdbff1d1aea4c, type: 3}
+  m_SortingOrder: 2
+  m_Sprite: {fileID: 21300000, guid: 5293d6dd122b60641b9c377102ecd2d7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!95 &331609853
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 9533956, guid: 2f4e4d993492ad840bb3550b86db8d7e,
+    type: 2}
+  m_PrefabInternal: {fileID: 98904934}
+  m_GameObject: {fileID: 331609848}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0e3f76f84c8bfec4fbb513d8939d2228, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &331609854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11473958, guid: 2f4e4d993492ad840bb3550b86db8d7e,
+    type: 2}
+  m_PrefabInternal: {fileID: 98904934}
+  m_GameObject: {fileID: 331609848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abeaebb46ee2d33428802717a337419c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelText: {fileID: 1040359003}
+  goldText: {fileID: 44645936}
+  healthTransform: {fileID: 539534819}
+  xpTransform: {fileID: 215382930}
+  gameOver: {fileID: 0}
+  mainMenu: {fileID: 0}
+--- !u!115 &437558713
+MonoScript:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  serializedVersion: 4
+  m_Script: 
+  m_DefaultReferences: {}
+  m_Icon: {fileID: 0}
+  m_EditorGraphData: {fileID: 0}
+  m_ExecutionOrder: 0
+  m_ClassName: TouchInputModule
+  m_Namespace: UnityEngine.EventSystems
+  m_AssemblyName: UnityEngine.UI.dll
+  m_IsEditorScript: 0
 --- !u!1 &539534816
 GameObject:
   m_ObjectHideFlags: 0
@@ -964,6 +1032,95 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 832437394}
   m_GameObject: {fileID: 1342610833}
+--- !u!115 &1374023843
+MonoScript:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  serializedVersion: 4
+  m_Script: 
+  m_DefaultReferences: {}
+  m_Icon: {fileID: 0}
+  m_EditorGraphData: {fileID: 0}
+  m_ExecutionOrder: 0
+  m_ClassName: EventSystem
+  m_Namespace: UnityEngine.EventSystems
+  m_AssemblyName: UnityEngine.UI.dll
+  m_IsEditorScript: 0
+--- !u!1 &1383570937
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1383570941}
+  - 114: {fileID: 1383570940}
+  - 114: {fileID: 1383570939}
+  - 114: {fileID: 1383570938}
+  m_Layer: 0
+  m_Name: EventSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1383570938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1383570937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 437558713}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AllowActivationOnStandalone: 0
+--- !u!114 &1383570939
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1383570937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1496534081}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalAxis: Horizontal
+  m_VerticalAxis: Vertical
+  m_SubmitButton: Submit
+  m_CancelButton: Cancel
+  m_InputActionsPerSecond: 10
+  m_AllowActivationOnMobileDevice: 0
+--- !u!114 &1383570940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1383570937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1374023843}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_FirstSelected: {fileID: 0}
+  m_sendNavigationEvents: 1
+  m_DragThreshold: 5
+--- !u!4 &1383570941
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1383570937}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
 --- !u!1 &1392098917
 GameObject:
   m_ObjectHideFlags: 0
@@ -1052,6 +1209,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 331609849}
   m_RootOrder: 0
+--- !u!115 &1496534081
+MonoScript:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  serializedVersion: 4
+  m_Script: 
+  m_DefaultReferences: {}
+  m_Icon: {fileID: 0}
+  m_EditorGraphData: {fileID: 0}
+  m_ExecutionOrder: 0
+  m_ClassName: StandaloneInputModule
+  m_Namespace: UnityEngine.EventSystems
+  m_AssemblyName: UnityEngine.UI.dll
+  m_IsEditorScript: 0
 --- !u!1 &1579141666
 GameObject:
   m_ObjectHideFlags: 0

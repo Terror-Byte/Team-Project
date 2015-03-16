@@ -31,6 +31,7 @@ GameObject:
   - 114: {fileID: 11432780}
   - 60: {fileID: 6042536}
   - 95: {fileID: 9533956}
+  - 114: {fileID: 11473958}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -165,10 +166,23 @@ MonoBehaviour:
   weaponRefresh: .300000012
   playerLiving: 0
   nextLevelXP: 100
+--- !u!114 &11473958
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 166262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abeaebb46ee2d33428802717a337419c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   levelText: {fileID: 0}
   goldText: {fileID: 0}
   healthTransform: {fileID: 0}
   xpTransform: {fileID: 0}
+  gameOver: {fileID: 0}
+  mainMenu: {fileID: 0}
 --- !u!124 &12442536
 Behaviour:
   m_ObjectHideFlags: 1

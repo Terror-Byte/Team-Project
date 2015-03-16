@@ -1244,6 +1244,7 @@ MonoBehaviour:
   speed: 0
   xp: 0
   level: 0
+  gold: 0
   maxDifficultyCompleted: 0
   difficultyLevel: 0
   origin: {x: 0, y: 0, z: 0}

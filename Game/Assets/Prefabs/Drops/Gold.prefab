@@ -13,7 +13,7 @@ GameObject:
   - 50: {fileID: 5002284}
   m_Layer: 13
   m_Name: Gold
-  m_TagString: Untagged
+  m_TagString: Gold
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

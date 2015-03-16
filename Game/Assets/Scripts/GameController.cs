@@ -10,6 +10,7 @@ public class GameController : MonoBehaviour {
     public float speed;
     public int xp;
     public int level;
+    public int gold;
     
     //Lvl stats
     public int maxDifficultyCompleted = 0;
@@ -39,6 +40,7 @@ public class GameController : MonoBehaviour {
         speed = 5;
         xp = 0;
         level = 1;
+        gold = 0;
 
         origin = Camera.main.transform.position;
 

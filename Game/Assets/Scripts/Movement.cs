@@ -20,22 +20,7 @@ public class Movement : MonoBehaviour {
     //public int level = 1;
     public int nextLevelXP = 100;
 
-    // Health and XP bar shizzle
-    public Text levelText;
-    public Text goldText;
-    private float minXValue;
-    private float maxXValue;
-    public RectTransform healthTransform;
-    private float healthY;
-    public RectTransform xpTransform;
-    private float xpY;
-
-    // Game over variables
-    GameObject gameOver;
-    Text gameOverText;
-    GameObject mainMenu;
-    Text mainMenuButton;
-	Button menuButton;
+    PlayerUIDriver uiDriver;
 
 	// Game Controller
 	//GameObject gameController;
@@ -47,25 +32,12 @@ public class Movement : MonoBehaviour {
 		refreshCounter = 0;
         StartCoroutine(CalcVelocity());
 
-        healthY = healthTransform.position.y; // Y value of the health bar's position.
-        xpY = xpTransform.position.y; // Y value of the XP bar's position.
-        maxXValue = healthTransform.position.x; // Maximum position of bars.
-        minXValue = healthTransform.position.x - healthTransform.rect.width; // Minimum position of bars.
         playerLiving = true;
-
-        gameOver = GameObject.Find("Game Over Text");
-        mainMenu = GameObject.Find("Main Menu Button");
-		menuButton = mainMenu.GetComponent<Button>();
-		menuButton.onClick.AddListener(() => LoadMenu());
 
 		game = GameObject.Find ("GameController").GetComponent<GameController>();
 		//gameController.SendMessage ("SendXPToPlayer");
 
-        levelText.text = "Level: " + game.level;
-        // goldText.text = "Gold: " + game.gold;
-        
-        gameOver.SetActive(false);
-        mainMenu.SetActive(false);
+        uiDriver = gameObject.GetComponent<PlayerUIDriver>();
 	}
 	
 	// Update is called once per frame
@@ -73,28 +45,6 @@ public class Movement : MonoBehaviour {
 	{
         if (game.health <= 0)
             PlayerDeath();
-
-        // Calculations may be a bit off for health and xp bars, fix soon.
-        float currentHealthX = currentPosition(game.health, 100, maxXValue);
-        if (game.health != 0)
-        {
-            healthTransform.position = new Vector3(currentHealthX, healthY);
-        }
-        else
-        {
-            healthTransform.position = new Vector3(healthTransform.position.x - xpTransform.rect.width, healthY);
-        }
-       
-        if (game.xp != 0)
-        {
-            float currentXPX = currentPosition(game.xp, nextLevelXP, maxXValue);
-            xpTransform.position = new Vector3(currentXPX, xpY);
-        }
-        else
-        {
-            float currentXPX = xpTransform.position.x - xpTransform.rect.width;
-            xpTransform.position = new Vector3(currentXPX, xpY);
-        }
 
         // If the player is alive.
         if (playerLiving)
@@ -200,36 +150,16 @@ public class Movement : MonoBehaviour {
         game.level++;
         game.xp = overflow;
         nextLevelXP = 100 + ((int)Mathf.Pow(game.level, 2) * 5);
-        levelText.text = "Level: " + game.level;
-    }
-
-    float currentPosition(int currentVal, int maxVal, float maxXvalue)
-    {
-        // healthPercentage = current health / max health (100 for now)
-        // current x = maxXvalue - (maxXvalue * healthPercentage)
-
-        // Percentage = current value / max value
-        // current x pos = maxXvalue - (maxVcalue * percentage)
-        float currentValue = (float)currentVal;
-        float maxValue = (float)maxVal;
-
-        float percentage = currentValue / maxValue;
-        float result = maxXvalue * percentage;
-        return result;
+        uiDriver.levelText.text = "Level: " + game.level;
     }
 
     void PlayerDeath()
     {
         playerLiving = false;
-        gameObject.renderer.enabled = false;
-        gameOver.SetActive(true);
-        mainMenu.SetActive(true);
+        gameObject.renderer.enabled = false;      
+        uiDriver.gameOver.SetActive(true);
+        uiDriver.mainMenu.SetActive(true);
 		Destroy (GameObject.FindGameObjectWithTag("GameController"));   
-    }
-
-    void LoadMenu()
-    {
-        Application.LoadLevel("Start");
     }
 
 	void LoadXPFromController(int xp)
@@ -258,6 +188,27 @@ public class Movement : MonoBehaviour {
 
             transform.Translate(new Vector2(movX, movY));
         }
-        Debug.Log("Collision!" + coll.gameObject.tag.ToString());
+        //Debug.Log("Collision!" + coll.gameObject.tag.ToString());
+        if (coll.gameObject.tag == "Gold")
+        {
+            Destroy(coll.gameObject);
+            int amount = Random.Range(0, 4);
+            switch (amount)
+            {
+                case 0:
+                    game.gold += 25;
+                    break;
+                case 1:
+                    game.gold += 50;
+                    break;
+                case 2:
+                    game.gold += 75;
+                    break;
+                case 3:
+                    game.gold += 100;
+                    break;
+            }
+            uiDriver.goldText.text = "Gold: " + game.gold;
+        }
     }
 }
