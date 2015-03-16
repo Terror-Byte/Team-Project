@@ -1246,6 +1246,7 @@ MonoBehaviour:
   level: 0
   maxDifficultyCompleted: 0
   difficultyLevel: 0
+  origin: {x: 0, y: 0, z: 0}
   mouseEdge: 0
   dist: 5
   edge: 50

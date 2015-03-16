@@ -237,6 +237,18 @@ Prefab:
       propertyPath: orthographic size
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 2042536, guid: 2f4e4d993492ad840bb3550b86db8d7e, type: 2}
+      propertyPath: m_BackGroundColor.r
+      value: .552941203
+      objectReference: {fileID: 0}
+    - target: {fileID: 2042536, guid: 2f4e4d993492ad840bb3550b86db8d7e, type: 2}
+      propertyPath: m_BackGroundColor.g
+      value: .647058845
+      objectReference: {fileID: 0}
+    - target: {fileID: 2042536, guid: 2f4e4d993492ad840bb3550b86db8d7e, type: 2}
+      propertyPath: m_BackGroundColor.b
+      value: .952941179
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2f4e4d993492ad840bb3550b86db8d7e, type: 2}
   m_RootGameObject: {fileID: 331609848}
@@ -460,6 +472,7 @@ MonoBehaviour:
   playerLiving: 0
   nextLevelXP: 100
   levelText: {fileID: 1040359003}
+  goldText: {fileID: 0}
   healthTransform: {fileID: 539534819}
   xpTransform: {fileID: 215382930}
 --- !u!212 &331609852
@@ -980,7 +993,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: .192156866, g: .301960796, b: .474509805, a: .0196078438}
+  m_BackGroundColor: {r: .552941203, g: .647058845, b: .952941179, a: .0196078438}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0

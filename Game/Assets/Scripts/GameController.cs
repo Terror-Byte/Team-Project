@@ -15,7 +15,7 @@ public class GameController : MonoBehaviour {
     public int maxDifficultyCompleted = 0;
     public int difficultyLevel = 0;
 
-    Vector3 origin;
+    public Vector3 origin;
     public bool mouseEdge = false;
     int screenX;
     int screenY;
@@ -71,12 +71,13 @@ public class GameController : MonoBehaviour {
 		}
 
         if (Application.loadedLevelName == "Select")
-            origin = new Vector3(0, 0, -10);
+            origin = new Vector3(0, 0, -10.0f);
 
         if (GameObject.Find("Player") != null)
         {
             origin = GameObject.Find("Player").transform.position;
-            origin.z = -10.0f;
+            origin.z = -15.0f;
+            
         }
 
         t = 2f;

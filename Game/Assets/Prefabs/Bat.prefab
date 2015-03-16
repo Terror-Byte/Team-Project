@@ -11,6 +11,7 @@ GameObject:
   - 212: {fileID: 21209132}
   - 114: {fileID: 11409132}
   - 60: {fileID: 6009132}
+  - 95: {fileID: 9560612}
   m_Layer: 12
   m_Name: Bat
   m_TagString: Enemy
@@ -47,6 +48,21 @@ PolygonCollider2D:
       - {x: .126982614, y: -.0569829941}
       - {x: .125, y: .0548248291}
       - {x: .124912821, y: .0550003052}
+--- !u!95 &9560612
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 109132}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6d89a23fbbd98664685891c1a5417421, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &11409132
 MonoBehaviour:
   m_ObjectHideFlags: 1
