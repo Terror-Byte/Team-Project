@@ -21,11 +21,12 @@ public class Movement : MonoBehaviour {
     public int nextLevelXP = 100;
 
     PlayerUIDriver uiDriver;
-
 	// Game Controller
 	//GameObject gameController;
     GameController game;
-    
+
+    public bool inExit = false;
+
 	// Use this for initialization
 	void Start () 
 	{
@@ -54,9 +55,8 @@ public class Movement : MonoBehaviour {
 
             float movX = move.x * game.speed * Time.deltaTime;
             float movY = move.y * game.speed * Time.deltaTime;
-
             transform.Translate(new Vector2(movX, movY));
-
+            
             // If left button pressed, generate a new bullet and fire.
             if (Input.GetMouseButton(0))
             {
@@ -82,9 +82,6 @@ public class Movement : MonoBehaviour {
                     //Takes into account the players current direction so that the player can not overtake his own shots
                     newBullet.rigidbody2D.velocity = a - (currVel / 3);
                     newBullet.transform.rotation = Quaternion.AngleAxis(angle - 45, Vector3.forward);
-                    //a.Normalize ();
-                    //newBullet.SendMessage ("SetMovX", a.x);
-                    //newBullet.SendMessage ("SetMovY", a.y);
 
                     refreshCounter += Time.deltaTime;
                 }
@@ -167,7 +164,7 @@ public class Movement : MonoBehaviour {
 		game.xp = xp;
 	}
 
-    void OnCollisionEnter2D(Collision2D coll)
+    void OnTriggerEnter2D(Collider2D coll)
     {
         if (coll.gameObject.tag == "WaterTile")
         {
@@ -209,6 +206,19 @@ public class Movement : MonoBehaviour {
                     break;
             }
             uiDriver.goldText.text = "Gold: " + game.gold;
+        }
+    }
+
+    void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Finish")
+        {
+            inExit = true;
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                game.SendMessage("Finish");
+                Debug.Log("Finish");
+            }
         }
     }
 }

@@ -12,6 +12,7 @@ GameObject:
   - 92: {fileID: 9242536}
   - 124: {fileID: 12442536}
   - 81: {fileID: 8142536}
+  - 114: {fileID: 11473666}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -32,6 +33,11 @@ GameObject:
   - 60: {fileID: 6042536}
   - 95: {fileID: 9533956}
   - 114: {fileID: 11473958}
+  - 50: {fileID: 5049180}
+  - 50: {fileID: 5068222}
+  - 50: {fileID: 5025208}
+  - 50: {fileID: 5029818}
+  - 50: {fileID: 5047122}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -58,7 +64,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 166262}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .419999987, y: -2.96000004, z: 0}
+  m_LocalPosition: {x: 6.19999981, y: 3.0999999, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 2}
   m_Children:
   - {fileID: 442536}
@@ -73,7 +79,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: .192156866, g: .301960796, b: .474509805, a: .0196078438}
+  m_BackGroundColor: {r: .466666669, g: .627451003, b: .894117653, a: .0196078438}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -84,7 +90,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 6
+  orthographic size: 8
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -96,6 +102,81 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: .0219999999
+--- !u!50 &5025208
+Rigidbody2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 166262}
+  m_Mass: 9.99999975e-05
+  m_LinearDrag: 0
+  m_AngularDrag: 0
+  m_GravityScale: 0
+  m_FixedAngle: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+--- !u!50 &5029818
+Rigidbody2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 166262}
+  m_Mass: 9.99999975e-05
+  m_LinearDrag: 0
+  m_AngularDrag: 0
+  m_GravityScale: 0
+  m_FixedAngle: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+--- !u!50 &5047122
+Rigidbody2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 166262}
+  m_Mass: 9.99999975e-05
+  m_LinearDrag: 0
+  m_AngularDrag: 0
+  m_GravityScale: 0
+  m_FixedAngle: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+--- !u!50 &5049180
+Rigidbody2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 166262}
+  m_Mass: 9.99999975e-05
+  m_LinearDrag: 0
+  m_AngularDrag: 0
+  m_GravityScale: 0
+  m_FixedAngle: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+--- !u!50 &5068222
+Rigidbody2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 166262}
+  m_Mass: 9.99999975e-05
+  m_LinearDrag: 0
+  m_AngularDrag: 0
+  m_GravityScale: 0
+  m_FixedAngle: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
 --- !u!60 &6042536
 PolygonCollider2D:
   m_ObjectHideFlags: 1
@@ -104,22 +185,16 @@ PolygonCollider2D:
   m_GameObject: {fileID: 166262}
   m_Enabled: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Poly:
     m_Paths:
-    - - {x: .0437694117, y: .034843646}
-      - {x: .0426968224, y: .16024296}
-      - {x: -.104683071, y: .162499443}
-      - {x: -.0978803262, y: .0345129706}
-      - {x: -.143779054, y: .00331959873}
-      - {x: -.143634766, y: -.0708713904}
-      - {x: -.11471045, y: -.080327712}
-      - {x: -.0758712962, y: -.120553844}
-      - {x: -.0694059655, y: -.1594567}
-      - {x: .0197636336, y: -.159945443}
-      - {x: .0619095936, y: -.0594959334}
-      - {x: .112593718, y: -.0554627255}
-      - {x: .113886327, y: -.0293230433}
+    - - {x: -.0949999988, y: .119999997}
+      - {x: -.104999997, y: .100000001}
+      - {x: -.104999997, y: -.119999997}
+      - {x: .0850000009, y: -.119999997}
+      - {x: .104999997, y: -.0700000003}
+      - {x: .104999997, y: .0900000036}
+      - {x: .0949999988, y: .119999997}
 --- !u!81 &8142536
 AudioListener:
   m_ObjectHideFlags: 1
@@ -166,6 +241,20 @@ MonoBehaviour:
   weaponRefresh: .300000012
   playerLiving: 0
   nextLevelXP: 100
+  inExit: 0
+--- !u!114 &11473666
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 142536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6df4a94edfb2b59429996c79fddaa8b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  origin: {x: 0, y: 0, z: 0}
+  t: 2
 --- !u!114 &11473958
 MonoBehaviour:
   m_ObjectHideFlags: 1

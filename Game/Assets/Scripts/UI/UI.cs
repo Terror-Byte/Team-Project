@@ -10,22 +10,23 @@ public class UI : MonoBehaviour {
     public Text gameName;
 
 	// Use this for initialization
-	void Start () {
+	void Start () 
+    {
 
 	}
 	
 	// Update is called once per frame
-	void Update () {
-	
+	void Update () 
+    {
+        width = Screen.width;
+        height = Screen.height;
 	}
 
     void OnGUI()
     {
         GUI.skin = customSkin;
 
-        GUI.Label(new Rect(width / 2, height / 2, 750, 60), "Plunder");
-
-        if(GUI.Button(new Rect(width/2 - 250, height/2 - 30, 500, 60), "Start game"))
+        if (GUI.Button(new Rect(width / 2 - 250, height / 2 - 30, 500, 60), "Start game"))
         {
             Application.LoadLevel(Application.loadedLevel + 1);
         }   
