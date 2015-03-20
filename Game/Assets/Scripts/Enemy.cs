@@ -126,7 +126,9 @@ public class Enemy : MonoBehaviour {
 				vec2Target.Normalize();
 				vec2Target.x = vec2Target.x * speed * Time.deltaTime;
 				vec2Target.y = vec2Target.y * speed * Time.deltaTime;
-				transform.Translate(vec2Target);
+
+                rigidbody2D.velocity = vec2Target;
+                //transform.Translate(vec2Target);
 			}
             /*
             if (!hasTarget)
@@ -155,7 +157,9 @@ public class Enemy : MonoBehaviour {
 				vec2Target.Normalize();
 				vec2Target.x = vec2Target.x * speed * Time.deltaTime;
 				vec2Target.y = vec2Target.y * speed * Time.deltaTime;
-				transform.Translate(vec2Target);
+
+                rigidbody2D.velocity = vec2Target;
+                //transform.Translate(vec2Target);
 			}
                         
 			if (refreshCounter == 0.0f)
@@ -208,7 +212,7 @@ public class Enemy : MonoBehaviour {
         if (roll < 75)
         {
             GameObject drop = (GameObject)Instantiate(coin, new Vector3(enemyPos.x, enemyPos.y, 0), Quaternion.identity);
-            coin.rigidbody2D.AddForce(new Vector2(Random.Range(-500, 500), Random.Range(-500, 500)));
+            coin.rigidbody2D.velocity = (new Vector2(Random.Range(-500, 500), Random.Range(-500, 500)));
         }
     }
 

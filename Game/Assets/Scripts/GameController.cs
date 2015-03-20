@@ -6,15 +6,15 @@ public class GameController : MonoBehaviour
 
     //Player Stats
     //Will be contained over level changes
-    public int health;
-    public float strength;
-    public float speed;
-    public int xp;
-    public int level;
-    public int gold;
+    public int health = 100;
+    public float strength = 5;
+    public float speed = 300;
+    public int xp = 0;
+    public int level = 0;
+    public int gold = 0;
 
     //Lvl stats
-    public int maxDifficultyCompleted = 0;
+    public int maxDifficultyCompleted = 1;
     public int difficultyLevel = 0;
 
     //public Vector3 origin;
@@ -34,13 +34,6 @@ public class GameController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        health = 100;
-        strength = 5;
-        speed = 5;
-        xp = 0;
-        level = 1;
-        gold = 0;
-
         //origin = Camera.main.transform.position;
 
         DontDestroyOnLoad(this.gameObject);

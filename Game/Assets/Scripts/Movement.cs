@@ -55,7 +55,9 @@ public class Movement : MonoBehaviour {
 
             float movX = move.x * game.speed * Time.deltaTime;
             float movY = move.y * game.speed * Time.deltaTime;
-            transform.Translate(new Vector2(movX, movY));
+
+            this.rigidbody2D.velocity = new Vector2(movX, movY);
+            //transform.Translate(new Vector2(movX, movY));
             
             // If left button pressed, generate a new bullet and fire.
             if (Input.GetMouseButton(0))
@@ -164,27 +166,27 @@ public class Movement : MonoBehaviour {
 		game.xp = xp;
 	}
 
-    void OnTriggerEnter2D(Collider2D coll)
+    void OnCollisionEnter2D(Collision2D coll)
     {
-        if (coll.gameObject.tag == "WaterTile")
-        {
-            Debug.Log("Water Tile Collision");
-            Vector2 move = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-            if (move.x != 0)
-            {
-                move.x = -move.x;
-            }
+        //if (coll.gameObject.tag == "WaterTile")
+        //{
+        //    Debug.Log("Water Tile Collision");
+        //    Vector2 move = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        //    if (move.x != 0)
+        //    {
+        //        move.x = -move.x;
+        //    }
 
-            if (move.y != 0)
-            {
-                move.y = -move.y;
-            }
+        //    if (move.y != 0)
+        //    {
+        //        move.y = -move.y;
+        //    }
 
-            float movX = move.x * game.speed * Time.deltaTime;
-            float movY = move.y * game.speed * Time.deltaTime;
+        //    float movX = move.x * game.speed * Time.deltaTime;
+        //    float movY = move.y * game.speed * Time.deltaTime;
 
-            transform.Translate(new Vector2(movX, movY));
-        }
+        //    transform.Translate(new Vector2(movX, movY));
+        //}
         //Debug.Log("Collision!" + coll.gameObject.tag.ToString());
         if (coll.gameObject.tag == "Gold")
         {
