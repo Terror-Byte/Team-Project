@@ -6,9 +6,7 @@ public class UI : MonoBehaviour {
 
     int width = Screen.width;
     int height = Screen.height;
-    public GUISkin customSkin;
-    public Text gameName;
-
+    public float speed = 2;
 	// Use this for initialization
 	void Start () 
     {
@@ -20,15 +18,17 @@ public class UI : MonoBehaviour {
     {
         width = Screen.width;
         height = Screen.height;
-	}
 
-    void OnGUI()
+        gameObject.transform.localScale = Vector3.Lerp(gameObject.transform.localScale, new Vector3(0.6f, 0.6f, 0.0f), speed * Time.deltaTime);
+    }
+    
+    void OnMouseOver()
     {
-        GUI.skin = customSkin;
+        gameObject.transform.localScale = Vector3.Lerp(gameObject.transform.localScale, new Vector3(0.8f, 0.8f, 0.0f), speed * Time.deltaTime);
+    }
 
-        if (GUI.Button(new Rect(width / 2 - 250, height / 2 - 30, 500, 60), "Start game"))
-        {
-            Application.LoadLevel(Application.loadedLevel + 1);
-        }   
+    void OnMouseDown()
+    {
+        Application.LoadLevel(Application.loadedLevel + 1);
     }
 }

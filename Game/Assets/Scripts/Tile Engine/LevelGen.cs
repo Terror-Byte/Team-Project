@@ -13,6 +13,7 @@ public class LevelGen : MonoBehaviour {
     public GameObject waterPrefab;
 
     public List<GameObject> enemyPrefabs = new List<GameObject>();
+    public GameObject treePrefab;
     //public GameObject enemyPrefab;
 
     GameObject gameControllerObj;
@@ -72,6 +73,14 @@ public class LevelGen : MonoBehaviour {
             int randEnemy = Random.Range(0, enemyPrefabs.Count);
             Vector3 position = new Vector3(Random.Range((mapSizeX / 2), ((3 * mapSizeX) / 2)), Random.Range((mapSizeY / 2), ((3 * mapSizeY) / 2)), 10);
             Instantiate(enemyPrefabs[randEnemy], position, Quaternion.identity);
+        }
+
+        int treeNo = Random.Range(3, 6);
+        
+        for (int i = 0; i < treeNo; i++)
+        {
+            Vector3 position = new Vector3(Random.Range((mapSizeX / 2), ((3 * mapSizeX) / 2)), Random.Range((mapSizeY / 2), ((3 * mapSizeY) / 2)), 10);
+            Instantiate(treePrefab, position, Quaternion.identity);
         }
     }
 }
