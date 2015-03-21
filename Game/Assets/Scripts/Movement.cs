@@ -209,6 +209,11 @@ public class Movement : MonoBehaviour {
             }
             uiDriver.goldText.text = "Gold: " + game.gold;
         }
+
+        if (coll.gameObject.tag == "WaterTile")
+        {
+            Debug.Log("Player collides with water");
+        }
     }
 
     void OnTriggerStay2D(Collider2D other)

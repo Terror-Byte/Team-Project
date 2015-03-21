@@ -12,6 +12,7 @@ GameObject:
   - 114: {fileID: 11491268}
   - 60: {fileID: 6091268}
   - 50: {fileID: 5017328}
+  - 60: {fileID: 6037124}
   m_Layer: 12
   m_Name: Snake
   m_TagString: Enemy
@@ -26,7 +27,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 191268}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.6882019, y: 11.7436857, z: 0}
+  m_LocalPosition: {x: -8.80000019, y: -2.20000005, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children: []
   m_Father: {fileID: 0}
@@ -46,6 +47,24 @@ Rigidbody2D:
   m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
+--- !u!60 &6037124
+PolygonCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 191268}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Poly:
+    m_Paths:
+    - - {x: -.0812926963, y: .111292601}
+      - {x: -.0864175931, y: -.0286391657}
+      - {x: -.141292676, y: -.0888892859}
+      - {x: -.14501138, y: -.142539799}
+      - {x: .0575283803, y: -.142539799}
+      - {x: .0850568116, y: -.102607995}
+      - {x: .0962812006, y: .111292601}
 --- !u!60 &6091268
 PolygonCollider2D:
   m_ObjectHideFlags: 1

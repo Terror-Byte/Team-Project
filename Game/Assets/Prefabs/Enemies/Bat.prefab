@@ -13,7 +13,7 @@ GameObject:
   - 60: {fileID: 6009132}
   - 95: {fileID: 9560612}
   - 50: {fileID: 5038588}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: Bat
   m_TagString: Enemy
   m_Icon: {fileID: 0}

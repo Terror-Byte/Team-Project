@@ -218,10 +218,15 @@ public class Enemy : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D coll)
     {
-        if (coll.gameObject.tag == "WaterTile")
+        /*if (coll.gameObject.tag == "WaterTile")
         {
             Debug.Log("Enemy collided with water");
-        }      
+        }*/
+        if (coll.gameObject.tag == "Enemy" || coll.gameObject.tag == "WaterTile")
+        {
+            Debug.Log("Enemy collided with: " + coll.gameObject.tag.ToString());
+            target = new Vector2(-target.x, -target.y);
+        }
     }
 
     void ShootSingle()
@@ -305,8 +310,6 @@ public class Enemy : MonoBehaviour {
 
         return newBullet;
     }
-
-
 
 
 
