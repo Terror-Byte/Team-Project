@@ -16,10 +16,10 @@ public class LevelGen : MonoBehaviour {
     public GameObject treePrefab;
     //public GameObject enemyPrefab;
 
-    GameObject gameControllerObj;
+    GameController game;
 	// Use this for initialization
 	void Start () {
-        gameControllerObj = GameObject.Find("GameController");
+        game = GameObject.Find("GameController").GetComponent<GameController>();
         CreateLevel();
 	}
 	
@@ -66,15 +66,17 @@ public class LevelGen : MonoBehaviour {
 
         // Spawns enemies
         int enemyNo = Random.Range(3, 6);
-        gameControllerObj.GetComponent<GameController>().totalEnemies = enemyNo;
+        game.totalEnemies = enemyNo;
 
         for (int i = 0; i < enemyNo; i++)
         {
             int randEnemy = Random.Range(0, enemyPrefabs.Count);
             Vector3 position = new Vector3(Random.Range((mapSizeX / 2), ((3 * mapSizeX) / 2)), Random.Range((mapSizeY / 2), ((3 * mapSizeY) / 2)), 10);
-            Instantiate(enemyPrefabs[randEnemy], position, Quaternion.identity);
+            GameObject tmp = (GameObject)Instantiate(enemyPrefabs[randEnemy], position, Quaternion.identity);
+            tmp.SendMessage("ScaleStats", game.difficultyLevel);
         }
 
+        //Spawns trees
         int treeNo = Random.Range(3, 6);
         
         for (int i = 0; i < treeNo; i++)

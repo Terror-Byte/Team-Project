@@ -47,7 +47,7 @@ public class BulletScript : MonoBehaviour {
     {
         if (coll.gameObject.tag == "Enemy")
         {
-            Debug.Log("hit!");
+            //Debug.Log("hit!");
             //Destroy(coll.gameObject);
             Destroy(this.gameObject);
             coll.gameObject.SendMessage("ApplyDamage", wepDmg);
@@ -60,7 +60,7 @@ public class BulletScript : MonoBehaviour {
 		}
         else if (coll.gameObject.tag == "Water Tile")
         {
-            Debug.Log("Collided with water");
+            //Debug.Log("Collided with water");
         }
 	}
 

@@ -184,6 +184,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 150990214}
   - 212: {fileID: 150990215}
+  - 114: {fileID: 150990216}
   m_Layer: 0
   m_Name: Tree
   m_TagString: Untagged
@@ -226,6 +227,18 @@ SpriteRenderer:
   m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: 4a48fd3289538774d94e31997a3b1784, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &150990216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 150990213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 012d7a10655cfad468a9a397c8131f66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
 --- !u!1 &216579962
 GameObject:
   m_ObjectHideFlags: 0
@@ -504,6 +517,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 911ad4a96d1a83442a0df2e4828dd330, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  zoom: {x: 1.29999995, y: 1.29999995, z: 0}
   speed: 2
 --- !u!4 &622334358
 Transform:
@@ -1322,6 +1336,9 @@ MonoBehaviour:
   health: 100
   strength: 5
   speed: 600
+  wepDmg: 3
+  weaponSpd: 8
+  weaponRefresh: .300000012
   xp: 0
   level: 0
   gold: 0
@@ -1694,7 +1711,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 911ad4a96d1a83442a0df2e4828dd330, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+  zoom: {x: .600000024, y: .600000024, z: 0}
+  speed: 4
 --- !u!1 &1948210737
 GameObject:
   m_ObjectHideFlags: 0
@@ -1705,6 +1723,7 @@ GameObject:
   - 4: {fileID: 1948210739}
   - 212: {fileID: 1948210738}
   - 95: {fileID: 1948210740}
+  - 114: {fileID: 1948210741}
   m_Layer: 0
   m_Name: Title
   m_TagString: Untagged
@@ -1762,6 +1781,18 @@ Animator:
   m_ApplyRootMotion: 1
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &1948210741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1948210737}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 012d7a10655cfad468a9a397c8131f66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
 --- !u!1 &2099102213
 GameObject:
   m_ObjectHideFlags: 0

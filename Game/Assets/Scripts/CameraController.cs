@@ -58,7 +58,7 @@ public class CameraController : MonoBehaviour {
     void ZoomEnable()
     {
         scroll = Camera.main.orthographicSize;
-        Debug.Log(Input.GetAxis("Mouse ScrollWheel"));
+        //Debug.Log(Input.GetAxis("Mouse ScrollWheel"));
         //scroll -= Input.GetAxisRaw("Mouse ScrollWheel") * 100;
         if (Input.GetAxis("Mouse ScrollWheel") == 0.1f)
         {

@@ -11,7 +11,7 @@ GameObject:
   - 212: {fileID: 21239960}
   - 68: {fileID: 6839960}
   - 50: {fileID: 5039960}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Sword
   m_TagString: Weapon
   m_Icon: {fileID: 0}

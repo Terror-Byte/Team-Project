@@ -9,6 +9,10 @@ public class GameController : MonoBehaviour
     public int health = 100;
     public float strength = 5;
     public float speed = 300;
+    public float wepDmg = 3;
+    public float weaponSpd = 8.0f;
+    public float weaponRefresh = 1.0f;
+
     public int xp = 0;
     public int level = 0;
     public int gold = 0;
@@ -38,13 +42,13 @@ public class GameController : MonoBehaviour
 
         DontDestroyOnLoad(this.gameObject);
 
-        levelGen = gameObject.GetComponent<LevelGenerator>();
+        //levelGen = gameObject.GetComponent<LevelGenerator>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Application.loadedLevelName == "Scene1")
+        if (Application.loadedLevelName == "Scene1" || Application.loadedLevelName == "ActionScene")
         {
             //if (player == null)
             //player = GameObject.Find ("Player");
@@ -52,14 +56,14 @@ public class GameController : MonoBehaviour
             totalEnemies = gos.Length;
         }
 
-        if (Application.loadedLevelName == "ActionScene")
-        {
-            //if (player == null)
-            //player = GameObject.Find ("Player");
-            gos = GameObject.FindGameObjectsWithTag("Enemy");
-            totalEnemies = gos.Length;
-            // Debug.Log ("Enemies: " + totalEnemies);
-        }
+        //if (Application.loadedLevelName == "ActionScene")
+        //{
+        //    //if (player == null)
+        //    //player = GameObject.Find ("Player");
+        //    gos = GameObject.FindGameObjectsWithTag("Enemy");
+        //    totalEnemies = gos.Length;
+        //    // Debug.Log ("Enemies: " + totalEnemies);
+        //}
 
         //if (GameObject.FindGameObjectWithTag("Player") != null)
         //{

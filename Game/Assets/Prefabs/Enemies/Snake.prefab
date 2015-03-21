@@ -38,7 +38,7 @@ Rigidbody2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 191268}
-  m_Mass: 20
+  m_Mass: 200
   m_LinearDrag: 20
   m_AngularDrag: 0
   m_GravityScale: 0
@@ -96,7 +96,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   speed: 60
-  wepDmg: 5
+  dmg: 3
+  str: 5
   aiState: 0
   bulletPrefab: {fileID: 190710, guid: c5f8365c05300d849ae0f21034ffd42b, type: 2}
   weaponSpd: 15

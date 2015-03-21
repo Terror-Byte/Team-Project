@@ -6,9 +6,9 @@ public class Movement : MonoBehaviour {
 
 	public GameObject bulletPrefab;
 	//public float speed = 2;
-    public float wepDmg = 10;
-	public float weaponSpd = 2.5f;
-	public float weaponRefresh = 1.0f;
+    //public float wepDmg;
+	//public float weaponSpd;
+	//public float weaponRefresh;
 	float refreshCounter;
 
     Vector3 currVel;
@@ -69,7 +69,7 @@ public class Movement : MonoBehaviour {
                     float yPos = player.transform.position.y;
 
                     GameObject newBullet = (GameObject)Instantiate(bulletPrefab, new Vector3(xPos, yPos, 0), Quaternion.identity);
-                    newBullet.SendMessage("setDamage", wepDmg);
+                    newBullet.SendMessage("setDamage", GetDmg());
                     newBullet.AddComponent("Rigidbody2D");
                     newBullet.rigidbody2D.gravityScale = 0.0f;
                     Physics2D.IgnoreCollision(collider2D, newBullet.collider2D);
@@ -79,15 +79,16 @@ public class Movement : MonoBehaviour {
                     Vector3 forceDirection = mousePos - playerPos;
                     float angle = Mathf.Atan2(forceDirection.y, forceDirection.x) * Mathf.Rad2Deg;
 
-                    Vector3 a = forceDirection.normalized * weaponSpd;
+                    forceDirection.z = 0; //Set the Z value of the calculated firection vector to 0 to normalize in 2d space correctly.
+                    Vector3 a = (forceDirection).normalized;
 
                     //Takes into account the players current direction so that the player can not overtake his own shots
-                    newBullet.rigidbody2D.velocity = a - (currVel / 3);
+                    newBullet.rigidbody2D.velocity = (a * game.weaponSpd);
                     newBullet.transform.rotation = Quaternion.AngleAxis(angle - 45, Vector3.forward);
 
                     refreshCounter += Time.deltaTime;
                 }
-                else if (refreshCounter >= weaponRefresh)
+                else if (refreshCounter >= game.weaponRefresh)
                 {
                     refreshCounter = 0;
                 }
@@ -212,7 +213,7 @@ public class Movement : MonoBehaviour {
 
         if (coll.gameObject.tag == "WaterTile")
         {
-            Debug.Log("Player collides with water");
+            //Debug.Log("Player collides with water");
         }
     }
 
@@ -224,8 +225,20 @@ public class Movement : MonoBehaviour {
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 game.SendMessage("Finish");
-                Debug.Log("Finish");
+                //Debug.Log("Finish");
             }
         }
+    }
+
+    float GetDmg()
+    {
+        float str = game.strength;
+        float dmg = game.wepDmg;
+
+        float tmp = (dmg + str) * (str / 5 + dmg / 10);
+
+        //Debug.Log(Random.Range((tmp * 0.9f), (tmp * 1.1f)));
+
+        return Random.Range((tmp * 0.9f), (tmp * 1.1f));
     }
 }

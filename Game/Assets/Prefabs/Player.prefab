@@ -105,7 +105,7 @@ Rigidbody2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 166262}
-  m_Mass: 9.99999975e-05
+  m_Mass: 10
   m_LinearDrag: 0
   m_AngularDrag: 0
   m_GravityScale: 0
@@ -191,9 +191,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 190710, guid: c5f8365c05300d849ae0f21034ffd42b, type: 2}
-  wepDmg: 150
-  weaponSpd: 8
-  weaponRefresh: .300000012
   playerLiving: 0
   nextLevelXP: 100
   inExit: 0
@@ -210,6 +207,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   origin: {x: 0, y: 0, z: 0}
   t: 2
+  speed: .300000012
 --- !u!114 &11473958
 MonoBehaviour:
   m_ObjectHideFlags: 1

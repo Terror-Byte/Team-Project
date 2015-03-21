@@ -28,7 +28,7 @@ public class Collision : MonoBehaviour {
             if (Input.GetKeyDown(KeyCode.Space) && game.totalEnemies == 0)
             {
                 game.SendMessage("Finish");
-                Debug.Log("Finish");
+                //Debug.Log("Finish");
             }
         }
     }
