@@ -895,6 +895,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   origin: {x: 0, y: 0, z: 0}
   t: 6
+  speed: .300000012
 --- !u!1 &1928853779
 GameObject:
   m_ObjectHideFlags: 0
@@ -988,6 +989,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e4e62d470c00bc40866c714b33c9701, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthButton: {fileID: 561306753}
+  strengthButton: {fileID: 1553537853}
+  speedButton: {fileID: 1009074611}
+  healthText: {fileID: 1149615433}
+  strengthText: {fileID: 218655669}
+  speedText: {fileID: 1928853781}
 --- !u!4 &2145304491
 Transform:
   m_ObjectHideFlags: 0
