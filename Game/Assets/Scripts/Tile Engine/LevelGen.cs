@@ -73,7 +73,7 @@ public class LevelGen : MonoBehaviour {
             int randEnemy = Random.Range(0, enemyPrefabs.Count);
             Vector3 position = new Vector3(Random.Range((mapSizeX / 2), ((3 * mapSizeX) / 2)), Random.Range((mapSizeY / 2), ((3 * mapSizeY) / 2)), 10);
             GameObject tmp = (GameObject)Instantiate(enemyPrefabs[randEnemy], position, Quaternion.identity);
-            tmp.SendMessage("ScaleStats", game.difficultyLevel);
+            //tmp.SendMessage("ScaleStats", game.difficultyLevel);
         }
 
         //Spawns trees

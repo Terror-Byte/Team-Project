@@ -105,7 +105,7 @@ public class Selector : MonoBehaviour {
 				//Debug.Log("Loading random level");
 				//levelGen.LoadLevel(levelVector.x, levelVector.y);
 			}
-			game.health = 100;
+			//game.health = 100;
             // levelGen.CreateMap();
             // levelGen.CreateGraph();
         }
@@ -113,7 +113,12 @@ public class Selector : MonoBehaviour {
 
     int DifficultyLevel(Vector2 level)
     {
-        return (int)Mathf.Max(Mathf.Abs(level.x), Mathf.Abs(level.y));
+        int tmp = (int)Mathf.Max(Mathf.Abs(level.x), Mathf.Abs(level.y));
+
+        if (tmp == 0)
+            tmp = 1;
+
+        return tmp;
     }
 
 	string[,] initialiseLevels()

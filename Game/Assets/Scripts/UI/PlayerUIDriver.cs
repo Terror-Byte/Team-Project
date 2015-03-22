@@ -49,8 +49,8 @@ public class PlayerUIDriver : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         // Calculations may be a bit off for health and xp bars, fix soon.
-        float currentHealthX = currentPosition(game.health, 100, maxXValue);
-        if (game.health != 0)
+        float currentHealthX = currentPosition(game.currentHp, 100, maxXValue);
+        if (game.currentHp != 0)
         {
             healthTransform.position = new Vector3(currentHealthX, healthY);
         }
@@ -76,14 +76,14 @@ public class PlayerUIDriver : MonoBehaviour {
         Application.LoadLevel("Start");
     }
 
-    float currentPosition(int currentVal, int maxVal, float maxXvalue)
+    float currentPosition(float currentVal, int maxVal, float maxXvalue)
     {
         // healthPercentage = current health / max health (100 for now)
         // current x = maxXvalue - (maxXvalue * healthPercentage)
 
         // Percentage = current value / max value
         // current x pos = maxXvalue - (maxVcalue * percentage)
-        float currentValue = (float)currentVal;
+        float currentValue = currentVal;
         float maxValue = (float)maxVal;
 
         float percentage = currentValue / maxValue;

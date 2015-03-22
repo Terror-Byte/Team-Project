@@ -5,24 +5,17 @@ using System.Collections;
 public class Movement : MonoBehaviour {
 
 	public GameObject bulletPrefab;
-	//public float speed = 2;
-    //public float wepDmg;
-	//public float weaponSpd;
-	//public float weaponRefresh;
+
 	float refreshCounter;
 
     Vector3 currVel;
 
-    //private int maxHealth = 100;
     public bool playerLiving;
-	//public int health = 100;
-    //public int experience = 0;
-    //public int level = 1;
+
     public int nextLevelXP = 100;
 
     PlayerUIDriver uiDriver;
-	// Game Controller
-	//GameObject gameController;
+
     GameController game;
 
     public bool inExit = false;
@@ -39,12 +32,14 @@ public class Movement : MonoBehaviour {
 		//gameController.SendMessage ("SendXPToPlayer");
 
         uiDriver = gameObject.GetComponent<PlayerUIDriver>();
+
+        game.currentHp = HP();
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
-        if (game.health <= 0)
+        if (game.currentHp <= 0)
             PlayerDeath();
 
         // If the player is alive.
@@ -53,8 +48,8 @@ public class Movement : MonoBehaviour {
             //GetAxisRaw does not smooth the input allowing for tighter controls
             Vector2 move = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
-            float movX = move.x * game.speed * Time.deltaTime;
-            float movY = move.y * game.speed * Time.deltaTime;
+            float movX = move.x * Speed() * Time.deltaTime;
+            float movY = move.y * Speed() * Time.deltaTime;
 
             this.rigidbody2D.velocity = new Vector2(movX, movY);
             //transform.Translate(new Vector2(movX, movY));
@@ -122,7 +117,7 @@ public class Movement : MonoBehaviour {
 
 	void ApplyDamage(int x)
 	{
-		game.health -= x;
+		game.currentHp -= x;
 	}
 
 
@@ -240,5 +235,22 @@ public class Movement : MonoBehaviour {
         //Debug.Log(Random.Range((tmp * 0.9f), (tmp * 1.1f)));
 
         return Random.Range((tmp * 0.9f), (tmp * 1.1f));
+    }
+
+    float Speed()
+    {
+        float spd = game.speed;
+
+        return (spd * 13) + 235;
+    }
+
+    float HP()
+    {
+        int hp = game.hpLvl;
+        float baseHp = game.baseHp;
+
+        float tmp = baseHp * (0.01f * hp * hp) + baseHp;
+        Debug.Log(tmp);
+        return tmp;
     }
 }

@@ -13,7 +13,7 @@ public class Enemy : MonoBehaviour {
 	public enum state { Roam, Attack };
 	public state aiState = state.Roam;
 	bool hasTarget = false;
-    GameObject gameController;
+    GameController gameController;
 	GameObject player;
     Movement moveScript;
 
@@ -49,9 +49,11 @@ public class Enemy : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
     {
-        gameController = GameObject.Find("GameController");
+        gameController = GameObject.Find("GameController").GetComponent<GameController>(); 
         //levelGen = gameController.GetComponent<LevelGenerator>();
         //navGraph = levelGen.navGraph;
+
+        ScaleStats();
 
         int rand = Random.Range(0, 3);
         switch (rand)
@@ -321,11 +323,13 @@ public class Enemy : MonoBehaviour {
         return Random.Range((tmp * 0.9f), (tmp * 1.1f));
     }
 
-    void ScaleStats(int lvl)
+    void ScaleStats()
     {
+        int lvl = gameController.difficultyLevel;
         double tmp = health;
 
         health = tmp * (0.007 * (lvl * lvl)) + tmp;
+        str = lvl;
     }
 
 

@@ -490,47 +490,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1232638000}
   m_RootOrder: 0
---- !u!1 &622334356
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 622334358}
-  - 114: {fileID: 622334357}
-  m_Layer: 0
-  m_Name: UI
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &622334357
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 622334356}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 911ad4a96d1a83442a0df2e4828dd330, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  zoom: {x: 1.29999995, y: 1.29999995, z: 0}
-  speed: 2
---- !u!4 &622334358
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 622334356}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
 --- !u!1 &638358399
 GameObject:
   m_ObjectHideFlags: 0
@@ -664,7 +623,7 @@ Transform:
   m_LocalScale: {x: 24.7665081, y: 24.7665024, z: 24.7664986}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
 --- !u!212 &756697376
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1333,20 +1292,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cfce6c9d362fda4aaff76a4690aaeab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  currentHp: 0
+  baseHp: 100
+  hpLvl: 1
   strength: 5
-  speed: 600
-  wepDmg: 3
-  weaponSpd: 8
-  weaponRefresh: .300000012
+  speed: 1
   xp: 0
   level: 0
   gold: 0
+  wepDmg: 3
+  weaponSpd: 8
+  weaponRefresh: .300000012
   maxDifficultyCompleted: 0
   difficultyLevel: 0
-  dist: 5
-  edge: 50
-  playerXp: 0
   gos: []
   totalEnemies: 0
 --- !u!4 &1265528942
@@ -1765,7 +1723,7 @@ Transform:
   m_Children:
   - {fileID: 1922356176}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
 --- !u!95 &1948210740
 Animator:
   serializedVersion: 3
