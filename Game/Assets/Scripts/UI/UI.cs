@@ -4,31 +4,37 @@ using UnityEngine.UI;
 
 public class UI : MonoBehaviour {
 
+
     int width = Screen.width;
     int height = Screen.height;
-    public GUISkin customSkin;
-    public Text gameName;
+    Vector3 scale;
+    public Vector3 zoom = new Vector3(1.3f, 1.3f);
+    public float speed = 2;
 
-	// Use this for initialization
-	void Start () 
+    // Use this for initialization
+    void Start()
     {
+        scale = gameObject.transform.localScale;
+    }
 
-	}
-	
-	// Update is called once per frame
-	void Update () 
+    // Update is called once per frame
+    void Update()
     {
         width = Screen.width;
         height = Screen.height;
-	}
 
-    void OnGUI()
-    {
-        GUI.skin = customSkin;
-
-        if (GUI.Button(new Rect(width / 2 - 250, height / 2 - 30, 500, 60), "Start game"))
-        {
-            Application.LoadLevel(Application.loadedLevel + 1);
-        }   
+        gameObject.transform.localScale = Vector3.Lerp(gameObject.transform.localScale, scale, speed * Time.deltaTime);
     }
+
+    void OnMouseOver()
+    {
+        gameObject.transform.localScale = Vector3.Lerp(gameObject.transform.localScale, scale + zoom, speed * Time.deltaTime);
+    }
+
+    void OnMouseDown()
+    {
+        Application.LoadLevel(Application.loadedLevel + 1);
+    }
+
+    
 }

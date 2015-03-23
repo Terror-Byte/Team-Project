@@ -5,14 +5,15 @@ using System.Linq;
 
 public class Enemy : MonoBehaviour {
 
-    public int health = 500;
+    public double health = 50;
 	public float speed = 1;
-    public int wepDmg = 5;
-	
+    public float dmg = 3;
+    public float str = 5;
+
 	public enum state { Roam, Attack };
 	public state aiState = state.Roam;
 	bool hasTarget = false;
-    GameObject gameController;
+    GameController gameController;
 	GameObject player;
     Movement moveScript;
 
@@ -48,9 +49,11 @@ public class Enemy : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
     {
-        gameController = GameObject.Find("GameController");
+        gameController = GameObject.Find("GameController").GetComponent<GameController>(); 
         //levelGen = gameController.GetComponent<LevelGenerator>();
         //navGraph = levelGen.navGraph;
+
+        ScaleStats();
 
         int rand = Random.Range(0, 3);
         switch (rand)
@@ -115,7 +118,7 @@ public class Enemy : MonoBehaviour {
 			}
 			else if (hasTarget)
 			{
-				Debug.DrawLine(new Vector3(enemyPos.x, enemyPos.y, 1), new Vector3(target.x, target.y, 1), Color.red);
+				//Debug.DrawLine(new Vector3(enemyPos.x, enemyPos.y, 1), new Vector3(target.x, target.y, 1), Color.red);
 				if (enemyPos.x <= (target.x + 0.1) && enemyPos.x >= (target.x - 0.1) && enemyPos.y <= (target.y + 0.1) && enemyPos.y >= (target.y - 0.1))
 				{
 					hasTarget = false;
@@ -126,7 +129,9 @@ public class Enemy : MonoBehaviour {
 				vec2Target.Normalize();
 				vec2Target.x = vec2Target.x * speed * Time.deltaTime;
 				vec2Target.y = vec2Target.y * speed * Time.deltaTime;
-				transform.Translate(vec2Target);
+
+                rigidbody2D.velocity = vec2Target;
+                //transform.Translate(vec2Target);
 			}
             /*
             if (!hasTarget)
@@ -146,7 +151,7 @@ public class Enemy : MonoBehaviour {
 		{
             
 			target = playerPos;
-			Debug.DrawLine(new Vector3(enemyPos.x, enemyPos.y, 1), new Vector3(target.x, target.y, 1), Color.red);
+			//Debug.DrawLine(new Vector3(enemyPos.x, enemyPos.y, 1), new Vector3(target.x, target.y, 1), Color.red);
 
 			// Causes enemy to move towards player
 			Vector2 vec2Target = target - enemyPos;
@@ -155,7 +160,9 @@ public class Enemy : MonoBehaviour {
 				vec2Target.Normalize();
 				vec2Target.x = vec2Target.x * speed * Time.deltaTime;
 				vec2Target.y = vec2Target.y * speed * Time.deltaTime;
-				transform.Translate(vec2Target);
+
+                rigidbody2D.velocity = vec2Target;
+                //transform.Translate(vec2Target);
 			}
                         
 			if (refreshCounter == 0.0f)
@@ -198,7 +205,7 @@ public class Enemy : MonoBehaviour {
     void ItemDrop()
     {
         int roll = Random.Range(0, 100);
-        Debug.Log(roll);
+        //Debug.Log(roll);
         if (roll < 25)
         {
             GameObject drop = (GameObject)Instantiate(sword, new Vector3(enemyPos.x, enemyPos.y, 0), Quaternion.identity);
@@ -208,16 +215,21 @@ public class Enemy : MonoBehaviour {
         if (roll < 75)
         {
             GameObject drop = (GameObject)Instantiate(coin, new Vector3(enemyPos.x, enemyPos.y, 0), Quaternion.identity);
-            coin.rigidbody2D.AddForce(new Vector2(Random.Range(-500, 500), Random.Range(-500, 500)));
+            coin.rigidbody2D.velocity = (new Vector2(Random.Range(-500, 500), Random.Range(-500, 500)));
         }
     }
 
     void OnCollisionEnter2D(Collision2D coll)
     {
-        if (coll.gameObject.tag == "WaterTile")
+        /*if (coll.gameObject.tag == "WaterTile")
         {
             Debug.Log("Enemy collided with water");
-        }      
+        }*/
+        if (coll.gameObject.tag == "Enemy" || coll.gameObject.tag == "WaterTile")
+        {
+            //Debug.Log("Enemy collided with: " + coll.gameObject.tag.ToString());
+            target = new Vector2(-target.x, -target.y);
+        }
     }
 
     void ShootSingle()
@@ -226,7 +238,7 @@ public class Enemy : MonoBehaviour {
 
         //Vector3 playerPos = Camera.main.WorldToScreenPoint(player.transform.position);
         Vector2 forceDirection = target - enemyPos;
-        Debug.Log("Force Direction: " + forceDirection.ToString() + " Normalised: " + forceDirection.normalized);
+        //Debug.Log("Force Direction: " + forceDirection.ToString() + " Normalised: " + forceDirection.normalized);
 
         float angle = Mathf.Atan2(forceDirection.y, forceDirection.x) * Mathf.Rad2Deg;
         Vector3 a = forceDirection.normalized * weaponSpd;
@@ -283,7 +295,7 @@ public class Enemy : MonoBehaviour {
             Vector3 a = forceDirection * weaponSpd;
 
             newBullet.rigidbody2D.velocity = a - (currVel / 3);
-            Debug.Log("Bullet Velocity: " + newBullet.rigidbody2D.velocity.ToString());
+            //Debug.Log("Bullet Velocity: " + newBullet.rigidbody2D.velocity.ToString());
             newBullet.transform.rotation = Quaternion.AngleAxis(-angle + 45, Vector3.forward);
             directionCount++;
         }
@@ -294,7 +306,7 @@ public class Enemy : MonoBehaviour {
         float xPos = enemyPos.x;
         float yPos = enemyPos.y;
         GameObject newBullet = (GameObject)Instantiate(bulletPrefab, new Vector3(xPos, yPos, 0), Quaternion.identity);
-        newBullet.SendMessage("setDamage", wepDmg);
+        newBullet.SendMessage("setDamage", GetDmg());
         newBullet.AddComponent("Rigidbody2D");
         newBullet.rigidbody2D.gravityScale = 0.0f;
         Physics2D.IgnoreCollision(collider2D, newBullet.collider2D);
@@ -302,7 +314,23 @@ public class Enemy : MonoBehaviour {
         return newBullet;
     }
 
+    float GetDmg()
+    {
+        float tmp = (dmg + str) * (str / 5 + dmg / 10);
 
+        //Debug.Log(Random.Range((tmp * 0.9f), (tmp * 1.1f)));
+
+        return Random.Range((tmp * 0.9f), (tmp * 1.1f));
+    }
+
+    void ScaleStats()
+    {
+        int lvl = gameController.difficultyLevel;
+        double tmp = health;
+
+        health = tmp * (0.007 * (lvl * lvl)) + tmp;
+        str = lvl;
+    }
 
 
 

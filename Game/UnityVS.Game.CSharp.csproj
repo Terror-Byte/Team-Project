@@ -75,6 +75,7 @@
     <Compile Include="Assets\Scripts\Tile Engine\LevelGen.cs" />
     <Compile Include="Assets\Scripts\Tile Engine\Tile.cs" />
     <Compile Include="Assets\Scripts\UI\PlayerUIDriver.cs" />
+    <Compile Include="Assets\Scripts\UI\SelectorUI.cs" />
     <Compile Include="Assets\Scripts\UI\UI.cs" />
   </ItemGroup>
   <ItemGroup>

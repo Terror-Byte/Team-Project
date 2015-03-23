@@ -5,10 +5,10 @@ public class CameraController : MonoBehaviour {
 
     public Vector3 origin;
     Vector3 offset;
-    public float t = 2.0f;
-
+    public float t = 5.0f;
+    public float speed = 0.3f;
     bool freeCamera = false;
-
+    float scroll;
 	// Use this for initialization
 	void Start () 
     {
@@ -21,10 +21,15 @@ public class CameraController : MonoBehaviour {
         switch (Application.loadedLevelName)
         {
             case "Start":
-                //Uncomment the line below for fun on the start screen (:
-                //origin = Camera.main.transform.position;
+
+                if (freeCamera)
+                    origin = Camera.main.transform.position;
+                else if (!freeCamera)
+                    origin = new Vector3(0, 2.5f, -17.34f);
+
                 offset = Camera.main.ScreenToViewportPoint(new Vector3(Input.mousePosition.x - (Screen.width / 2), Input.mousePosition.y - (Screen.height / 2), 0.0f));
                 Camera.main.transform.position = origin + offset * t;
+
                 break;
             case "Select":
                 origin = GameObject.FindGameObjectWithTag("Player").transform.position;
@@ -35,7 +40,7 @@ public class CameraController : MonoBehaviour {
 
                 if (freeCamera)
                     origin = Camera.main.transform.position;
-                else
+                else if (!freeCamera)
                     origin = GameObject.FindGameObjectWithTag("Player").transform.position;
 
 
@@ -43,11 +48,33 @@ public class CameraController : MonoBehaviour {
                 offset = Camera.main.ScreenToViewportPoint(new Vector3(Input.mousePosition.x - (Screen.width / 2), Input.mousePosition.y - (Screen.height / 2), 0.0f));
                 Camera.main.transform.position = origin + offset * t;
                 break;
-
         }
-
+        ZoomEnable();
         if (Input.GetKeyUp(KeyCode.Tab))
             freeCamera = !freeCamera;
 
 	}
+
+    void ZoomEnable()
+    {
+        scroll = Camera.main.orthographicSize;
+        //Debug.Log(Input.GetAxis("Mouse ScrollWheel"));
+        //scroll -= Input.GetAxisRaw("Mouse ScrollWheel") * 100;
+        if (Input.GetAxis("Mouse ScrollWheel") == 0.1f)
+        {
+            scroll = 3;
+        }
+        else if (Input.GetAxis("Mouse ScrollWheel") == -0.1f)
+        {
+            scroll = 10;
+        }
+
+        //Camera.main.orthographicSize = Mathf.Lerp(Camera.main.orthographicSize, scroll, speed * Time.deltaTime);
+        
+    }
+
+    void FixedUpdate()
+    {
+        Camera.main.orthographicSize = Mathf.Lerp(Camera.main.orthographicSize, scroll, speed);
+    }
 }
