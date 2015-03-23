@@ -107,7 +107,6 @@ MonoBehaviour:
   - {fileID: 109132, guid: c383fa715d48bd448ab8defabe53171d, type: 2}
   - {fileID: 161872, guid: 8770e95b9267b1840a59ded3cf921097, type: 2}
   - {fileID: 187392, guid: 53696714124869b4b9c85133143db3ca, type: 2}
-  - {fileID: 191268}
   sword: {fileID: 139960, guid: b4492bda87b3198448ddd4830aa7d871, type: 2}
   coin: {fileID: 102284, guid: 53b88232b14249a4c809e52a7fa868a2, type: 2}
   experience: 60

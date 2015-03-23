@@ -65,7 +65,7 @@ public class LevelGen : MonoBehaviour {
         }
 
         // Spawns enemies
-        int enemyNo = Random.Range(3, 6);
+        int enemyNo = Random.Range(5, 10);
         game.totalEnemies = enemyNo;
 
         for (int i = 0; i < enemyNo; i++)

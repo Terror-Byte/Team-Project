@@ -5,7 +5,7 @@ using System.Collections;
 public class PlayerUIDriver : MonoBehaviour {
 
     // Health and XP bar shizzle
-    public Text levelText;
+    //public Text levelText;
     public Text goldText;
     private float minXValue;
     private float maxXValue;
@@ -39,7 +39,7 @@ public class PlayerUIDriver : MonoBehaviour {
         menuButton = mainMenu.GetComponent<Button>();
         menuButton.onClick.AddListener(() => LoadMenu());
 
-        levelText.text = "Level: " + game.level;
+        //levelText.text = "Level: " + game.level;
         goldText.text = "Gold: " + game.gold;
 
         gameOver.SetActive(false);

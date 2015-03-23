@@ -145,7 +145,7 @@ public class Movement : MonoBehaviour {
         game.level++;
         game.xp = overflow;
         nextLevelXP = 100 + ((int)Mathf.Pow(game.level, 2) * 5);
-        uiDriver.levelText.text = "Level: " + game.level;
+        //uiDriver.levelText.text = "Level: " + game.level;
     }
 
     void PlayerDeath()

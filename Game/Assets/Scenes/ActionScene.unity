@@ -964,6 +964,10 @@ Prefab:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 185846, guid: abaaf9034ca0f1842a91e935c1e82422, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: abaaf9034ca0f1842a91e935c1e82422, type: 2}
   m_RootGameObject: {fileID: 2129335493}
@@ -1093,7 +1097,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1040359002
 RectTransform:
   m_ObjectHideFlags: 0

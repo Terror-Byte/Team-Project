@@ -7,32 +7,35 @@ public class SelectorUI : MonoBehaviour {
     public Button healthButton;
     public Button strengthButton;
     public Button speedButton;
+    public Button dexButton;
 
-    public Text healthText;
-    public Text strengthText;
-    public Text speedText;
+    public GameObject healthText, healthLevelText;
+    public GameObject strengthText, strengthLevelText;
+    public GameObject speedText, speedLevelText;
+    public GameObject dexText, dexLevelText;
+    public GameObject goldText;
 
     GameController game;
 
 	void Start () {
 
-        //healthButton = GameObject.Find("Health Up").GetComponent<Button>();
-        //strengthButton = GameObject.Find("Strength Up").GetComponent<Button>();
-        //speedButton = GameObject.Find("Speed Up").GetComponent<Button>();
+        game = GameObject.Find("GameController").GetComponent<GameController>();
 
         healthButton.onClick.AddListener(() => HealthUp());
         strengthButton.onClick.AddListener(() => StrengthUp());
         speedButton.onClick.AddListener(() => SpeedUp());
+        dexButton.onClick.AddListener(() => DexUp());
 
-        //healthText = healthButton.GetComponent<Text>();
-        //strengthText = strengthButton.GetComponent<Text>();
-        //speedText = speedButton.GetComponent<Text>();
+        healthText.GetComponent<Text>().text = "          Health Up: 1 Gold";
+        strengthText.GetComponent<Text>().text = "          Strength Up: 1 Gold";
+        speedText.GetComponent<Text>().text = "          Speed Up: 1 Gold";
+        dexText.GetComponent<Text>().text = "          Dex Up: 1 Gold";
 
-        //healthText.text = "Health Up: 1 Gold";
-        //strengthText.text = "Strength Up: 1 Gold";
-        //speedText.text = "Speed Up: 1 Gold";
-
-        game = GameObject.Find("GameController").GetComponent<GameController>();
+        healthLevelText.GetComponent<Text>().text = "Health Level: " + game.hpLvl;
+        strengthLevelText.GetComponent<Text>().text = "Strength Level: " + game.strength;
+        speedLevelText.GetComponent<Text>().text = "Speed Level: " + game.speed;
+        dexLevelText.GetComponent<Text>().text = "Dex Level: " + game.dex;
+        goldText.GetComponent<Text>().text = "Gold: " + game.gold;
 	}
 
     void HealthUp()
@@ -42,6 +45,8 @@ public class SelectorUI : MonoBehaviour {
             game.hpLvl += 1;
             game.gold -= game.hpGold;
             game.SendMessage("LvlUpdate");
+            healthLevelText.GetComponent<Text>().text = "Health Level: " + game.hpLvl;
+            goldText.GetComponent<Text>().text = "Gold: " + game.gold;
         }
     }
 
@@ -52,6 +57,8 @@ public class SelectorUI : MonoBehaviour {
             game.strength += 1;
             game.gold -= game.strGold;
             game.SendMessage("LvlUpdate");
+            strengthLevelText.GetComponent<Text>().text = "Strength Level: " + game.strength;
+            goldText.GetComponent<Text>().text = "Gold: " + game.gold;
         }
     }
 
@@ -62,6 +69,20 @@ public class SelectorUI : MonoBehaviour {
             game.speed += 1;
             game.gold -= game.spdGold;
             game.SendMessage("LvlUpdate");
+            speedLevelText.GetComponent<Text>().text = "Speed Level: " + game.speed;
+            goldText.GetComponent<Text>().text = "Gold: " + game.gold;
+        }
+    }
+
+    void DexUp()
+    {
+        if (game.gold >= game.dexGold)
+        {
+            game.dex += 1;
+            game.gold -= game.dexGold;
+            game.SendMessage("LvlUpdate");
+            dexLevelText.GetComponent<Text>().text = "Dex Level: " + game.dex;
+            goldText.GetComponent<Text>().text = "Gold: " + game.gold;
         }
     }
 }
