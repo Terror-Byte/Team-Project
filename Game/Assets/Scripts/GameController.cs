@@ -12,9 +12,16 @@ public class GameController : MonoBehaviour
     public int hpLvl = 1;
     public int strength = 5;
     public int speed = 1;
+    public int dex = 1;
     public int xp = 0;
     public int level = 0;
     public int gold = 0;
+
+    //Hidden stat lvl up requirements
+    public int hpGold;
+    public int strGold;
+    public int spdGold;
+    public int dexGold;
 
     [Header("Weapon Stats")]
     public float wepDmg = 3;
@@ -35,6 +42,7 @@ public class GameController : MonoBehaviour
     {
         //origin = Camera.main.transform.position;
         DontDestroyOnLoad(this.gameObject);
+        LvlUpdate();
     }
 
     // Update is called once per frame
@@ -63,5 +71,18 @@ public class GameController : MonoBehaviour
     {
         maxDifficultyCompleted = (int)Mathf.Max(difficultyLevel + 1, maxDifficultyCompleted);
         Application.LoadLevel("Select");
+    }
+
+    void LvlUpdate()
+    {
+        hpGold = LvlUpCost(hpLvl);
+        strGold = LvlUpCost(strength);
+        spdGold = LvlUpCost(speed);
+        dexGold = LvlUpCost(dex);
+    }
+
+    int LvlUpCost(int lvl)
+    {
+        return Mathf.RoundToInt((Mathf.Pow(lvl, 4)/10000 + lvl)/2);
     }
 }

@@ -83,7 +83,7 @@ public class Movement : MonoBehaviour {
 
                     refreshCounter += Time.deltaTime;
                 }
-                else if (refreshCounter >= game.weaponRefresh)
+                else if (refreshCounter >= Dex())
                 {
                     refreshCounter = 0;
                 }
@@ -250,7 +250,17 @@ public class Movement : MonoBehaviour {
         float baseHp = game.baseHp;
 
         float tmp = baseHp * (0.01f * hp * hp) + baseHp;
-        Debug.Log(tmp);
+        //Debug.Log(tmp);
         return tmp;
+    }
+
+    float Dex()
+    {
+        int lvl = game.dex;
+        float weaponMod = game.weaponRefresh / 1000;
+
+        double tmp = Mathf.Pow(lvl, -weaponMod) - weaponMod;
+        //Debug.Log(tmp);
+        return (float)tmp;
     }
 }

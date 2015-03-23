@@ -1297,12 +1297,17 @@ MonoBehaviour:
   hpLvl: 1
   strength: 5
   speed: 1
+  dex: 1
   xp: 0
   level: 0
   gold: 0
+  hpGold: 0
+  strGold: 0
+  spdGold: 0
+  dexGold: 0
   wepDmg: 3
   weaponSpd: 8
-  weaponRefresh: .300000012
+  weaponRefresh: 280
   maxDifficultyCompleted: 0
   difficultyLevel: 0
   gos: []

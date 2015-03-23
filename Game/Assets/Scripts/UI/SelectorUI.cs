@@ -24,32 +24,44 @@ public class SelectorUI : MonoBehaviour {
         strengthButton.onClick.AddListener(() => StrengthUp());
         speedButton.onClick.AddListener(() => SpeedUp());
 
-        healthText = healthButton.GetComponent<Text>();
-        strengthText = strengthButton.GetComponent<Text>();
-        speedText = speedButton.GetComponent<Text>();
+        //healthText = healthButton.GetComponent<Text>();
+        //strengthText = strengthButton.GetComponent<Text>();
+        //speedText = speedButton.GetComponent<Text>();
 
-        healthText.text = "Health Up: 1 Gold";
-        strengthText.text = "Strength Up: 1 Gold";
-        speedText.text = "Speed Up: 1 Gold";
+        //healthText.text = "Health Up: 1 Gold";
+        //strengthText.text = "Strength Up: 1 Gold";
+        //speedText.text = "Speed Up: 1 Gold";
 
         game = GameObject.Find("GameController").GetComponent<GameController>();
 	}
 
     void HealthUp()
     {
-        game.hpLvl += 1;
-        game.gold -= 1;
+        if (game.gold >= game.hpGold)
+        {
+            game.hpLvl += 1;
+            game.gold -= game.hpGold;
+            game.SendMessage("LvlUpdate");
+        }
     }
 
     void StrengthUp()
     {
-        game.strength += 1;
-        game.gold -= 1;
+        if (game.gold >= game.strGold)
+        {
+            game.strength += 1;
+            game.gold -= game.strGold;
+            game.SendMessage("LvlUpdate");
+        }
     }
 
     void SpeedUp()
     {
-        game.speed += 1;
-        game.gold -= 1;
+        if (game.gold >= game.spdGold)
+        {
+            game.speed += 1;
+            game.gold -= game.spdGold;
+            game.SendMessage("LvlUpdate");
+        }
     }
 }
