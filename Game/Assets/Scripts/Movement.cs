@@ -187,22 +187,23 @@ public class Movement : MonoBehaviour {
         if (coll.gameObject.tag == "Gold")
         {
             Destroy(coll.gameObject);
-            int amount = Random.Range(0, 4);
-            switch (amount)
-            {
-                case 0:
-                    game.gold += 25;
-                    break;
-                case 1:
-                    game.gold += 50;
-                    break;
-                case 2:
-                    game.gold += 75;
-                    break;
-                case 3:
-                    game.gold += 100;
-                    break;
-            }
+            game.gold++;
+            //int amount = Random.Range(0, 4);
+            //switch (amount)
+            //{
+            //    case 0:
+            //        game.gold += 25;
+            //        break;
+            //    case 1:
+            //        game.gold += 50;
+            //        break;
+            //    case 2:
+            //        game.gold += 75;
+            //        break;
+            //    case 3:
+            //        game.gold += 100;
+            //        break;
+            //}
             uiDriver.goldText.text = "Gold: " + game.gold;
         }
 

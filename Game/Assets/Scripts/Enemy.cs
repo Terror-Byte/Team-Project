@@ -37,6 +37,7 @@ public class Enemy : MonoBehaviour {
 	float refreshCounter;
 
     //drops
+    public List<GameObject> weapons = new List<GameObject>();
     public GameObject sword;
     public GameObject coin;
 
@@ -206,16 +207,14 @@ public class Enemy : MonoBehaviour {
     {
         int roll = Random.Range(0, 100);
         //Debug.Log(roll);
-        if (roll < 25)
+        if (roll < 100)
         {
-            GameObject drop = (GameObject)Instantiate(sword, new Vector3(enemyPos.x, enemyPos.y, 0), Quaternion.identity);
-            drop.rigidbody2D.AddForce(new Vector2(Random.Range(-300, 300), Random.Range(-300, 300)));
-            drop.rigidbody2D.AddTorque(Random.Range(-75, 75));
+            if(weapons.Count != 0)
+                SpawnWeapon();
         }
         if (roll < 75)
         {
-            GameObject drop = (GameObject)Instantiate(coin, new Vector3(enemyPos.x, enemyPos.y, 0), Quaternion.identity);
-            coin.rigidbody2D.velocity = (new Vector2(Random.Range(-500, 500), Random.Range(-500, 500)));
+            spawnGold();
         }
     }
 
@@ -312,6 +311,24 @@ public class Enemy : MonoBehaviour {
         Physics2D.IgnoreCollision(collider2D, newBullet.collider2D);
 
         return newBullet;
+    }
+
+    void spawnGold()
+    {
+        int tmp = Random.Range(1, 10);
+        for (int i = 0; i < tmp; i++)
+        {
+            GameObject drop = (GameObject)Instantiate(coin, new Vector3(enemyPos.x, enemyPos.y, 0), Quaternion.identity);
+            drop.rigidbody2D.AddForce(new Vector2(Random.Range(-100, 100), Random.Range(-100, 100)));
+        }
+    }
+
+    void SpawnWeapon()
+    {
+        int tmp = Random.Range(0, weapons.Count);
+        GameObject drop = (GameObject)Instantiate(weapons[tmp], new Vector3(enemyPos.x, enemyPos.y, 0), Quaternion.identity);
+        drop.rigidbody2D.AddForce(new Vector2(Random.Range(-100, 100), Random.Range(-100, 100)));
+        drop.rigidbody2D.AddTorque(Random.Range(-75, 75));
     }
 
     float GetDmg()
