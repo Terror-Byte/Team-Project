@@ -204,7 +204,7 @@ public class Movement : MonoBehaviour {
             //        game.gold += 100;
             //        break;
             //}
-            uiDriver.goldText.text = "Gold: " + game.gold;
+            uiDriver.goldText.text = game.gold.ToString();
         }
 
         if (coll.gameObject.tag == "WaterTile")
@@ -245,7 +245,7 @@ public class Movement : MonoBehaviour {
         return (spd * 13) + 235;
     }
 
-    float HP()
+    public float HP()
     {
         int hp = game.hpLvl;
         float baseHp = game.baseHp;
