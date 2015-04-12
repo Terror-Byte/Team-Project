@@ -1308,6 +1308,11 @@ MonoBehaviour:
   wepDmg: 3
   weaponSpd: 8
   weaponRefresh: 2
+  weaponName: Default
+  weaponType: 3
+  weaponDmgMod: 5
+  weaponSpdMod: 0
+  weaponRefreshMod: 0
   maxDifficultyCompleted: 1
   difficultyLevel: 0
   gos: []
