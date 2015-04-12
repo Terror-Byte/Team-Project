@@ -11,6 +11,7 @@ GameObject:
   - 212: {fileID: 21261872}
   - 60: {fileID: 6061872}
   - 50: {fileID: 5061872}
+  - 114: {fileID: 11401426}
   m_Layer: 15
   m_Name: Spear
   m_TagString: Weapon
@@ -63,6 +64,47 @@ PolygonCollider2D:
       - {x: .109999999, y: .00999999978}
       - {x: .119999997, y: .0299999993}
       - {x: .119999997, y: .119999997}
+--- !u!114 &11401426
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 161872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 475a212dc59b95f4cbd666f91a236b2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: Spear
+  range: 5
+  damage: 3
+  dex: 2
+  prefixRange:
+  - Blinded
+  - Basic
+  - Long
+  - Sighted
+  - Reaching
+  prefixDamage:
+  - Pitiful
+  - Basic
+  - Sharp
+  - Dreaded
+  - Godly
+  prefixDex:
+  - Sluggish
+  - Basic
+  - Speedy
+  - Agile
+  - Hasty
+  modifiers:
+  - -1
+  - 0
+  - .5
+  - 1.5
+  - 3
+  weaponsSprites: []
+  game: {fileID: 0}
 --- !u!212 &21261872
 SpriteRenderer:
   m_ObjectHideFlags: 1

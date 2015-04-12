@@ -11,6 +11,7 @@ GameObject:
   - 212: {fileID: 21295492}
   - 60: {fileID: 6095492}
   - 50: {fileID: 5095492}
+  - 114: {fileID: 11485534}
   m_Layer: 15
   m_Name: Bow
   m_TagString: Weapon
@@ -64,6 +65,47 @@ PolygonCollider2D:
       - {x: .0500000007, y: -.129999995}
       - {x: .0500000007, y: .0900000036}
       - {x: .0199999996, y: .129999995}
+--- !u!114 &11485534
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 195492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 475a212dc59b95f4cbd666f91a236b2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: Bow
+  range: 7
+  damage: 2
+  dex: 3
+  prefixRange:
+  - Blinded
+  - Basic
+  - Long
+  - Sighted
+  - Reaching
+  prefixDamage:
+  - Pitiful
+  - Basic
+  - Sharp
+  - Dreaded
+  - Godly
+  prefixDex:
+  - Sluggish
+  - Basic
+  - Speedy
+  - Agile
+  - Hasty
+  modifiers:
+  - -1
+  - 0
+  - .5
+  - 1.5
+  - 3
+  weaponsSprites: []
+  game: {fileID: 0}
 --- !u!212 &21295492
 SpriteRenderer:
   m_ObjectHideFlags: 1

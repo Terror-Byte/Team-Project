@@ -1308,7 +1308,7 @@ MonoBehaviour:
   wepDmg: 3
   weaponSpd: 8
   weaponRefresh: 280
-  maxDifficultyCompleted: 0
+  maxDifficultyCompleted: 1
   difficultyLevel: 0
   gos: []
   totalEnemies: 0
