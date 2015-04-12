@@ -93,11 +93,11 @@ public class Weapon : MonoBehaviour {
         //and the second value is the probability of it occuring. All probabilities must add up to 1.0f
         List<KeyValuePair<float, float>> elements = new List<KeyValuePair<float, float>>
         {
-            new KeyValuePair<float, float>(Random.Range(-1.5f, -0.5f), 0.2f), 
-            new KeyValuePair<float, float>(Random.Range(-0.5f, 0.0f), 0.2f),
-            new KeyValuePair<float, float>(Random.Range(0.0f, 1.5f), 0.2f),
-            new KeyValuePair<float, float>(Random.Range(1.5f, 2.5f), 0.2f), 
-            new KeyValuePair<float, float>(Random.Range(2.5f, 3.0f), 0.2f), 
+            new KeyValuePair<float, float>(Random.Range(-1.5f, -0.5f), 0.1f), 
+            new KeyValuePair<float, float>(Random.Range(-0.5f, 0.0f), 0.25f),
+            new KeyValuePair<float, float>(Random.Range(0.0f, 1.5f), 0.5f),
+            new KeyValuePair<float, float>(Random.Range(1.5f, 2.5f), 0.1f), 
+            new KeyValuePair<float, float>(Random.Range(2.5f, 3.0f), 0.05f), 
         };
 
         float roll = Random.Range(0.0f, 1.0f);

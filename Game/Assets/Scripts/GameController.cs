@@ -28,6 +28,12 @@ public class GameController : MonoBehaviour
     public float weaponSpd = 8.0f;
     public float weaponRefresh = 1.0f;
 
+    //[Header("Weapon mod Stats")]
+    //public string name = "Default";
+    //public float wepDmg = 3;
+    //public float weaponSpd = 8.0f;
+    //public float weaponRefresh = 1.0f;
+
     //Lvl stats
     [Header("Level Stats")]
     public int maxDifficultyCompleted = 1;

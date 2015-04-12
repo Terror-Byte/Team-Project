@@ -258,9 +258,9 @@ public class Movement : MonoBehaviour {
     float Dex()
     {
         int lvl = game.dex;
-        float weaponMod = game.weaponRefresh / 1000;
+        float weaponMod = game.weaponRefresh / 10 + (0.5f / game.weaponRefresh);
 
-        double tmp = Mathf.Pow(lvl, -weaponMod) - weaponMod;
+        double tmp = Mathf.Pow(lvl, -weaponMod);
         //Debug.Log(tmp);
         return (float)tmp;
     }

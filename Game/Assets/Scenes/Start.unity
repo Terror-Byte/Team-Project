@@ -1307,7 +1307,7 @@ MonoBehaviour:
   dexGold: 0
   wepDmg: 3
   weaponSpd: 8
-  weaponRefresh: 280
+  weaponRefresh: 2
   maxDifficultyCompleted: 1
   difficultyLevel: 0
   gos: []
