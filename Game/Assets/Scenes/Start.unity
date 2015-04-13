@@ -1063,6 +1063,7 @@ MonoBehaviour:
   origin: {x: 0, y: 0, z: 0}
   t: 4
   speed: .300000012
+  scroll: 7
 --- !u!1 &1083802222
 GameObject:
   m_ObjectHideFlags: 0
@@ -1309,10 +1310,10 @@ MonoBehaviour:
   weaponSpd: 8
   weaponRefresh: 2
   weaponName: Default
-  weaponType: 3
-  weaponDmgMod: 5
-  weaponSpdMod: 0
-  weaponRefreshMod: 0
+  weaponDmgMod: 3
+  weaponRangeMod: 3
+  weaponRefreshMod: 3
+  weapon: {fileID: 0}
   maxDifficultyCompleted: 1
   difficultyLevel: 0
   gos: []

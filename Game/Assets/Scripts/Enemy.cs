@@ -9,6 +9,8 @@ public class Enemy : MonoBehaviour {
 	public float speed = 1;
     public float dmg = 3;
     public float str = 5;
+    public float range = 3;
+    public Sprite projectile;
 
 	public enum state { Roam, Attack };
 	public state aiState = state.Roam;
@@ -309,7 +311,8 @@ public class Enemy : MonoBehaviour {
         newBullet.AddComponent("Rigidbody2D");
         newBullet.rigidbody2D.gravityScale = 0.0f;
         Physics2D.IgnoreCollision(collider2D, newBullet.collider2D);
-
+        newBullet.GetComponent<SpriteRenderer>().sprite = projectile;
+        newBullet.GetComponent<BulletScript>().range = range;
         return newBullet;
     }
 

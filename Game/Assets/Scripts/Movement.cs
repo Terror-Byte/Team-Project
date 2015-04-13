@@ -69,6 +69,11 @@ public class Movement : MonoBehaviour {
                     newBullet.rigidbody2D.gravityScale = 0.0f;
                     Physics2D.IgnoreCollision(collider2D, newBullet.collider2D);
 
+                    if (game.GetComponentInChildren<Weapon>() != null)
+                        newBullet.GetComponent<SpriteRenderer>().sprite = game.GetComponentInChildren<Weapon>().projectile;
+
+                    newBullet.GetComponent<BulletScript>().range = game.weaponRangeMod;
+
                     Vector3 playerPos = Camera.main.WorldToScreenPoint(player.transform.position);
                     Vector3 mousePos = Input.mousePosition;
                     Vector3 forceDirection = mousePos - playerPos;
@@ -229,7 +234,7 @@ public class Movement : MonoBehaviour {
     float GetDmg()
     {
         float str = game.strength;
-        float dmg = game.wepDmg;
+        float dmg = game.weaponDmgMod;
 
         float tmp = (dmg + str) * (str / 5 + dmg / 10);
 
@@ -258,7 +263,7 @@ public class Movement : MonoBehaviour {
     float Dex()
     {
         int lvl = game.dex;
-        float weaponMod = game.weaponRefresh / 10 + (0.5f / game.weaponRefresh);
+        float weaponMod = game.weaponRefreshMod / 10 + (0.5f / game.weaponRefreshMod);
 
         double tmp = Mathf.Pow(lvl, -weaponMod);
         //Debug.Log(tmp);

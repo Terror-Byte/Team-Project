@@ -351,7 +351,13 @@ MonoBehaviour:
   - .5
   - 1.5
   - 3
-  weaponsSprites: []
+  weaponsSprites:
+  - {fileID: 21300000, guid: 55ac06ef2b34c2b4d95631425588cdda, type: 3}
+  - {fileID: 21300000, guid: 083ca9b0a2928ae4282615ea3774b4f2, type: 3}
+  - {fileID: 21300000, guid: 6dec3166d9fc05c46bb72d46d8d467df, type: 3}
+  - {fileID: 21300000, guid: 84ed852e6fe8f5b4089e79530bb8eeb3, type: 3}
+  - {fileID: 21300000, guid: bab8d5f4441fe5047b1172128b88cf98, type: 3}
+  projectile: {fileID: 21300000, guid: 0ce83fb7b48b74948b5615ee382651c6, type: 3}
   game: {fileID: 0}
 --- !u!50 &152311659
 Rigidbody2D:
@@ -378,17 +384,17 @@ PolygonCollider2D:
   m_GameObject: {fileID: 152311657}
   m_Enabled: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Poly:
     m_Paths:
-    - - {x: -.0299999993, y: .129999995}
-      - {x: -.0599999987, y: .109999999}
-      - {x: -.0599999987, y: -.140000001}
-      - {x: -.0399999991, y: -.150000006}
-      - {x: .0199999996, y: -.150000006}
-      - {x: .0500000007, y: -.129999995}
-      - {x: .0500000007, y: .0900000036}
-      - {x: .0199999996, y: .129999995}
+    - - {x: .0399999991, y: .129999995}
+      - {x: -.159999996, y: -.0700000003}
+      - {x: -.159999996, y: -.150000006}
+      - {x: -.150000006, y: -.159999996}
+      - {x: -.0900000036, y: -.159999996}
+      - {x: .159999996, y: .0500000007}
+      - {x: .159999996, y: .159999996}
+      - {x: .0799999982, y: .159999996}
 --- !u!212 &152311661
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -618,7 +624,13 @@ MonoBehaviour:
   - .5
   - 1.5
   - 3
-  weaponsSprites: []
+  weaponsSprites:
+  - {fileID: 21300000, guid: 1d4b7827d9d9b574f9412b2012909a89, type: 3}
+  - {fileID: 21300000, guid: de3659e4125d7e04fa0d3654a7ab2080, type: 3}
+  - {fileID: 21300000, guid: 1c8d9457396e8e141aadd24db9a9fdb8, type: 3}
+  - {fileID: 21300000, guid: 071ede726700b75429fb34d436bbbe8c, type: 3}
+  - {fileID: 21300000, guid: 488f97ac3b734b7488a7c3e132d78776, type: 3}
+  projectile: {fileID: 21300000, guid: 05b524a45d0167c4aae58fa1800fb935, type: 3}
   game: {fileID: 0}
 --- !u!50 &230985023
 Rigidbody2D:
@@ -645,16 +657,16 @@ PolygonCollider2D:
   m_GameObject: {fileID: 230985021}
   m_Enabled: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Poly:
     m_Paths:
-    - - {x: .0399999991, y: .119999997}
-      - {x: -.159999996, y: -.0900000036}
-      - {x: -.159999996, y: -.159999996}
-      - {x: -.109999999, y: -.159999996}
+    - - {x: .0500000007, y: .140000001}
+      - {x: -.0799999982, y: 0}
+      - {x: -.0799999982, y: -.0799999982}
+      - {x: -.0199999996, y: -.0799999982}
       - {x: .109999999, y: .00999999978}
-      - {x: .119999997, y: .0299999993}
-      - {x: .119999997, y: .119999997}
+      - {x: .140000001, y: .0799999982}
+      - {x: .140000001, y: .140000001}
 --- !u!212 &230985025
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -912,6 +924,14 @@ Prefab:
       propertyPath: weaponSprite
       value: 
       objectReference: {fileID: 1987447330}
+    - target: {fileID: 11473958, guid: 2f4e4d993492ad840bb3550b86db8d7e, type: 2}
+      propertyPath: weaponRange
+      value: 
+      objectReference: {fileID: 2026638297}
+    - target: {fileID: 2042536, guid: 2f4e4d993492ad840bb3550b86db8d7e, type: 2}
+      propertyPath: orthographic size
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5068222, guid: 2f4e4d993492ad840bb3550b86db8d7e, type: 2}
     - {fileID: 5025208, guid: 2f4e4d993492ad840bb3550b86db8d7e, type: 2}
@@ -1124,7 +1144,13 @@ MonoBehaviour:
   - .5
   - 1.5
   - 3
-  weaponsSprites: []
+  weaponsSprites:
+  - {fileID: 21300000, guid: 55ac06ef2b34c2b4d95631425588cdda, type: 3}
+  - {fileID: 21300000, guid: 083ca9b0a2928ae4282615ea3774b4f2, type: 3}
+  - {fileID: 21300000, guid: 6dec3166d9fc05c46bb72d46d8d467df, type: 3}
+  - {fileID: 21300000, guid: 84ed852e6fe8f5b4089e79530bb8eeb3, type: 3}
+  - {fileID: 21300000, guid: bab8d5f4441fe5047b1172128b88cf98, type: 3}
+  projectile: {fileID: 21300000, guid: 0ce83fb7b48b74948b5615ee382651c6, type: 3}
   game: {fileID: 0}
 --- !u!50 &439962292
 Rigidbody2D:
@@ -1151,17 +1177,17 @@ PolygonCollider2D:
   m_GameObject: {fileID: 439962290}
   m_Enabled: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Poly:
     m_Paths:
-    - - {x: -.0299999993, y: .129999995}
-      - {x: -.0599999987, y: .109999999}
-      - {x: -.0599999987, y: -.140000001}
-      - {x: -.0399999991, y: -.150000006}
-      - {x: .0199999996, y: -.150000006}
-      - {x: .0500000007, y: -.129999995}
-      - {x: .0500000007, y: .0900000036}
-      - {x: .0199999996, y: .129999995}
+    - - {x: .0399999991, y: .129999995}
+      - {x: -.159999996, y: -.0700000003}
+      - {x: -.159999996, y: -.150000006}
+      - {x: -.150000006, y: -.159999996}
+      - {x: -.0900000036, y: -.159999996}
+      - {x: .159999996, y: .0500000007}
+      - {x: .159999996, y: .159999996}
+      - {x: .0799999982, y: .159999996}
 --- !u!212 &439962294
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1288,6 +1314,7 @@ MonoBehaviour:
   origin: {x: 0, y: 0, z: 0}
   t: 4
   speed: .300000012
+  scroll: 7
 --- !u!81 &533350632
 AudioListener:
   m_ObjectHideFlags: 0
@@ -1333,7 +1360,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 8
+  orthographic size: 7
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1680,6 +1707,7 @@ GameObject:
   - 114: {fileID: 735423365}
   - 50: {fileID: 735423364}
   - 60: {fileID: 735423371}
+  - 114: {fileID: 735423372}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -1724,7 +1752,7 @@ MonoBehaviour:
   weaponName: {fileID: 1107431053}
   weaponSprite: {fileID: 1987447330}
   weaponDmg: {fileID: 212412731}
-  weaponSpd: {fileID: 2026638297}
+  weaponRange: {fileID: 2026638297}
   weaponRefresh: {fileID: 1518875840}
   gameOver: {fileID: 370212462}
   mainMenu: {fileID: 2078481206}
@@ -1799,7 +1827,7 @@ SpriteRenderer:
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: 5293d6dd122b60641b9c377102ecd2d7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &735423370
@@ -1835,6 +1863,20 @@ PolygonCollider2D:
       - {x: .104999997, y: -.0700000003}
       - {x: .104999997, y: .0900000036}
       - {x: .0949999988, y: .119999997}
+--- !u!114 &735423372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11482714, guid: 2f4e4d993492ad840bb3550b86db8d7e,
+    type: 2}
+  m_PrefabInternal: {fileID: 236644841}
+  m_GameObject: {fileID: 735423363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e5d2573610dbd447b737dd9750bf618, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weapon: {fileID: 0}
+  isTrue: 0
 --- !u!1 &787238930
 GameObject:
   m_ObjectHideFlags: 0
@@ -1966,7 +2008,13 @@ MonoBehaviour:
   - .5
   - 1.5
   - 3
-  weaponsSprites: []
+  weaponsSprites:
+  - {fileID: 21300000, guid: cf1907a1f9e28e842a31df4a5b8fbf9f, type: 3}
+  - {fileID: 21300000, guid: bd5f38ba945ecf141a1441081f29ca04, type: 3}
+  - {fileID: 21300000, guid: e68c21b4b3710bc4395a13916bbe17fa, type: 3}
+  - {fileID: 21300000, guid: c0b5bffb4e57c5e41beae258568fcbdf, type: 3}
+  - {fileID: 21300000, guid: 442d3466589243b4cb051aa835bcd16b, type: 3}
+  projectile: {fileID: 21300000, guid: b765e8f5adf02744c9ab454d6cc583e3, type: 3}
   game: {fileID: 0}
 --- !u!60 &792393317
 PolygonCollider2D:
@@ -1977,17 +2025,17 @@ PolygonCollider2D:
   m_GameObject: {fileID: 792393315}
   m_Enabled: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Poly:
     m_Paths:
-    - - {x: .0700000003, y: .150000006}
-      - {x: -.129999995, y: .0299999993}
-      - {x: -.129999995, y: -.119999997}
-      - {x: -.109999999, y: -.129999995}
-      - {x: -.0500000007, y: -.129999995}
-      - {x: .0299999993, y: -.109999999}
-      - {x: .150000006, y: .100000001}
-      - {x: .150000006, y: .150000006}
+    - - {x: .119999997, y: .150000006}
+      - {x: .0900000036, y: .150000006}
+      - {x: -.150000006, y: -.0900000036}
+      - {x: -.150000006, y: -.140000001}
+      - {x: -.129999995, y: -.150000006}
+      - {x: -.0599999987, y: -.150000006}
+      - {x: .150000006, y: .0799999982}
+      - {x: .150000006, y: .119999997}
 --- !u!50 &792393318
 Rigidbody2D:
   m_ObjectHideFlags: 0
@@ -2575,7 +2623,13 @@ MonoBehaviour:
   - .5
   - 1.5
   - 3
-  weaponsSprites: []
+  weaponsSprites:
+  - {fileID: 21300000, guid: 1d4b7827d9d9b574f9412b2012909a89, type: 3}
+  - {fileID: 21300000, guid: de3659e4125d7e04fa0d3654a7ab2080, type: 3}
+  - {fileID: 21300000, guid: 1c8d9457396e8e141aadd24db9a9fdb8, type: 3}
+  - {fileID: 21300000, guid: 071ede726700b75429fb34d436bbbe8c, type: 3}
+  - {fileID: 21300000, guid: 488f97ac3b734b7488a7c3e132d78776, type: 3}
+  projectile: {fileID: 21300000, guid: 05b524a45d0167c4aae58fa1800fb935, type: 3}
   game: {fileID: 0}
 --- !u!50 &954279916
 Rigidbody2D:
@@ -2602,16 +2656,16 @@ PolygonCollider2D:
   m_GameObject: {fileID: 954279914}
   m_Enabled: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Poly:
     m_Paths:
-    - - {x: .0399999991, y: .119999997}
-      - {x: -.159999996, y: -.0900000036}
-      - {x: -.159999996, y: -.159999996}
-      - {x: -.109999999, y: -.159999996}
+    - - {x: .0500000007, y: .140000001}
+      - {x: -.0799999982, y: 0}
+      - {x: -.0799999982, y: -.0799999982}
+      - {x: -.0199999996, y: -.0799999982}
       - {x: .109999999, y: .00999999978}
-      - {x: .119999997, y: .0299999993}
-      - {x: .119999997, y: .119999997}
+      - {x: .140000001, y: .0799999982}
+      - {x: .140000001, y: .140000001}
 --- !u!212 &954279918
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2775,7 +2829,13 @@ MonoBehaviour:
   - .5
   - 1.5
   - 3
-  weaponsSprites: []
+  weaponsSprites:
+  - {fileID: 21300000, guid: 1d4b7827d9d9b574f9412b2012909a89, type: 3}
+  - {fileID: 21300000, guid: de3659e4125d7e04fa0d3654a7ab2080, type: 3}
+  - {fileID: 21300000, guid: 1c8d9457396e8e141aadd24db9a9fdb8, type: 3}
+  - {fileID: 21300000, guid: 071ede726700b75429fb34d436bbbe8c, type: 3}
+  - {fileID: 21300000, guid: 488f97ac3b734b7488a7c3e132d78776, type: 3}
+  projectile: {fileID: 21300000, guid: 05b524a45d0167c4aae58fa1800fb935, type: 3}
   game: {fileID: 0}
 --- !u!50 &1074325558
 Rigidbody2D:
@@ -2802,16 +2862,16 @@ PolygonCollider2D:
   m_GameObject: {fileID: 1074325556}
   m_Enabled: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Poly:
     m_Paths:
-    - - {x: .0399999991, y: .119999997}
-      - {x: -.159999996, y: -.0900000036}
-      - {x: -.159999996, y: -.159999996}
-      - {x: -.109999999, y: -.159999996}
+    - - {x: .0500000007, y: .140000001}
+      - {x: -.0799999982, y: 0}
+      - {x: -.0799999982, y: -.0799999982}
+      - {x: -.0199999996, y: -.0799999982}
       - {x: .109999999, y: .00999999978}
-      - {x: .119999997, y: .0299999993}
-      - {x: .119999997, y: .119999997}
+      - {x: .140000001, y: .0799999982}
+      - {x: .140000001, y: .140000001}
 --- !u!212 &1074325560
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3341,7 +3401,13 @@ MonoBehaviour:
   - .5
   - 1.5
   - 3
-  weaponsSprites: []
+  weaponsSprites:
+  - {fileID: 21300000, guid: 55ac06ef2b34c2b4d95631425588cdda, type: 3}
+  - {fileID: 21300000, guid: 083ca9b0a2928ae4282615ea3774b4f2, type: 3}
+  - {fileID: 21300000, guid: 6dec3166d9fc05c46bb72d46d8d467df, type: 3}
+  - {fileID: 21300000, guid: 84ed852e6fe8f5b4089e79530bb8eeb3, type: 3}
+  - {fileID: 21300000, guid: bab8d5f4441fe5047b1172128b88cf98, type: 3}
+  projectile: {fileID: 21300000, guid: 0ce83fb7b48b74948b5615ee382651c6, type: 3}
   game: {fileID: 0}
 --- !u!50 &1328558706
 Rigidbody2D:
@@ -3368,17 +3434,17 @@ PolygonCollider2D:
   m_GameObject: {fileID: 1328558704}
   m_Enabled: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Poly:
     m_Paths:
-    - - {x: -.0299999993, y: .129999995}
-      - {x: -.0599999987, y: .109999999}
-      - {x: -.0599999987, y: -.140000001}
-      - {x: -.0399999991, y: -.150000006}
-      - {x: .0199999996, y: -.150000006}
-      - {x: .0500000007, y: -.129999995}
-      - {x: .0500000007, y: .0900000036}
-      - {x: .0199999996, y: .129999995}
+    - - {x: .0399999991, y: .129999995}
+      - {x: -.159999996, y: -.0700000003}
+      - {x: -.159999996, y: -.150000006}
+      - {x: -.150000006, y: -.159999996}
+      - {x: -.0900000036, y: -.159999996}
+      - {x: .159999996, y: .0500000007}
+      - {x: .159999996, y: .159999996}
+      - {x: .0799999982, y: .159999996}
 --- !u!212 &1328558708
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3541,7 +3607,13 @@ MonoBehaviour:
   - .5
   - 1.5
   - 3
-  weaponsSprites: []
+  weaponsSprites:
+  - {fileID: 21300000, guid: cf1907a1f9e28e842a31df4a5b8fbf9f, type: 3}
+  - {fileID: 21300000, guid: bd5f38ba945ecf141a1441081f29ca04, type: 3}
+  - {fileID: 21300000, guid: e68c21b4b3710bc4395a13916bbe17fa, type: 3}
+  - {fileID: 21300000, guid: c0b5bffb4e57c5e41beae258568fcbdf, type: 3}
+  - {fileID: 21300000, guid: 442d3466589243b4cb051aa835bcd16b, type: 3}
+  projectile: {fileID: 21300000, guid: b765e8f5adf02744c9ab454d6cc583e3, type: 3}
   game: {fileID: 0}
 --- !u!60 &1371544071
 PolygonCollider2D:
@@ -3552,17 +3624,17 @@ PolygonCollider2D:
   m_GameObject: {fileID: 1371544069}
   m_Enabled: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Poly:
     m_Paths:
-    - - {x: .0700000003, y: .150000006}
-      - {x: -.129999995, y: .0299999993}
-      - {x: -.129999995, y: -.119999997}
-      - {x: -.109999999, y: -.129999995}
-      - {x: -.0500000007, y: -.129999995}
-      - {x: .0299999993, y: -.109999999}
-      - {x: .150000006, y: .100000001}
-      - {x: .150000006, y: .150000006}
+    - - {x: .119999997, y: .150000006}
+      - {x: .0900000036, y: .150000006}
+      - {x: -.150000006, y: -.0900000036}
+      - {x: -.150000006, y: -.140000001}
+      - {x: -.129999995, y: -.150000006}
+      - {x: -.0599999987, y: -.150000006}
+      - {x: .150000006, y: .0799999982}
+      - {x: .150000006, y: .119999997}
 --- !u!50 &1371544072
 Rigidbody2D:
   m_ObjectHideFlags: 0
@@ -3682,7 +3754,7 @@ SpriteRenderer:
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -2
   m_Sprite: {fileID: 21300000, guid: d09e4b328f4d1994e8e1961d64900415, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &1432619647
@@ -3756,7 +3828,13 @@ MonoBehaviour:
   - .5
   - 1.5
   - 3
-  weaponsSprites: []
+  weaponsSprites:
+  - {fileID: 21300000, guid: cf1907a1f9e28e842a31df4a5b8fbf9f, type: 3}
+  - {fileID: 21300000, guid: bd5f38ba945ecf141a1441081f29ca04, type: 3}
+  - {fileID: 21300000, guid: e68c21b4b3710bc4395a13916bbe17fa, type: 3}
+  - {fileID: 21300000, guid: c0b5bffb4e57c5e41beae258568fcbdf, type: 3}
+  - {fileID: 21300000, guid: 442d3466589243b4cb051aa835bcd16b, type: 3}
+  projectile: {fileID: 21300000, guid: b765e8f5adf02744c9ab454d6cc583e3, type: 3}
   game: {fileID: 0}
 --- !u!60 &1452151210
 PolygonCollider2D:
@@ -3767,17 +3845,17 @@ PolygonCollider2D:
   m_GameObject: {fileID: 1452151208}
   m_Enabled: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Poly:
     m_Paths:
-    - - {x: .0700000003, y: .150000006}
-      - {x: -.129999995, y: .0299999993}
-      - {x: -.129999995, y: -.119999997}
-      - {x: -.109999999, y: -.129999995}
-      - {x: -.0500000007, y: -.129999995}
-      - {x: .0299999993, y: -.109999999}
-      - {x: .150000006, y: .100000001}
-      - {x: .150000006, y: .150000006}
+    - - {x: .119999997, y: .150000006}
+      - {x: .0900000036, y: .150000006}
+      - {x: -.150000006, y: -.0900000036}
+      - {x: -.150000006, y: -.140000001}
+      - {x: -.129999995, y: -.150000006}
+      - {x: -.0599999987, y: -.150000006}
+      - {x: .150000006, y: .0799999982}
+      - {x: .150000006, y: .119999997}
 --- !u!50 &1452151211
 Rigidbody2D:
   m_ObjectHideFlags: 0
@@ -3888,7 +3966,13 @@ MonoBehaviour:
   - .5
   - 1.5
   - 3
-  weaponsSprites: []
+  weaponsSprites:
+  - {fileID: 21300000, guid: 1d4b7827d9d9b574f9412b2012909a89, type: 3}
+  - {fileID: 21300000, guid: de3659e4125d7e04fa0d3654a7ab2080, type: 3}
+  - {fileID: 21300000, guid: 1c8d9457396e8e141aadd24db9a9fdb8, type: 3}
+  - {fileID: 21300000, guid: 071ede726700b75429fb34d436bbbe8c, type: 3}
+  - {fileID: 21300000, guid: 488f97ac3b734b7488a7c3e132d78776, type: 3}
+  projectile: {fileID: 21300000, guid: 05b524a45d0167c4aae58fa1800fb935, type: 3}
   game: {fileID: 0}
 --- !u!50 &1482794932
 Rigidbody2D:
@@ -3915,16 +3999,16 @@ PolygonCollider2D:
   m_GameObject: {fileID: 1482794930}
   m_Enabled: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Poly:
     m_Paths:
-    - - {x: .0399999991, y: .119999997}
-      - {x: -.159999996, y: -.0900000036}
-      - {x: -.159999996, y: -.159999996}
-      - {x: -.109999999, y: -.159999996}
+    - - {x: .0500000007, y: .140000001}
+      - {x: -.0799999982, y: 0}
+      - {x: -.0799999982, y: -.0799999982}
+      - {x: -.0199999996, y: -.0799999982}
       - {x: .109999999, y: .00999999978}
-      - {x: .119999997, y: .0299999993}
-      - {x: .119999997, y: .119999997}
+      - {x: .140000001, y: .0799999982}
+      - {x: .140000001, y: .140000001}
 --- !u!212 &1482794934
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4038,6 +4122,14 @@ Prefab:
     - target: {fileID: 22478610, guid: 178a5d1fbb37cbb49b1ed91557309214, type: 2}
       propertyPath: m_Pivot.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11478586, guid: 178a5d1fbb37cbb49b1ed91557309214, type: 2}
+      propertyPath: m_Text
+      value: 'Range: 0'
+      objectReference: {fileID: 0}
+    - target: {fileID: 178586, guid: 178a5d1fbb37cbb49b1ed91557309214, type: 2}
+      propertyPath: m_Name
+      value: WeaponRange
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 178a5d1fbb37cbb49b1ed91557309214, type: 2}
@@ -4593,7 +4685,13 @@ MonoBehaviour:
   - .5
   - 1.5
   - 3
-  weaponsSprites: []
+  weaponsSprites:
+  - {fileID: 21300000, guid: 55ac06ef2b34c2b4d95631425588cdda, type: 3}
+  - {fileID: 21300000, guid: 083ca9b0a2928ae4282615ea3774b4f2, type: 3}
+  - {fileID: 21300000, guid: 6dec3166d9fc05c46bb72d46d8d467df, type: 3}
+  - {fileID: 21300000, guid: 84ed852e6fe8f5b4089e79530bb8eeb3, type: 3}
+  - {fileID: 21300000, guid: bab8d5f4441fe5047b1172128b88cf98, type: 3}
+  projectile: {fileID: 21300000, guid: 0ce83fb7b48b74948b5615ee382651c6, type: 3}
   game: {fileID: 0}
 --- !u!50 &1762526501
 Rigidbody2D:
@@ -4620,17 +4718,17 @@ PolygonCollider2D:
   m_GameObject: {fileID: 1762526499}
   m_Enabled: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Poly:
     m_Paths:
-    - - {x: -.0299999993, y: .129999995}
-      - {x: -.0599999987, y: .109999999}
-      - {x: -.0599999987, y: -.140000001}
-      - {x: -.0399999991, y: -.150000006}
-      - {x: .0199999996, y: -.150000006}
-      - {x: .0500000007, y: -.129999995}
-      - {x: .0500000007, y: .0900000036}
-      - {x: .0199999996, y: .129999995}
+    - - {x: .0399999991, y: .129999995}
+      - {x: -.159999996, y: -.0700000003}
+      - {x: -.159999996, y: -.150000006}
+      - {x: -.150000006, y: -.159999996}
+      - {x: -.0900000036, y: -.159999996}
+      - {x: .159999996, y: .0500000007}
+      - {x: .159999996, y: .159999996}
+      - {x: .0799999982, y: .159999996}
 --- !u!212 &1762526503
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4882,7 +4980,13 @@ MonoBehaviour:
   - .5
   - 1.5
   - 3
-  weaponsSprites: []
+  weaponsSprites:
+  - {fileID: 21300000, guid: cf1907a1f9e28e842a31df4a5b8fbf9f, type: 3}
+  - {fileID: 21300000, guid: bd5f38ba945ecf141a1441081f29ca04, type: 3}
+  - {fileID: 21300000, guid: e68c21b4b3710bc4395a13916bbe17fa, type: 3}
+  - {fileID: 21300000, guid: c0b5bffb4e57c5e41beae258568fcbdf, type: 3}
+  - {fileID: 21300000, guid: 442d3466589243b4cb051aa835bcd16b, type: 3}
+  projectile: {fileID: 21300000, guid: b765e8f5adf02744c9ab454d6cc583e3, type: 3}
   game: {fileID: 0}
 --- !u!60 &1902473672
 PolygonCollider2D:
@@ -4893,17 +4997,17 @@ PolygonCollider2D:
   m_GameObject: {fileID: 1902473670}
   m_Enabled: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Poly:
     m_Paths:
-    - - {x: .0700000003, y: .150000006}
-      - {x: -.129999995, y: .0299999993}
-      - {x: -.129999995, y: -.119999997}
-      - {x: -.109999999, y: -.129999995}
-      - {x: -.0500000007, y: -.129999995}
-      - {x: .0299999993, y: -.109999999}
-      - {x: .150000006, y: .100000001}
-      - {x: .150000006, y: .150000006}
+    - - {x: .119999997, y: .150000006}
+      - {x: .0900000036, y: .150000006}
+      - {x: -.150000006, y: -.0900000036}
+      - {x: -.150000006, y: -.140000001}
+      - {x: -.129999995, y: -.150000006}
+      - {x: -.0599999987, y: -.150000006}
+      - {x: .150000006, y: .0799999982}
+      - {x: .150000006, y: .119999997}
 --- !u!50 &1902473673
 Rigidbody2D:
   m_ObjectHideFlags: 0
@@ -5203,7 +5307,7 @@ GameObject:
   - 222: {fileID: 2026638298}
   - 114: {fileID: 2026638297}
   m_Layer: 5
-  m_Name: WeaponSpeed
+  m_Name: WeaponRange
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5253,7 +5357,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Spd: 0'
+  m_Text: 'Range: 0'
 --- !u!222 &2026638298
 CanvasRenderer:
   m_ObjectHideFlags: 0

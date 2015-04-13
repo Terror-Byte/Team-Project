@@ -10,11 +10,13 @@ public class BulletScript : MonoBehaviour {
 	Vector2 currentPos;
 	public float range = 10.0f;
 	Vector2 moveVector = new Vector2();
-
+    GameController game;
 	// Use this for initialization
 	void Start () {
+        game = GameObject.Find("GameController").GetComponent<GameController>();
 		startPos = gameObject.transform.position;
         Physics2D.IgnoreCollision(collider2D, collider2D);
+
 	}
 	
 	// Update is called once per frame
@@ -27,7 +29,8 @@ public class BulletScript : MonoBehaviour {
 		if (Norm () >= range) {
 			Destroy(gameObject);
 		}
-		*/      
+		*/
+
 
 		/* New distance-based destruction */
 		currentPos = new Vector2 (gameObject.transform.position.x, gameObject.transform.position.y);

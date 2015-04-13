@@ -11,14 +11,23 @@ public class Weapon : MonoBehaviour {
     public float damage = 1;
     public float dex = 1;
 
+    float rangeDif;
+    float damageDif;
+    float dexDif;
+
+    int wepLvl = 0;
+
     public string[] prefixRange = { "Blinded", "Basic", "Long", "Sighted", "Reaching" };
     public string[] prefixDamage = { "Pitiful", "Basic", "Sharp", "Dreaded", "Godly" };
     public string[] prefixDex = { "Sluggish", "Basic", "Speedy", "Agile", "Hasty" };
     public float[] modifiers = { -1.0f, 0.0f, 2.0f, 1.5f, 2.0f };
 
     public Sprite[] weaponsSprites;
+    public Sprite projectile;
 
     public GameController game;
+
+    bool spriteSelected = false;
 	// Use this for initialization
 	void Start () 
     {
@@ -32,7 +41,7 @@ public class Weapon : MonoBehaviour {
         int i = Random.Range(0, 3);
 
         SelectPrefabs(i);
-
+        this.GetComponent<SpriteRenderer>().sprite = weaponsSprites[wepLvl];
     }
 	
 	// Update is called once per frame
@@ -58,6 +67,7 @@ public class Weapon : MonoBehaviour {
                     if (range == rangeTmp)
                     {
                         range += SelectRandom(0);
+                        rangeDif = range - rangeTmp;
                         break;
                     }
                     else
@@ -67,6 +77,7 @@ public class Weapon : MonoBehaviour {
                     if (damage == damageTmp)
                     {
                         damage += SelectRandom(1);
+                        damageDif = damage - damageTmp;
                         break;
                     }
                     else
@@ -76,6 +87,7 @@ public class Weapon : MonoBehaviour {
                     if (dex == dexTmp)
                     {
                         dex += SelectRandom(2);
+                        dexDif = dex - dexTmp;
                         break;
                     }
                     else
@@ -109,6 +121,9 @@ public class Weapon : MonoBehaviour {
             cumulative += elements[i].Value;
             if (roll < cumulative)
             {
+                if (wepLvl < i)
+                    wepLvl = i;
+
                 ModName(n, i);
                 return (float)System.Math.Round(elements[i].Key, 2);
             }

@@ -8,7 +8,7 @@ public class CameraController : MonoBehaviour {
     public float t = 5.0f;
     public float speed = 0.3f;
     bool freeCamera = false;
-    float scroll;
+    public float scroll = 7;
 	// Use this for initialization
 	void Start () 
     {
@@ -68,6 +68,8 @@ public class CameraController : MonoBehaviour {
         {
             scroll = 10;
         }
+        else
+            scroll = Camera.main.orthographicSize;
 
         //Camera.main.orthographicSize = Mathf.Lerp(Camera.main.orthographicSize, scroll, speed * Time.deltaTime);
         

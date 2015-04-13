@@ -27,7 +27,7 @@ public class PlayerUIDriver : MonoBehaviour {
     public Text weaponName;
     public Image weaponSprite;
     public Text weaponDmg;
-    public Text weaponSpd;
+    public Text weaponRange;
     public Text weaponRefresh;
 
     Sprite sword;
@@ -102,9 +102,13 @@ public class PlayerUIDriver : MonoBehaviour {
             float currentXPX = xpTransform.position.x - xpTransform.rect.width;
             xpTransform.position = new Vector3(currentXPX, xpY);
         }*/
+
+        if (game.weapon != null)
+            weaponSprite.sprite = game.weapon.GetComponent<SpriteRenderer>().sprite;
+
         weaponName.text = "Name: " + game.weaponName;
         weaponDmg.text = "Dmg: " + game.weaponDmgMod.ToString();
-        weaponSpd.text = "Spd: " + game.weaponSpdMod.ToString();
+        weaponRange.text = "Range: " + game.weaponRangeMod.ToString();
         weaponRefresh.text = "Fire Rate: " + game.weaponRefreshMod.ToString();
 
         /*switch (game.weaponType)

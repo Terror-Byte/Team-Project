@@ -54,16 +54,16 @@ PolygonCollider2D:
   m_GameObject: {fileID: 161872}
   m_Enabled: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Poly:
     m_Paths:
-    - - {x: .0399999991, y: .119999997}
-      - {x: -.159999996, y: -.0900000036}
-      - {x: -.159999996, y: -.159999996}
-      - {x: -.109999999, y: -.159999996}
+    - - {x: .0500000007, y: .140000001}
+      - {x: -.0799999982, y: 0}
+      - {x: -.0799999982, y: -.0799999982}
+      - {x: -.0199999996, y: -.0799999982}
       - {x: .109999999, y: .00999999978}
-      - {x: .119999997, y: .0299999993}
-      - {x: .119999997, y: .119999997}
+      - {x: .140000001, y: .0799999982}
+      - {x: .140000001, y: .140000001}
 --- !u!114 &11401426
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -103,7 +103,13 @@ MonoBehaviour:
   - .5
   - 1.5
   - 3
-  weaponsSprites: []
+  weaponsSprites:
+  - {fileID: 21300000, guid: 1d4b7827d9d9b574f9412b2012909a89, type: 3}
+  - {fileID: 21300000, guid: de3659e4125d7e04fa0d3654a7ab2080, type: 3}
+  - {fileID: 21300000, guid: 1c8d9457396e8e141aadd24db9a9fdb8, type: 3}
+  - {fileID: 21300000, guid: 071ede726700b75429fb34d436bbbe8c, type: 3}
+  - {fileID: 21300000, guid: 488f97ac3b734b7488a7c3e132d78776, type: 3}
+  projectile: {fileID: 21300000, guid: 05b524a45d0167c4aae58fa1800fb935, type: 3}
   game: {fileID: 0}
 --- !u!212 &21261872
 SpriteRenderer:

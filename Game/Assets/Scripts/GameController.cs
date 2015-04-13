@@ -25,17 +25,18 @@ public class GameController : MonoBehaviour
 
     [Header("Weapon Stats")]
     public float wepDmg = 3;
-    public float weaponSpd = 8.0f;
+    public float weaponSpd = 10.0f;
     public float weaponRefresh = 1.0f;
 
     // Working under the assumption that these variables will augment the above weapon stats
     [Header("Weapon mod Stats")]
     public string weaponName = "Default";
-    public enum weaponTypes { sword, spear, axe, bow };
-    public weaponTypes weaponType = weaponTypes.bow;
-    public float weaponDmgMod = 5;//3;
-    public float weaponSpdMod = 0.0f;//8.0f;
-    public float weaponRefreshMod = 0.0f;
+    //public enum weaponTypes { sword, spear, axe, bow };
+    //public weaponTypes weaponType = weaponTypes.bow;
+    public float weaponDmgMod = 3.0f;
+    public float weaponRangeMod = 3.0f;
+    public float weaponRefreshMod = 3.0f;
+    public GameObject weapon;
 
     //Lvl stats
     [Header("Level Stats")]
