@@ -5,6 +5,7 @@ using System.Collections;
 public class BulletScript : MonoBehaviour {
 	// int countdownToDestruction = 0;
 
+    public string source = "";
     int wepDmg = 5;
 	Vector2 startPos;
 	Vector2 currentPos;
@@ -51,20 +52,17 @@ public class BulletScript : MonoBehaviour {
         if (coll.gameObject.tag == "Enemy")
         {
             //Debug.Log("hit!");
-            //Destroy(coll.gameObject);
+            if (source != "Enemy")
+                coll.gameObject.SendMessage("ApplyDamage", wepDmg);
+
             Destroy(this.gameObject);
-            coll.gameObject.SendMessage("ApplyDamage", wepDmg);
         }
 		else if (coll.gameObject.tag == "Player")
 		{
-			Debug.Log("Player Hit!");
+			//Debug.Log("Player Hit!");
 			Destroy(this.gameObject);
 			coll.gameObject.SendMessage("ApplyDamage", wepDmg);
 		}
-        else if (coll.gameObject.tag == "Water Tile")
-        {
-            //Debug.Log("Collided with water");
-        }
 	}
 
 	void setDamage(int dmg)

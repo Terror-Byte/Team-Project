@@ -11,7 +11,7 @@ public class Enemy : MonoBehaviour {
     public float str = 5;
     public float range = 3;
     public Sprite projectile;
-
+    float shotsfired = 0;
 	public enum state { Roam, Attack };
 	public state aiState = state.Roam;
 	bool hasTarget = false;
@@ -81,7 +81,7 @@ public class Enemy : MonoBehaviour {
         if (health <= 0)
         {
             Destroy(this.gameObject);
-            player.SendMessage("AddExperience", experience);
+            //player.SendMessage("AddExperience", experience);
             gameController.SendMessage("EnemyDied");
             ItemDrop();
         }
@@ -170,6 +170,7 @@ public class Enemy : MonoBehaviour {
                         
 			if (refreshCounter == 0.0f)
 			{
+
                 switch (shootType)
                 {
                     case ShootingType.Single:
@@ -181,7 +182,10 @@ public class Enemy : MonoBehaviour {
                         break;
 
                     case ShootingType.Rotary:
-                        ShootRotary();
+                        ShootRotary(shotsfired);
+                        shotsfired += 7;
+                        weaponRefresh = 0.7f;
+                        weaponSpd = 6;
                         break;
                 }
 				
@@ -209,7 +213,7 @@ public class Enemy : MonoBehaviour {
     {
         int roll = Random.Range(0, 100);
         //Debug.Log(roll);
-        if (roll < 100)
+        if (roll < 50)
         {
             if(weapons.Count != 0)
                 SpawnWeapon();
@@ -276,7 +280,7 @@ public class Enemy : MonoBehaviour {
         newBullet3.transform.rotation = Quaternion.AngleAxis(angle - 45, Vector3.forward);
     }
 
-    void ShootRotary()
+    void ShootRotary(float i)
     {
         // This is a dirty hack, but it's the only way I can think of doing this at the moment
         Vector2[] directions = {   
@@ -287,17 +291,17 @@ public class Enemy : MonoBehaviour {
                                };   
 
         int directionCount = 0;
-        for (float angle = 0; angle < 360; angle += 22.5f)
+        float ang = 0;
+        for (float angle = ang; angle < ang + 360; angle += 22.5f)
         {
             GameObject newBullet = InstantiateBullet();
-            Vector2 forceDirection = directions[directionCount];
-
+            Vector2 forceDirection = Quaternion.Euler(new Vector3(0,0,i)) * directions[directionCount];
             //Debug.Log("Force Direction: " + forceDirection);
             Vector3 a = forceDirection * weaponSpd;
 
             newBullet.rigidbody2D.velocity = a - (currVel / 3);
             //Debug.Log("Bullet Velocity: " + newBullet.rigidbody2D.velocity.ToString());
-            newBullet.transform.rotation = Quaternion.AngleAxis(-angle + 45, Vector3.forward);
+            newBullet.transform.rotation = Quaternion.AngleAxis(-angle + 45 + i, Vector3.forward);
             directionCount++;
         }
     }
@@ -313,16 +317,24 @@ public class Enemy : MonoBehaviour {
         Physics2D.IgnoreCollision(collider2D, newBullet.collider2D);
         newBullet.GetComponent<SpriteRenderer>().sprite = projectile;
         newBullet.GetComponent<BulletScript>().range = range;
+        newBullet.GetComponent<BulletScript>().source = "Enemy";
+        newBullet.layer = 16;
+
         return newBullet;
     }
 
     void spawnGold()
     {
-        int tmp = Random.Range(1, 10);
+        int maxDrop = Mathf.RoundToInt(((Mathf.Pow(gameController.difficultyLevel, 2) + gameController.difficultyLevel)/2 + 1)/4);
+
+        if (maxDrop < 5)
+            maxDrop = 5;
+
+        int tmp = Random.Range(1, maxDrop);
         for (int i = 0; i < tmp; i++)
         {
             GameObject drop = (GameObject)Instantiate(coin, new Vector3(enemyPos.x, enemyPos.y, 0), Quaternion.identity);
-            drop.rigidbody2D.AddForce(new Vector2(Random.Range(-100, 100), Random.Range(-100, 100)));
+            drop.rigidbody2D.AddForce(new Vector2(Random.Range(-100, 100), Random.Range(-100, 150)));
         }
     }
 

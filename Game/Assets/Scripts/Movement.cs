@@ -73,6 +73,7 @@ public class Movement : MonoBehaviour {
                         newBullet.GetComponent<SpriteRenderer>().sprite = game.GetComponentInChildren<Weapon>().projectile;
 
                     newBullet.GetComponent<BulletScript>().range = game.weaponRangeMod;
+                    newBullet.GetComponent<BulletScript>().source = "Player";
 
                     Vector3 playerPos = Camera.main.WorldToScreenPoint(player.transform.position);
                     Vector3 mousePos = Input.mousePosition;
@@ -129,29 +130,29 @@ public class Movement : MonoBehaviour {
     //may need to rewrite this. Is kind of confusing, instead of having a next level xp, why not just have a formula which
     //calculates the total required xp based on the current level of the player. (I think this is how runescape does it)
     //At the moment, the player can only level up once at a time if the xp gain is more than needed for 2 or more levels.
-    void AddExperience(int x)
-    {
-        if (game.xp + x <= nextLevelXP)
-        {
-            game.xp += x;
-            if (game.xp == nextLevelXP)
-                LevelUp(0);
-        }
-        else
-        {
-            game.xp += x;
-            int xpOverflow = game.xp - nextLevelXP;
-            LevelUp(xpOverflow);
-        }
-    }
+    //void AddExperience(int x)
+    //{
+    //    if (game.xp + x <= nextLevelXP)
+    //    {
+    //        game.xp += x;
+    //        if (game.xp == nextLevelXP)
+    //            LevelUp(0);
+    //    }
+    //    else
+    //    {
+    //        game.xp += x;
+    //        int xpOverflow = game.xp - nextLevelXP;
+    //        LevelUp(xpOverflow);
+    //    }
+    //}
 
-    void LevelUp(int overflow)
-    {
-        game.level++;
-        game.xp = overflow;
-        nextLevelXP = 100 + ((int)Mathf.Pow(game.level, 2) * 5);
-        //uiDriver.levelText.text = "Level: " + game.level;
-    }
+    //void LevelUp(int overflow)
+    //{
+    //    game.level++;
+    //    game.xp = overflow;
+    //    nextLevelXP = 100 + ((int)Mathf.Pow(game.level, 2) * 5);
+    //    //uiDriver.levelText.text = "Level: " + game.level;
+    //}
 
     void PlayerDeath()
     {
@@ -263,7 +264,12 @@ public class Movement : MonoBehaviour {
     float Dex()
     {
         int lvl = game.dex;
-        float weaponMod = game.weaponRefreshMod / 10 + (0.5f / game.weaponRefreshMod);
+        float weaponRefreshMod = game.weaponRefreshMod;
+
+        if (weaponRefreshMod < 2)
+            weaponRefreshMod = 2;
+
+        float weaponMod = weaponRefreshMod / 10 + (0.5f / weaponRefreshMod);
 
         double tmp = Mathf.Pow(lvl, -weaponMod);
         //Debug.Log(tmp);

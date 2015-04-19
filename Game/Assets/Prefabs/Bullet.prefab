@@ -12,8 +12,8 @@ GameObject:
   - 58: {fileID: 5836810}
   - 222: {fileID: 22223740}
   - 212: {fileID: 21290710}
-  - 114: {fileID: 11423740}
   - 4: {fileID: 490710}
+  - 114: {fileID: 11423740}
   m_Layer: 8
   m_Name: Bullet
   m_TagString: Projectile
@@ -46,7 +46,7 @@ CircleCollider2D:
   m_Center: {x: 0, y: 0}
 --- !u!114 &11423740
 MonoBehaviour:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 190710}
@@ -75,6 +75,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79a8baa012d032645a6d6b298d51be0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  source: 
   range: 5
 --- !u!212 &21290710
 SpriteRenderer:
@@ -96,7 +97,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 0ce83fb7b48b74948b5615ee382651c6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b765e8f5adf02744c9ab454d6cc583e3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!222 &22223740
 CanvasRenderer:

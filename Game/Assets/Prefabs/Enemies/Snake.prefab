@@ -81,7 +81,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 191268}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -21.2999992, y: -10.3999996, z: 0}
+  m_LocalPosition: {x: 47.3149185, y: 39.662674, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children:
   - {fileID: 22499618}
@@ -130,12 +130,13 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_Poly:
     m_Paths:
-    - - {x: .0199999996, y: .159999996}
-      - {x: -.100000001, y: -.0199999996}
-      - {x: -.100000001, y: -.0900000036}
-      - {x: -.0199999996, y: -.0900000036}
-      - {x: .150000006, y: .0900000036}
-      - {x: .150000006, y: .159999996}
+    - - {x: -.0767410323, y: .0966781601}
+      - {x: -.0324684158, y: -.0155960089}
+      - {x: -.0177383423, y: -.0569923408}
+      - {x: -.109276585, y: -.0765106231}
+      - {x: -.119812779, y: -.123368837}
+      - {x: .0656318665, y: -.125470743}
+      - {x: .0740219131, y: .101584628}
 --- !u!114 &11491268
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -155,11 +156,10 @@ MonoBehaviour:
   projectile: {fileID: 21300000, guid: 409b6ffc6799808448b37314a5f8ae11, type: 3}
   aiState: 0
   bulletPrefab: {fileID: 190710, guid: c5f8365c05300d849ae0f21034ffd42b, type: 2}
-  weaponSpd: 15
+  weaponSpd: 6
   weaponRefresh: .5
   weapons:
   - {fileID: 195492, guid: 6933f9eb584f8d44ba59412cab71beea, type: 2}
-  - {fileID: 109132, guid: c383fa715d48bd448ab8defabe53171d, type: 2}
   - {fileID: 161872, guid: 8770e95b9267b1840a59ded3cf921097, type: 2}
   - {fileID: 187392, guid: 53696714124869b4b9c85133143db3ca, type: 2}
   sword: {fileID: 0}

@@ -80,7 +80,7 @@ GameObject:
   - 222: {fileID: 22278592}
   - 114: {fileID: 11478586}
   m_Layer: 5
-  m_Name: WeaponSpeed
+  m_Name: WeaponRange
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -424,8 +424,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: .460094243, g: .451989621, b: .558823526, a: .498039216}
-  m_Sprite: {fileID: 0}
-  m_Type: 0
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -545,7 +545,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Spd: 0'
+  m_Text: 'Range: 0'
 --- !u!114 &11478588
 MonoBehaviour:
   m_ObjectHideFlags: 1

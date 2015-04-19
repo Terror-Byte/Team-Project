@@ -22,7 +22,6 @@ public class UI : MonoBehaviour {
     {
         width = Screen.width;
         height = Screen.height;
-
         gameObject.transform.localScale = Vector3.Lerp(gameObject.transform.localScale, scale, speed * Time.deltaTime);
     }
 
@@ -33,6 +32,8 @@ public class UI : MonoBehaviour {
 
     void OnMouseDown()
     {
+        GameObject.Find("Sounds").audio.Play();
+
         Application.LoadLevel(Application.loadedLevel + 1);
     }
 

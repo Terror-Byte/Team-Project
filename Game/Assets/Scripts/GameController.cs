@@ -3,7 +3,6 @@ using System.Collections;
 
 public class GameController : MonoBehaviour
 {
-
     //Player Stats
     //Will be contained over level changes
     [Header("Player Stats")]
@@ -14,7 +13,7 @@ public class GameController : MonoBehaviour
     public int speed = 1;
     public int dex = 1;
     public int xp = 0;
-    public int level = 0;
+    //public int level = 0;
     public int gold = 0;
 
     //Hidden stat lvl up requirements
@@ -93,6 +92,6 @@ public class GameController : MonoBehaviour
 
     int LvlUpCost(int lvl)
     {
-        return Mathf.RoundToInt((Mathf.Pow(lvl, 4)/10000 + lvl)/2);
+        return Mathf.RoundToInt((Mathf.Pow(lvl, 2) + lvl)/2);
     }
 }

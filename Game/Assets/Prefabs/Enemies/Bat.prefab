@@ -81,7 +81,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 109132}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.36000013, y: -7.46999979, z: 0}
+  m_LocalPosition: {x: 44.4646149, y: 45.6743317, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_Children:
   - {fileID: 22496608}
@@ -113,12 +113,12 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_Poly:
     m_Paths:
-    - - {x: -.122756004, y: .0569820404}
-      - {x: -.125, y: .0567207336}
-      - {x: -.125, y: -.0550003052}
-      - {x: .126982614, y: -.0569829941}
-      - {x: .125, y: .0548248291}
-      - {x: .124912821, y: .0550003052}
+    - - {x: -.0587463379, y: -.0025962831}
+      - {x: -.12219391, y: -.0260688793}
+      - {x: -.0450164787, y: -.0690322891}
+      - {x: .0420318618, y: -.0691795349}
+      - {x: .120790862, y: -.0251579285}
+      - {x: .0658798218, y: -.00253143325}
 --- !u!95 &9560612
 Animator:
   serializedVersion: 3
@@ -145,7 +145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8042e46852407ab4b84ff55cbfb881dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 50
+  health: 25
   speed: 800
   dmg: 3
   str: 5

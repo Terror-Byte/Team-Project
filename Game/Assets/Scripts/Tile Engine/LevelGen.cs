@@ -6,8 +6,8 @@ public class LevelGen : MonoBehaviour {
     //int mapSizeX = 31;
     //int mapSizeY = 22;
 
-    int mapSizeX = 50;
-    int mapSizeY = 50;
+    int mapSizeX = 100;
+    int mapSizeY = 100;
 
     int tileAmount = 0;
     TileType[] tileTypes;
@@ -17,6 +17,7 @@ public class LevelGen : MonoBehaviour {
     public GameObject sandPrefab;
     public GameObject waterPrefab;
 
+    List<Vector3> trees = new List<Vector3>();
     public List<GameObject> enemyPrefabs = new List<GameObject>();
     public GameObject treePrefab;
     //public GameObject enemyPrefab;
@@ -35,10 +36,12 @@ public class LevelGen : MonoBehaviour {
 	}
 
     void StartLevel()
-    {
+    {     
+        GameObject[] sandTiles = GameObject.FindGameObjectsWithTag("SandTile");
+        GameObject[] grassTiles = GameObject.FindGameObjectsWithTag("GrassTile");
 
-
-
+        GameObject player = GameObject.Find("Player");
+        player.transform.position = sandTiles[Random.Range(0, sandTiles.Length)].transform.position;
         // Spawns enemies
         int enemyNo = Random.Range(5, 10);
         game.totalEnemies = enemyNo;
@@ -46,19 +49,55 @@ public class LevelGen : MonoBehaviour {
         for (int i = 0; i < enemyNo; i++)
         {
             int randEnemy = Random.Range(0, enemyPrefabs.Count);
-            Vector3 position = new Vector3(Random.Range((mapSizeX / 2), ((3 * mapSizeX) / 2)), Random.Range((mapSizeY / 2), ((3 * mapSizeY) / 2)), 10);
+            int r = Random.Range(0, grassTiles.Length);
+            Vector3 position = grassTiles[r].transform.position;
             GameObject tmp = (GameObject)Instantiate(enemyPrefabs[randEnemy], position, Quaternion.identity);
             //tmp.SendMessage("ScaleStats", game.difficultyLevel);
         }
 
         //Spawns trees
-        int treeNo = Random.Range(3, 6);
-        
+        int treeNo = Random.Range(6, 14);
+
         for (int i = 0; i < treeNo; i++)
         {
-            Vector3 position = new Vector3(Random.Range((mapSizeX / 2), ((3 * mapSizeX) / 2)), Random.Range((mapSizeY / 2), ((3 * mapSizeY) / 2)), 10);
+            Vector3 position = new Vector3();
+            bool goodPos = false;
+
+            while (!goodPos)
+            {
+                int r = Random.Range(0, grassTiles.Length);
+                position = grassTiles[r].transform.position;
+
+                if (!IsClose(position))
+                    goodPos = true;
+            }
+
+            trees.Add(position);
             Instantiate(treePrefab, position, Quaternion.identity);
         }
+
+        Vector3 boat = player.transform.position;
+
+        foreach(GameObject obj in sandTiles)
+        {
+            if ((boat - player.transform.position).magnitude < (obj.transform.position - player.transform.position).magnitude)
+                boat = obj.transform.position;
+        }
+
+        GameObject.Find("Exit Boat").transform.position = boat;
+           
+    }
+
+    bool IsClose(Vector3 p)
+    {
+        foreach(Vector3 position in trees)
+        {
+            if ((p - position).magnitude < 5)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     void CreateLevel()
@@ -89,7 +128,7 @@ public class LevelGen : MonoBehaviour {
         //}
 
         
-        Vector2 point = new Vector2(24, 24);
+        Vector2 point = new Vector2((mapSizeX/2) - 1, (mapSizeY/2) - 1);
 
         for (int x = 0; x < mapSizeX; x++)
         {
@@ -99,14 +138,9 @@ public class LevelGen : MonoBehaviour {
             }
         }
 
-        tileAmount = Random.Range(800, 1000);
+        tileAmount = Random.Range(8000, 9001);
 
-        tiles[24, 24] = 1;
-        tiles[24, 25] = 1;
-        tiles[25, 24] = 1;
-        tiles[23, 24] = 1;
-        tiles[24, 23] = 1;
-
+ 
         //Debug.Log(dir);
         AttemptToPlace(point, 2);
 
@@ -119,7 +153,9 @@ public class LevelGen : MonoBehaviour {
                 {
                     tiles[x, y] = 0;
                 }
-                Instantiate(tileTypes[tiles[x, y]].tileVisual, new Vector3(x * 2, y * 2, 0), Quaternion.identity);
+
+                if (!CanCull(new Vector2(x,y)))
+                    Instantiate(tileTypes[tiles[x, y]].tileVisual, new Vector3(x , y, 0), Quaternion.identity);
             }
         }
     }
@@ -145,6 +181,8 @@ public class LevelGen : MonoBehaviour {
                 break;
         }
 
+        try
+        {
         if (p.y + 1 < mapSizeY)
             tiles[(int)p.x, (int)p.y + 1] = 1;
 
@@ -156,11 +194,16 @@ public class LevelGen : MonoBehaviour {
 
         if (p.x - 1 >= 0)
             tiles[(int)p.x - 1, (int)p.y] = 1;
+        }
+        catch
+        {
+           // do nothing
+        }
 
 
         int r = Random.Range(0, 100);
         if (r == 0)
-            p = new Vector2(24, 24);
+            p = new Vector2((mapSizeX / 2) - 1, (mapSizeY / 2) - 1);
 
         
         tileAmount--;
@@ -183,6 +226,21 @@ public class LevelGen : MonoBehaviour {
         catch
         {
             return false;
+        }
+    }
+
+    bool CanCull(Vector2 p)
+    {
+        try
+        {
+            if (tiles[(int)p.x + 1, (int)p.y] == 2 && tiles[(int)p.x - 1, (int)p.y] == 2 && tiles[(int)p.x, (int)p.y - 1] == 2 && tiles[(int)p.x, (int)p.y + 1] == 2)
+                return true;
+            else
+                return false;
+        }
+        catch
+        {
+            return true;
         }
     }
 }
