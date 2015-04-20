@@ -51,6 +51,7 @@ public class SelectorUI : MonoBehaviour {
     {
         if (game.gold >= game.hpGold)
         {
+            GameObject.Find("Sounds").audio.Play();
             game.hpLvl += 1;
             game.gold -= game.hpGold;
             game.SendMessage("LvlUpdate");
@@ -64,6 +65,7 @@ public class SelectorUI : MonoBehaviour {
     {
         if (game.gold >= game.strGold)
         {
+            GameObject.Find("Sounds").audio.Play();
             game.strength += 1;
             game.gold -= game.strGold;
             game.SendMessage("LvlUpdate");
@@ -77,6 +79,7 @@ public class SelectorUI : MonoBehaviour {
     {
         if (game.gold >= game.spdGold)
         {
+            GameObject.Find("Sounds").audio.Play();
             game.speed += 1;
             game.gold -= game.spdGold;
             game.SendMessage("LvlUpdate");
@@ -90,6 +93,7 @@ public class SelectorUI : MonoBehaviour {
     {
         if (game.gold >= game.dexGold)
         {
+            GameObject.Find("Sounds").audio.Play();
             game.dex += 1;
             game.gold -= game.dexGold;
             game.SendMessage("LvlUpdate");

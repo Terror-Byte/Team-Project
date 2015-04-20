@@ -51,6 +51,11 @@ public class Movement : MonoBehaviour {
             float movX = move.x * Speed() * Time.deltaTime;
             float movY = move.y * Speed() * Time.deltaTime;
 
+            if (move != Vector2.zero)
+                GameObject.Find("Walk").audio.mute = false;
+            else
+                GameObject.Find("Walk").audio.mute = true;
+
             this.rigidbody2D.velocity = new Vector2(movX, movY);
             //transform.Translate(new Vector2(movX, movY));
             
@@ -59,6 +64,7 @@ public class Movement : MonoBehaviour {
             {
                 if (refreshCounter == 0.0f)
                 {
+                    GameObject.Find("Arrow").audio.Play();
                     GameObject player = GameObject.Find("Player");
                     float xPos = player.transform.position.x;
                     float yPos = player.transform.position.y;
@@ -123,6 +129,7 @@ public class Movement : MonoBehaviour {
 
 	void ApplyDamage(int x)
 	{
+        GameObject.Find("PlayerHurt").audio.Play();
 		game.currentHp -= x;
 	}
 
@@ -194,6 +201,7 @@ public class Movement : MonoBehaviour {
         {
             Destroy(coll.gameObject);
             game.gold++;
+            GameObject.Find("CoinSound").audio.Play();
             //int amount = Random.Range(0, 4);
             //switch (amount)
             //{
@@ -215,6 +223,7 @@ public class Movement : MonoBehaviour {
 
         if (coll.gameObject.tag == "BossGold")
         {
+            GameObject.Find("CoinSound").audio.Play();
             Destroy(coll.gameObject);
             game.gold += 5;
             uiDriver.goldText.text = game.gold.ToString();

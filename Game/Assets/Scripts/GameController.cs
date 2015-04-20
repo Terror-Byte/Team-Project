@@ -49,6 +49,12 @@ public class GameController : MonoBehaviour
     [Header("Boss stuff")]
     public int upperBound = 100; // The upper bound of the random chance.
 
+    [Header("Island stuff")]
+    public GameObject[] islands;
+    public GameObject currentIsland;
+    public Vector2 levelVector = new Vector2(0, 0);
+
+
     // Use this for initialization
     void Start()
     {
@@ -67,6 +73,16 @@ public class GameController : MonoBehaviour
             gos = GameObject.FindGameObjectsWithTag("Enemy");
             totalEnemies = gos.Length;
         }
+
+        if (GameObject.Find("SnakeBoss"))
+            GameObject.Find("Music").audio.pitch = 1.1f;
+        else
+            GameObject.Find("Music").audio.pitch = 0.87f;
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Finish(); //debuggin
+        }
     }
 
     void EnemyDied()
@@ -76,16 +92,25 @@ public class GameController : MonoBehaviour
 
     void Load(int level)
     {
+        islands = GameObject.FindGameObjectsWithTag("Island");
+        foreach (GameObject i in islands)
+        {
+            i.SetActive(false);
+        }
         Application.LoadLevel(level);
     }
 
     void Finish()
     {
-        maxDifficultyCompleted = (int)Mathf.Max(difficultyLevel + 1, maxDifficultyCompleted);
-        if (upperBound > 0)
-            upperBound -= 5;
+        currentIsland.GetComponent<Island>().isPlayable = false;
+        if (currentIsland.name == "Home(Clone)")
+            maxDifficultyCompleted = 1;
         else
-            upperBound = 100;
+            maxDifficultyCompleted = (int)Mathf.Max(difficultyLevel + 1, maxDifficultyCompleted);
+        if (upperBound > 0)
+            upperBound -= 10;
+        else
+            upperBound = 1000;
         Application.LoadLevel("Select");
     }
 

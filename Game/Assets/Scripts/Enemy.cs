@@ -110,7 +110,7 @@ public class Enemy : MonoBehaviour {
         }
         */
 
-        tileList.AddRange(GameObject.FindGameObjectsWithTag("WaterTile").ToList<GameObject>());
+        //tileList.AddRange(GameObject.FindGameObjectsWithTag("WaterTile").ToList<GameObject>());
         tileList.AddRange(GameObject.FindGameObjectsWithTag("SandTile").ToList<GameObject>());
         tileList.AddRange(GameObject.FindGameObjectsWithTag("GrassTile").ToList<GameObject>());
 	}
@@ -186,8 +186,15 @@ public class Enemy : MonoBehaviour {
                 }*/
                 if (gameObject.layer == 14)
                 {
-                    int rand = Random.Range(0, tileList.Count);
-                    target = tileList[rand].gameObject.transform.position;
+                    try
+                    {
+                        int rand = Random.Range(0, tileList.Count);
+                        target = tileList[rand].gameObject.transform.position;
+                    }
+                    catch
+                    {
+                        //put this try here for the boss in the first level
+                    }
                 }
                 else
                 {
@@ -287,6 +294,7 @@ public class Enemy : MonoBehaviour {
     
     void ApplyDamage(int x)
     {
+        GameObject.Find("EnemyHurt").audio.Play();
         health -= x;
     }
 
@@ -314,7 +322,7 @@ public class Enemy : MonoBehaviour {
             GameObject drop = (GameObject)Instantiate(coin, new Vector3(enemyPos.x, enemyPos.y, 0), Quaternion.identity);
             drop.transform.localScale = new Vector3(6, 6, 1);
             drop.tag = "BossGold";
-            drop.rigidbody2D.AddForce(new Vector2(Random.Range(-100, 100), Random.Range(-100, 150)));
+            drop.rigidbody2D.AddForce(new Vector2(Random.Range(-300, 300), Random.Range(-300, 300)));
         }
     }
 

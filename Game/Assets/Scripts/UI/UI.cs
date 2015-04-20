@@ -27,6 +27,9 @@ public class UI : MonoBehaviour {
 
     void OnMouseOver()
     {
+        //if (!GameObject.Find("Bat").audio.isPlaying)
+        //    GameObject.Find("Bat").audio.Play();
+
         gameObject.transform.localScale = Vector3.Lerp(gameObject.transform.localScale, scale + zoom, speed * Time.deltaTime);
     }
 
