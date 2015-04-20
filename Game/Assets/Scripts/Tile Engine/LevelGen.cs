@@ -19,6 +19,7 @@ public class LevelGen : MonoBehaviour {
 
     List<Vector3> trees = new List<Vector3>();
     public List<GameObject> enemyPrefabs = new List<GameObject>();
+    public GameObject boss;
     public GameObject treePrefab;
     //public GameObject enemyPrefab;
 
@@ -43,16 +44,27 @@ public class LevelGen : MonoBehaviour {
         GameObject player = GameObject.Find("Player");
         player.transform.position = sandTiles[Random.Range(0, sandTiles.Length)].transform.position;
         // Spawns enemies
-        int enemyNo = Random.Range(5, 10);
-        game.totalEnemies = enemyNo;
 
-        for (int i = 0; i < enemyNo; i++)
+        int bossChance = Random.Range(0, game.upperBound + 1);
+        if (bossChance == 0)
         {
-            int randEnemy = Random.Range(0, enemyPrefabs.Count);
             int r = Random.Range(0, grassTiles.Length);
             Vector3 position = grassTiles[r].transform.position;
-            GameObject tmp = (GameObject)Instantiate(enemyPrefabs[randEnemy], position, Quaternion.identity);
-            //tmp.SendMessage("ScaleStats", game.difficultyLevel);
+            Instantiate(boss, position, Quaternion.identity);
+        }
+        else
+        {
+            int enemyNo = Random.Range(5, 10);
+            game.totalEnemies = enemyNo;
+
+            for (int i = 0; i < enemyNo; i++)
+            {
+                int randEnemy = Random.Range(0, enemyPrefabs.Count);
+                int r = Random.Range(0, grassTiles.Length);
+                Vector3 position = grassTiles[r].transform.position;
+                GameObject tmp = (GameObject)Instantiate(enemyPrefabs[randEnemy], position, Quaternion.identity);
+                //tmp.SendMessage("ScaleStats", game.difficultyLevel);
+            }
         }
 
         //Spawns trees

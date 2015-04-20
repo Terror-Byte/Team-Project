@@ -23,6 +23,7 @@ public class PlayerUIDriver : MonoBehaviour {
     private float minYValue; // PUBLIC FOR TESTING
     private float maxYValue; // PUBLIC FOR TESTING
     private float healthX;   // PUBLIC FOR TESTING
+    public Text enemiesRemaining;
 
     public Text weaponName;
     public Image weaponSprite;
@@ -69,6 +70,8 @@ public class PlayerUIDriver : MonoBehaviour {
         spdText.text = "Spd - " + game.speed.ToString();
         dexText.text = "Dex - " + game.dex.ToString();
         hpText.text = "Hp - " + game.hpLvl.ToString();
+
+        enemiesRemaining.text = "There are still enemies near...";
 
         gameOver.SetActive(false);
         mainMenu.SetActive(false);
@@ -129,6 +132,11 @@ public class PlayerUIDriver : MonoBehaviour {
 
         float currentHealthY = currentPosition(game.currentHp, player.HP(), maxYValue);
         healthTransform.localPosition = new Vector3(healthX, currentHealthY);
+
+        if (game.totalEnemies <= 0)
+        {
+            enemiesRemaining.text = "All enemies are vanquished!";
+        }
 	}
 
     void LoadMenu()

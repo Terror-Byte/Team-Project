@@ -20,16 +20,16 @@ public class Enemy : MonoBehaviour {
     Movement moveScript;
 
     // Pathfinding Stuff
-    LevelGenerator levelGen;
-    Node[,] navGraph;
-    Node currentPosNode;
-    List<Node> currentPath = null;
-
+    //LevelGenerator levelGen;
+    //Node[,] navGraph;
+    //Node currentPosNode;
+    //List<Node> currentPath = null;
 	//Node target = new Node();
+
     Vector2 target = new Vector2();
 	Vector2 enemyPos = new Vector2();
 	Vector2 playerPos = new Vector2();
-//	Vector2 mousePos = new Vector2(); // For testing only
+    //Vector2 initialPos = new Vector2();
 
 	// Weapon related variables
 	Vector3 currVel;
@@ -37,6 +37,7 @@ public class Enemy : MonoBehaviour {
 	public float weaponSpd = 15f; // Speed of projectile
 	public float weaponRefresh = 0.1f; // Shooting speed
 	float refreshCounter;
+    public bool canShoot360 = false;
 
     //drops
     public List<GameObject> weapons = new List<GameObject>();
@@ -49,6 +50,14 @@ public class Enemy : MonoBehaviour {
     public enum ShootingType { Single, Spread, Rotary};
     public ShootingType shootType;
 
+    List<GameObject> tileList = new List<GameObject>();
+
+    // Boss stuff
+    [Header("Boss Stuff")]
+    public bool isBoss = false;
+    public float batNo = 0.0f;
+    public GameObject bat;
+
 	// Use this for initialization
 	void Start () 
     {
@@ -58,7 +67,33 @@ public class Enemy : MonoBehaviour {
 
         ScaleStats();
 
-        int rand = Random.Range(0, 3);
+        int rand = Random.Range(0, 8);
+
+        if (rand == 0)
+        {
+            if (canShoot360)
+            {
+                shootType = ShootingType.Rotary;
+            }
+            else
+            {
+                shootType = ShootingType.Spread;
+            }
+        }
+        else if (rand >= 1 && rand <= 3)
+        {
+            shootType = ShootingType.Single;
+        }
+        else if (rand <= 4)
+        {
+            shootType = ShootingType.Spread;
+        }
+
+        if (isBoss)
+        {
+            shootType = ShootingType.Rotary;
+        }
+        /*
         switch (rand)
         {
             case 0: 
@@ -73,6 +108,11 @@ public class Enemy : MonoBehaviour {
                 shootType = ShootingType.Rotary;
                 break;
         }
+        */
+
+        tileList.AddRange(GameObject.FindGameObjectsWithTag("WaterTile").ToList<GameObject>());
+        tileList.AddRange(GameObject.FindGameObjectsWithTag("SandTile").ToList<GameObject>());
+        tileList.AddRange(GameObject.FindGameObjectsWithTag("GrassTile").ToList<GameObject>());
 	}
 	
 	// Update is called once per frame
@@ -83,7 +123,10 @@ public class Enemy : MonoBehaviour {
             Destroy(this.gameObject);
             //player.SendMessage("AddExperience", experience);
             gameController.SendMessage("EnemyDied");
-            ItemDrop();
+            if (isBoss)
+                BossDrop();
+            else
+                ItemDrop();
         }
 
 		player = GameObject.Find ("Player");
@@ -96,27 +139,61 @@ public class Enemy : MonoBehaviour {
 		playerPos.y = player.transform.position.y;
 
         //currentPosNode = ConvertToNode(enemyPos.x, enemyPos.y);
-        
+
+        int distMin = 6;
+        if (isBoss)
+            distMin = 10;
+
         Vector2 distToPlayer = playerPos - enemyPos;
-        if (distToPlayer.magnitude < 6)
+        if (distToPlayer.magnitude < distMin)
+        {
             aiState = state.Attack;
+        }
         else
+        {
             aiState = state.Roam;
+        }
 
         if (!moveScript.playerLiving && aiState == state.Attack)
         {
             aiState = state.Roam;
             if (target == playerPos)
+            {
+                //if (gameObject.layer == 14)
+                    //initialPos = gameObject.transform.position; // Only relevant for snake
                 hasTarget = false;
+            }
         }
 
 		if (aiState == state.Roam)
 		{
 			if (!hasTarget)
 			{
-				// target = new Vector2(Random.Range(-5, 5), Random.Range (-5, 5));
-				Vector2 currentPosition = gameObject.transform.position;
-				target = new Vector2(Random.Range(currentPosition.x - 5, currentPosition.x + 5), Random.Range(currentPosition.y  - 5, currentPosition.y + 5));
+                Vector2 currentPosition = gameObject.transform.position;
+                /*if (gameObject.layer == 14)
+                {
+                    bool hasPos = false;                  
+                    while (!hasPos)
+                    {                       
+                        target = new Vector2(Random.Range(currentPosition.x - 5, currentPosition.x + 5), Random.Range(currentPosition.y - 5, currentPosition.y + 5));
+                        if ((target - initialPos).magnitude < 15)
+                            hasPos = true;
+                    }
+                }
+                else
+                {
+                    target = new Vector2(Random.Range(currentPosition.x - 5, currentPosition.x + 5), Random.Range(currentPosition.y - 5, currentPosition.y + 5));
+                }*/
+                if (gameObject.layer == 14)
+                {
+                    int rand = Random.Range(0, tileList.Count);
+                    target = tileList[rand].gameObject.transform.position;
+                }
+                else
+                {
+                    target = new Vector2(Random.Range(currentPosition.x - 5, currentPosition.x + 5), Random.Range(currentPosition.y - 5, currentPosition.y + 5));
+                }
+                
 				hasTarget = true;
 			}
 			else if (hasTarget)
@@ -136,19 +213,6 @@ public class Enemy : MonoBehaviour {
                 rigidbody2D.velocity = vec2Target;
                 //transform.Translate(vec2Target);
 			}
-            /*
-            if (!hasTarget)
-            {
-                int xPos = (int)gameObject.transform.position.x + Random.Range(-10, 10);
-                int yPos = (int)gameObject.transform.position.y + Random.Range(-10, 10);
-                GeneratePathTo(xPos, yPos);
-				hasTarget = true;
-            }
-            else if (hasTarget)
-            {
-                MoveNextNode();
-            }
-             * */
 		}
 		else if (aiState == state.Attack)
 		{
@@ -184,8 +248,26 @@ public class Enemy : MonoBehaviour {
                     case ShootingType.Rotary:
                         ShootRotary(shotsfired);
                         shotsfired += 7;
-                        weaponRefresh = 0.7f;
-                        weaponSpd = 6;
+                        if (!isBoss)
+                        {
+                            
+                            weaponRefresh = 0.7f;
+                            weaponSpd = 6;
+                        }
+                        else if (isBoss)
+                        {
+                            weaponRefresh = 0.7f;
+                            weaponSpd = 10;
+
+                            batNo++;
+                            if (batNo >= 10)
+                            {
+                                batNo = 0;
+                                Vector2 batPos = new Vector2(Random.Range(enemyPos.x, enemyPos.x + 3), Random.Range(enemyPos.y, enemyPos.y + 3));
+                                Instantiate(bat, batPos, Quaternion.identity);
+                            }
+                        }
+                        
                         break;
                 }
 				
@@ -221,6 +303,18 @@ public class Enemy : MonoBehaviour {
         if (roll < 75)
         {
             spawnGold();
+        }
+    }
+
+    void BossDrop()
+    {
+        int maxDrop = 50;
+        for (int i = 0; i < maxDrop; i++)
+        {
+            GameObject drop = (GameObject)Instantiate(coin, new Vector3(enemyPos.x, enemyPos.y, 0), Quaternion.identity);
+            drop.transform.localScale = new Vector3(6, 6, 1);
+            drop.tag = "BossGold";
+            drop.rigidbody2D.AddForce(new Vector2(Random.Range(-100, 100), Random.Range(-100, 150)));
         }
     }
 
@@ -306,6 +400,43 @@ public class Enemy : MonoBehaviour {
         }
     }
 
+   /* void ShootRotaryBoss(float i)
+    {
+        // This is a dirty hack, but it's the only way I can think of doing this at the moment
+        Vector2[] directions = {   
+                                   new Vector2(0.0f, 1.0f), new Vector2(0.5f,1.0f), new Vector2(1.0f,1.0f), new Vector2(1.0f, 0.5f),          // Top-Right section
+                                   new Vector2(1.0f, 0.0f), new Vector2(1.0f, -0.5f), new Vector2(1.0f, -1.0f), new Vector2(0.5f, -1.0f),     // Bottom-Right section
+                                   new Vector2(0.0f, -1.0f), new Vector2(-0.5f, -1.0f), new Vector2(-1.0f, -1.0f), new Vector2(-1.0f, -0.5f), // Bottom-Left section
+                                   new Vector2(-1.0f, 0.0f), new Vector2(-1.0f, 0.5f), new Vector2(-1.0f, 1.0f), new Vector2(-0.5f, 1.0f)     // Top-Left section
+                               };
+
+        int directionCount = 0;
+        float ang = 0;
+        for (float angle = ang; angle < ang + 360; angle += 22.5f)
+        {
+            GameObject newBullet1 = InstantiateBullet();
+            GameObject newBullet2 = InstantiateBullet();
+            GameObject newBullet3 = InstantiateBullet();
+
+            Vector2 forceDirection = Quaternion.Euler(new Vector3(0, 0, i)) * directions[directionCount];
+            Vector3 a = forceDirection * weaponSpd;
+            newBullet1.rigidbody2D.velocity = a - (currVel / 3);
+            newBullet1.transform.rotation = Quaternion.AngleAxis(-angle + 45 + i, Vector3.forward);
+
+            float modangle = angle - 22.5f;
+            a = (forceDirection - new Vector2(0.1f, 0.1f)).normalized * weaponSpd;
+            newBullet2.rigidbody2D.velocity = a - (currVel / 3);
+            newBullet2.transform.rotation = Quaternion.AngleAxis(-modangle + 45 + i, Vector3.forward);
+
+            modangle = angle + 22.5f;
+            a = (forceDirection + new Vector2(0.1f, 0.1f)).normalized * weaponSpd;
+            newBullet3.rigidbody2D.velocity = a - (currVel / 3);
+            newBullet3.transform.rotation = Quaternion.AngleAxis(-modangle + 45 + i, Vector3.forward);
+
+            directionCount++;
+        }
+    }*/
+
     GameObject InstantiateBullet()
     {
         float xPos = enemyPos.x;
@@ -319,6 +450,9 @@ public class Enemy : MonoBehaviour {
         newBullet.GetComponent<BulletScript>().range = range;
         newBullet.GetComponent<BulletScript>().source = "Enemy";
         newBullet.layer = 16;
+
+        if (isBoss)
+            newBullet.transform.localScale = new Vector3(5, 5, 0);
 
         return newBullet;
     }

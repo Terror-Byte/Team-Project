@@ -1465,6 +1465,7 @@ MonoBehaviour:
   difficultyLevel: 0
   gos: []
   totalEnemies: 0
+  upperBound: 100
 --- !u!4 &1265528942
 Transform:
   m_ObjectHideFlags: 0

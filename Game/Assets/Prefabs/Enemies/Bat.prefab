@@ -155,6 +155,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 190710, guid: c5f8365c05300d849ae0f21034ffd42b, type: 2}
   weaponSpd: 15
   weaponRefresh: .5
+  canShoot360: 0
   weapons: []
   sword: {fileID: 0}
   coin: {fileID: 102284, guid: 53b88232b14249a4c809e52a7fa868a2, type: 2}

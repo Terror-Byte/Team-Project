@@ -213,6 +213,13 @@ public class Movement : MonoBehaviour {
             uiDriver.goldText.text = game.gold.ToString();
         }
 
+        if (coll.gameObject.tag == "BossGold")
+        {
+            Destroy(coll.gameObject);
+            game.gold += 5;
+            uiDriver.goldText.text = game.gold.ToString();
+        }
+
         if (coll.gameObject.tag == "WaterTile")
         {
             //Debug.Log("Player collides with water");
@@ -224,7 +231,7 @@ public class Movement : MonoBehaviour {
         if (other.gameObject.tag == "Finish")
         {
             inExit = true;
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space) && game.totalEnemies <= 0)
             {
                 game.SendMessage("Finish");
                 //Debug.Log("Finish");

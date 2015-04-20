@@ -46,6 +46,9 @@ public class GameController : MonoBehaviour
     public GameObject[] gos;
     public int totalEnemies;
 
+    [Header("Boss stuff")]
+    public int upperBound = 100; // The upper bound of the random chance.
+
     // Use this for initialization
     void Start()
     {
@@ -79,6 +82,10 @@ public class GameController : MonoBehaviour
     void Finish()
     {
         maxDifficultyCompleted = (int)Mathf.Max(difficultyLevel + 1, maxDifficultyCompleted);
+        if (upperBound > 0)
+            upperBound -= 5;
+        else
+            upperBound = 100;
         Application.LoadLevel("Select");
     }
 

@@ -1,0 +1,54 @@
+Initialize engine version: 4.6.2f1 (bd99309c2ad7)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: NVIDIA GeForce GTX 560  (ID=0x1201)
+    Vendor:   NVIDIA
+    VRAM:     978 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: E:\Github Repos\Team-Project\Game\Plunder!_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading E:\Github Repos\Team-Project\Game\Plunder!_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: E:\Github Repos\Team-Project\Game\Plunder!_Data\Managed\Assembly-CSharp-firstpass.dll (this message is harmless)
+Loading E:\Github Repos\Team-Project\Game\Plunder!_Data\Managed\Assembly-CSharp-firstpass.dll into Unity Child Domain
+Platform assembly: E:\Github Repos\Team-Project\Game\Plunder!_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading E:\Github Repos\Team-Project\Game\Plunder!_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: E:\Github Repos\Team-Project\Game\Plunder!_Data\Managed\Assembly-UnityScript-firstpass.dll (this message is harmless)
+Loading E:\Github Repos\Team-Project\Game\Plunder!_Data\Managed\Assembly-UnityScript-firstpass.dll into Unity Child Domain
+Platform assembly: E:\Github Repos\Team-Project\Game\Plunder!_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading E:\Github Repos\Team-Project\Game\Plunder!_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+- Completed reload, in  0.099 seconds
+desktop: 1920x1080 60Hz; virtual: 3280x1080 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+Platform assembly: E:\Github Repos\Team-Project\Game\Plunder!_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: E:\Github Repos\Team-Project\Game\Plunder!_Data\Managed\System.dll (this message is harmless)
+UnloadTime: 0.578932 ms
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 18 unused Assets to reduce memory usage. Loaded Objects now: 352.
+Total: 1.563304 ms (FindLiveObjects: 0.021029 ms CreateObjectMapping: 0.014225 ms MarkObjects: 0.316062 ms  DeleteObjects: 0.108240 ms)
+
+UnloadTime: 5.211015 ms
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 594.
+Total: 1.489700 ms (FindLiveObjects: 0.027214 ms CreateObjectMapping: 0.022575 ms MarkObjects: 0.330907 ms  DeleteObjects: 0.013916 ms)
+
+UnloadTime: 5.843140 ms
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 198 unused Assets to reduce memory usage. Loaded Objects now: 267.
+Total: 1.273838 ms (FindLiveObjects: 0.016390 ms CreateObjectMapping: 0.015153 ms MarkObjects: 0.136383 ms  DeleteObjects: 0.250190 ms)
+
+UnloadTime: 0.684390 ms
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 17 unused Assets to reduce memory usage. Loaded Objects now: 356.
+Total: 1.786589 ms (FindLiveObjects: 0.021957 ms CreateObjectMapping: 0.018555 ms MarkObjects: 0.381316 ms  DeleteObjects: 0.114425 ms)
+
+UnloadTime: 2.375728 ms
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 594.
+Total: 3.103105 ms (FindLiveObjects: 0.053811 ms CreateObjectMapping: 0.036492 ms MarkObjects: 0.602127 ms  DeleteObjects: 0.025668 ms)
+

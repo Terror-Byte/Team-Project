@@ -158,6 +158,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 190710, guid: c5f8365c05300d849ae0f21034ffd42b, type: 2}
   weaponSpd: 6
   weaponRefresh: .5
+  canShoot360: 1
   weapons:
   - {fileID: 195492, guid: 6933f9eb584f8d44ba59412cab71beea, type: 2}
   - {fileID: 161872, guid: 8770e95b9267b1840a59ded3cf921097, type: 2}
